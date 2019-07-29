@@ -1,0 +1,8 @@
+id,name,base_on,employer_ratio,employee_ratio,contribution_ratio
+labor_insurance_ordinary_normal_ratio,Ordinary Insurance - Normal,ordinary,20,70,10
+labor_insurance_ordinary_unions_ratio,Ordinary Insurance - Occupational Unions,ordinary,60,0,40
+labor_insurance_ordinary_fishermen_ratio,Ordinary Insurance - Fishermen,ordinary,20,0,80
+labor_insurance_accident_normal_ratio,Occupational Accident - Normal,accident,0,100,0
+labor_insurance_accident_unions_ratio,Occupational Accident - Occupational Unions,accident,60,0,40
+labor_insurance_accident_fishermen_ratio,Occupational Accident - Fishermen,accident,20,0,80
+labor_insurance_employment_normal_ratio,Employment Insurance - Normal,employment,20,70,10
