@@ -36,6 +36,8 @@
     'data': [
         # 'views/views.xml',
         'data/resource.labor.contribution_ratio.csv',
-        'data/resource.health.contribution_ratio.csv'
+        'data/resource.health.contribution_ratio.csv',
+        'data/resource.payroll.bracket.csv',
+        'data/resource.payroll.bracket.table.csv',
     ],
 }
