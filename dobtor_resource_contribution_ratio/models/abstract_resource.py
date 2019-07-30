@@ -15,7 +15,7 @@ class AbstractContributionRatio(models.AbstractModel):
         string='Title',
     )
     employer_ratio = fields.Float(
-        string='Employer Ratio',
+        string='Company Ratio',
     )
     employee_ratio = fields.Float(
         string='Employee Ratio',
@@ -33,7 +33,7 @@ class AbstractContributionRatio(models.AbstractModel):
     def _compute_contribution_ratio(self):
         for record in self:
             record.contribution_ratio = '{:.0f}%-{:.0f}%-{:.0f}%'.format(
-                record.employer_ratio, record.employee_ratio, record.government_ratio)
+                record.employee_ratio, record.employer_ratio, record.government_ratio)
 
     @api.constrains('employer_ratio', 'employee_ratio', 'government_ratio')
     def _check_ratio_validation(self):

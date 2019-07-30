@@ -10,14 +10,14 @@
                 <form string="Insurance (Contribution Ratio)">
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <!-- <button name="" type="action" string="Work Resources" icon="fa-cogs" class="oe_stat_button" groups="base.group_user"/> -->
+                            <!-- <button name="" type="object" string="Work Resources" icon="fa-cogs" class="oe_stat_button" groups="base.group_user"/> -->
                         </div>
                         <h1>
                             <field name="name"/>
                         </h1>
                         <group>
-                            <field name="employer_ratio" class="oe_inline"/>
                             <field name="employee_ratio" class="oe_inline"/>
+                            <field name="employer_ratio" class="oe_inline"/>
                             <field name="government_ratio" class="oe_inline"/>
                         </group>
                     </sheet>
@@ -47,7 +47,6 @@
                 'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'
             }</field>
             <field name="domain">[('base_on', '=', 'ordinary')]</field>
-
         </record>
         <record id="action_resource_accident_insurance" model="ir.actions.act_window">
             <field name="name">Occupational Accident Insurance</field>

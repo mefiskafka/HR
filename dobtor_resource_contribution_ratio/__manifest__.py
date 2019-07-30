@@ -20,5 +20,6 @@
     'data': [
         'security/ir.model.access.csv',
         'views/contribution_ratio_views.xml',
+        'views/payroll_bracket_table_views.xml',
     ],
 }

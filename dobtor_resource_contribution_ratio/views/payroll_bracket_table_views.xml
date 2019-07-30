@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Common Form and Tree View -->
+        <record id="resource_payroll_bracket_form" model="ir.ui.view">
+            <field name="name">resource.payroll.bracket.form</field>
+            <field name="model">resource.payroll.bracket</field>
+            <field name="arch" type="xml">
+                <form string="Payroll Bracket">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_payroll_bracket_table" type="object" string="Payroll Bracket Table" icon="fa-th-list" class="oe_stat_button" groups="base.group_system"/>
+                        </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <separator string="Payroll Bracket Table" />
+                        <field name="table_ids" />
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="resource_payroll_bracket_tree" model="ir.ui.view">
+            <field name="name">resource.payroll.bracket.tree</field>
+            <field name="model">resource.payroll.bracket</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="resource_payroll_bracket_table_tree" model="ir.ui.view">
+            <field name="name">resource.payroll.bracket.table.tree</field>
+            <field name="model">resource.payroll.bracket.table</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="rank"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_payroll_bracket" model="ir.actions.act_window">
+            <field name="name">Payroll Bracket Table</field>
+            <field name="res_model">resource.payroll.bracket</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_payroll_bracket_table" model="ir.actions.act_window">
+            <field name="name">Payroll Bracket Table</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">resource.payroll.bracket.table</field>
+            <field name="view_mode">tree</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('barcket_id', '=', active_id)]</field>
+        </record>
+
+        <!-- MENU -->
+        <menuitem id="menu_action_payroll_bracket" parent="resource.menu_resource_config" action="action_payroll_bracket" sequence="14"/>
+
+    </data>
+</odoo>
