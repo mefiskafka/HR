@@ -100,6 +100,24 @@
                         </div>
                     </div>
 
+                    <h2>Common Insurance Setting</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="hr_payroll_bracket_table">
+                            <div class="o_setting_right_pane">
+                                <label string="Payroll Bracket Table" for="payroll_bracket_id"/>
+                                <span class="fa fa-lg fa-pie-chart" />
+                                <div class="text-muted">
+                                    Set default payroll bracket table Parameter.
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="payroll_bracket_id" class="col-lg-5 o_light_label"/>
+                                        <field name="payroll_bracket_id" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </xpath>
             </field>
         </record>

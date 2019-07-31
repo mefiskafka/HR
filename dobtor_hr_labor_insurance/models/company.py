@@ -70,4 +70,10 @@ class Company(models.Model):
         ondelete='set null',
     )
     
+    # Payroll Bracket Table
+    payroll_bracket_id = fields.Many2one(
+        string='Payroll Bracket Table',
+        comodel_name='resource.payroll.bracket',
+        ondelete='set null',
+    )
     

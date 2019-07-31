@@ -7,6 +7,12 @@ class Contract(models.Model):
     _inherit = 'hr.contract'
 
     # insure wage
+    payroll_bracket_id = fields.Many2one(
+        string='Payroll Bracket Table',
+        comodel_name='resource.payroll.bracket',
+        default=lambda self: self.env['res.company']._company_default_get(
+        ).payroll_bracket_id.id,
+    )
     insure_wage = fields.Float(
         string='Insure Wage',
         compute='_compute_insure_wage',
@@ -91,8 +97,14 @@ class Contract(models.Model):
         ).get_param("insurance.health.premium"),
         store=True,
     )
-
-    @api.depends('wage')
+    dependents_number =  fields.Integer(
+        string='Number of dependents',
+        default=0
+    )
+    
+    @api.depends('wage', 'payroll_bracket_id')
     def _compute_insure_wage(self):
         for record in self:
-            record.insure_wage = record.wage
+            insure_wage = record.payroll_bracket_id.search(
+                [('rank', '>=', record.wage)], limit=1)
+            record.insure_wage = insure_wage

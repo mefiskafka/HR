@@ -67,9 +67,16 @@ class ResConfigSettings(models.TransientModel):
     )
     average_dependents_number = fields.Float(
         string='Average Dependents',
-        config_parameter='insurance.health.average_dependents', 
+        config_parameter='resource.payroll.bracket',
         default=0.61,
         readonly=False,
         help=_('Number of Average Dependents'),
     )
 
+    # Payroll Bracket Table
+    payroll_bracket_id = fields.Many2one(
+        string='Payroll Bracket Table',
+        comodel_name='resource.payroll.bracket',
+        related='company_id.payroll_bracket_id',
+        readonly=False,
+    )
