@@ -4,42 +4,56 @@
 
         <record id="hr_rule_ordinary_insurance" model="hr.salary.rule">
             <field name="name">Ordinary Insurance</field>
-            <field name="sequence" eval="200"/>
+            <field name="sequence" eval="180"/>
             <field name="code">ORDINARY</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round(contract.wage * 0.10 * 0.2)</field>
+            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employee_ratio/100.00) )</field>
         </record>
         
         <record id="hr_rule_occupational_accident_insurance" model="hr.salary.rule">
             <field name="name">Occupational Accident Insurance</field>
-            <field name="sequence" eval="201"/>
+            <field name="sequence" eval="181"/>
             <field name="code">ACCIDENT</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round(contract.wage * 0.0011 * 0)</field>
+            <field name="amount_python_compute">result = -round( contract.insure_wage * (float(contract.accident_premium)/100.00) * (contract.accident_employee_ratio/100.00) )</field>
         </record>
 
         <record id="hr_rule_employment_Insurance" model="hr.salary.rule">
             <field name="name">Employment Insurance</field>
-            <field name="sequence" eval="203"/>
+            <field name="sequence" eval="182"/>
             <field name="code">EMPLOYMENT</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round(contract.wage * 0.01 * 0.2)</field>
+            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employee_ratio/100.00) )</field>
         </record>
+
+        <!-- <record id="hr_rule_employment_Insurance" model="hr.salary.rule">
+            <field name="name">Employment Insurance</field>
+            <field name="sequence" eval="182"/>
+            <field name="code">EMPLOYMENT</field>
+            <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round(contract.wage * 0.01 * contract.employment_employee_ratio )</field>
+        </record> -->
 
         <record id="hr_rule_health_Insurance" model="hr.salary.rule">
             <field name="name">Health Insurance</field>
-            <field name="sequence" eval="205"/>
+            <field name="sequence" eval="185"/>
             <field name="code">HEALTH</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round(contract.wage * 0.0469 * 0.3)</field>
+            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) )</field>
+        </record>
+
+        <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
+            <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.DED + categories.INSURE</field>
         </record>
 
     </data>
