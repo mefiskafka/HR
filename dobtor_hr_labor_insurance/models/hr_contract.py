@@ -105,6 +105,6 @@ class Contract(models.Model):
     @api.depends('wage', 'payroll_bracket_id')
     def _compute_insure_wage(self):
         for record in self:
-            insure_wage = record.payroll_bracket_id.search(
-                [('rank', '>=', record.wage)], limit=1)
-            record.insure_wage = insure_wage
+            insure_wage = record.payroll_bracket_id.table_ids.filtered(
+                lambda item: item.rank >= record.wage)[0]
+            record.insure_wage = insure_wage.rank

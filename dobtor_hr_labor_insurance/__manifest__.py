@@ -41,6 +41,6 @@
         'data/hr_salary_rule.xml',
         'data/hr_salary_structure.xml',
         'views/res_config_settings_views.xml',
-        
+        'views/hr_contract_views.xml',
     ],
 }

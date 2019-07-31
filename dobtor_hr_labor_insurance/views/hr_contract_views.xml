@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_contract_insurance_form" model="ir.ui.view">
+            <field name="name">hr.contract.insurance.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Insurance" name="insurance">
+                        <group>
+                            <group name="info" string="Insurance Information">
+                                <field name="payroll_bracket_id" />
+                                <field name="insure_wage" />
+                            </group>
+                            <group>
+                            </group>
+                            <group name="ordinary" string="Ordinary Insurance">
+                                <field name="resource_ordinary_id"/>
+                                <field name="ordinary_employee_ratio" readonly="1" />
+                                <field name="ordinary_premium" readonly="1"/>
+                            </group>
+                            <group name="accident" string="Occupational Accident Insurance">
+                                <field name="resource_accident_id"/>
+                                <field name="accident_employee_ratio" readonly="1" />
+                                <field name="accident_premium" readonly="1"/>
+                            </group>
+                            <group name="employment" string="Ordinary Insurance">
+                                <field name="resource_employment_id"/>
+                                <field name="employment_employee_ratio" readonly="1" />
+                                <field name="employment_premium" readonly="1"/>
+                            </group>
+                            <group name="health" string="Health Insurance">
+                                <field name="resource_health_id"/>
+                                <field name="dependents_number"/>
+                                <field name="health_employee_ratio" readonly="1" />
+                                <field name="health_premium" readonly="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
