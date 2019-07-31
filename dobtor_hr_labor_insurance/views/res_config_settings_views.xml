@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.hr.payroll.insure</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="45"/>
+            <field name="inherit_id" ref="hr_payroll.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-string='Payroll']" position="inside">
+                    <h2>Labor Insurance</h2>
+                    <div class="row mt16 o_settings_container">
+
+                        <div class="col-lg-6 col-12 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label string="Ordinary Insurance" for="resource_ordinary_id"/>
+                                <span class="fa fa-lg fa-pie-chart" />
+                                <div class="text-muted">
+                                    Set default Ordinary Insurance Parameter.
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="resource_ordinary_id" class="col-lg-5 o_light_label"/>
+                                        <field name="resource_ordinary_id" domain="[('base_on', '=', 'ordinary')]" context="{'default_base_on': 'ordinary'}"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="ordinary_premium" class="col-lg-5 o_light_label"/>
+                                        <field name="ordinary_premium"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" id="hr_occupational_accident_insurance">
+                            <div class="o_setting_right_pane">
+                                <label string="Occupational Accident Insurance" for="resource_accident_id"/>
+                                <span class="fa fa-lg fa-pie-chart" />
+                                <div class="text-muted">
+                                    Set default Occupational Accident Insurance Parameter.
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="resource_accident_id" class="col-lg-5 o_light_label"/>
+                                        <field name="resource_accident_id" domain="[('base_on', '=', 'accident')]" context="{'default_base_on': 'accident'}"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="accident_premium" class="col-lg-5 o_light_label"/>
+                                        <field name="accident_premium"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" id="hr_employment_insurance">
+                            <div class="o_setting_right_pane">
+                                <label string="Employment Insurance" for="resource_employment_id"/>
+                                <span class="fa fa-lg fa-pie-chart" />
+                                <div class="text-muted">
+                                    Set default Employment Insurance Parameter.
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="resource_employment_id" class="col-lg-5 o_light_label"/>
+                                        <field name="resource_employment_id" domain="[('base_on', '=', 'employment')]" context="{'default_base_on': 'employment'}"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="employment_premium" class="col-lg-5 o_light_label"/>
+                                        <field name="employment_premium"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Health Insurance</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="hr_health_insurance">
+                            <div class="o_setting_right_pane">
+                                <label string="Health Insurance" for="resource_health_id"/>
+                                <span class="fa fa-lg fa-pie-chart" />
+                                <div class="text-muted">
+                                    Set default Health Insurance Parameter.
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="resource_health_id" class="col-lg-5 o_light_label"/>
+                                        <field name="resource_health_id" />
+                                    </div>
+                                    <div class="row">
+                                        <label for="health_premium" class="col-lg-5 o_light_label"/>
+                                        <field name="health_premium"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="average_dependents_number" class="col-lg-5 o_light_label"/>
+                                        <field name="average_dependents_number"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
