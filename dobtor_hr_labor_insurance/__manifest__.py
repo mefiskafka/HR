@@ -37,6 +37,7 @@
         'dobtor_resource_contribution_ratio',
     ],
     'data': [
+        'data/ir_config_parameter.xml',
         'data/hr_salary_rule_category.xml',
         'data/hr_salary_rule.xml',
         'data/hr_salary_structure.xml',

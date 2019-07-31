@@ -13,6 +13,7 @@
                             <group name="info" string="Insurance Information">
                                 <field name="payroll_bracket_id" />
                                 <field name="insure_wage" />
+                                <field name="health_insure_wage" />
                             </group>
                             <group>
                             </group>
@@ -30,6 +31,9 @@
                                 <field name="resource_employment_id" domain="[('base_on','=','employment')]" context="{'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                 <field name="employment_employee_ratio" readonly="1" />
                                 <field name="employment_premium" readonly="1"/>
+                            </group>
+                            <group name="pension" string="Self-Labor pension">
+                                <field name="pension_premium" />
                             </group>
                             <group name="health" string="Health Insurance">
                                 <field name="resource_health_id" context="{'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from odoo import models, fields, api, _
 
 
@@ -67,7 +68,7 @@ class ResConfigSettings(models.TransientModel):
     )
     average_dependents_number = fields.Float(
         string='Average Dependents',
-        config_parameter='resource.payroll.bracket',
+        config_parameter='health.average.dependents',
         default=0.61,
         readonly=False,
         help=_('Number of Average Dependents'),
@@ -78,5 +79,11 @@ class ResConfigSettings(models.TransientModel):
         string='Payroll Bracket Table',
         comodel_name='resource.payroll.bracket',
         related='company_id.payroll_bracket_id',
+        readonly=False,
+    )
+    labor_limit = fields.Float(
+        string='Labor Insured limit',
+        config_parameter='labor.insured.limit',
+        default=45800,
         readonly=False,
     )

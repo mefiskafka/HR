@@ -32,15 +32,15 @@
             <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employee_ratio/100.00) )</field>
         </record>
 
-        <!-- <record id="hr_rule_employment_Insurance" model="hr.salary.rule">
-            <field name="name">Employment Insurance</field>
-            <field name="sequence" eval="182"/>
-            <field name="code">EMPLOYMENT</field>
+        <record id="hr_rule_pension_premium" model="hr.salary.rule">
+            <field name="name">Self-Labor Pension</field>
+            <field name="sequence" eval="183"/>
+            <field name="code">SELF</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round(contract.wage * 0.01 * contract.employment_employee_ratio )</field>
-        </record> -->
+            <field name="amount_python_compute">result = -round(contract.insure_wage * (contract.pension_premium/100.00) )</field>
+        </record>
 
         <record id="hr_rule_health_Insurance" model="hr.salary.rule">
             <field name="name">Health Insurance</field>
@@ -49,7 +49,7 @@
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number))</field>
+            <field name="amount_python_compute">result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number))</field>
         </record>
 
         <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">

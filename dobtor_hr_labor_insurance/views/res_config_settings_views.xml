@@ -26,7 +26,8 @@
                                     </div>
                                     <div class="row">
                                         <label for="ordinary_premium" class="col-lg-5 o_light_label"/>
-                                        <field name="ordinary_premium"/>
+                                        <field name="ordinary_premium" class="col-lg-5"/>
+                                        <span class="fa fa-percent mt4 ml4"></span>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +47,8 @@
                                     </div>
                                     <div class="row">
                                         <label for="accident_premium" class="col-lg-5 o_light_label"/>
-                                        <field name="accident_premium"/>
+                                        <field name="accident_premium" class="col-lg-5"/>
+                                        <span class="fa fa-percent mt4 ml4"></span>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +68,8 @@
                                     </div>
                                     <div class="row">
                                         <label for="employment_premium" class="col-lg-5 o_light_label"/>
-                                        <field name="employment_premium"/>
+                                        <field name="employment_premium" class="col-lg-5"/>
+                                        <span class="fa fa-percent mt4 ml4"></span>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +92,8 @@
                                     </div>
                                     <div class="row">
                                         <label for="health_premium" class="col-lg-5 o_light_label"/>
-                                        <field name="health_premium"/>
+                                        <field name="health_premium" class="col-lg-5"/>
+                                        <span class="fa fa-percent mt4 ml4"></span>
                                     </div>
                                     <div class="row">
                                         <label for="average_dependents_number" class="col-lg-5 o_light_label"/>
@@ -113,6 +117,10 @@
                                     <div class="row mt16">
                                         <label for="payroll_bracket_id" class="col-lg-5 o_light_label"/>
                                         <field name="payroll_bracket_id" />
+                                    </div>
+                                    <div class="row">
+                                        <label for="labor_limit" class="col-lg-5 o_light_label"/>
+                                        <field name="labor_limit"/>
                                     </div>
                                 </div>
                             </div>
