@@ -21,19 +21,20 @@ class Contract(models.Model):
 
     # ordinary insurance
     resource_ordinary_id = fields.Many2one(
-        string='Ordinary Insurance Contribution Ratio',
+        string='Policy',
         comodel_name='resource.labor.contribution_ratio',
         domian="[('base_on','=','ordinary')]",
         default=lambda self: self.env['res.company']._company_default_get(
         ).resource_ordinary_id.id,
     )
     ordinary_employee_ratio = fields.Float(
-        string='Ordinary of Contribution Ratio',
+        string='Contribution Ratio',
         related='resource_ordinary_id.employee_ratio',
         store=True,
+        help="Employee of Ordinary insurance contribution ratio"
     )
     ordinary_premium = fields.Float(
-        string='Ordinary Insurance Premium',
+        string='Insurance Premium',
         default=lambda self: self.env["ir.config_parameter"].sudo(
         ).get_param("insurance.ordinary.premium"),
         store=True,
@@ -41,25 +42,26 @@ class Contract(models.Model):
 
     # occupational insurance
     resource_accident_id = fields.Many2one(
-        string='Occupational Accident Insurance Contribution Ratio',
+        string='Policy',
         comodel_name='resource.labor.contribution_ratio',
         domian="[('base_on','=','accident')]",
         default=lambda self: self.env['res.company']._company_default_get(
         ).resource_accident_id.id,
     )
     accident_employee_ratio = fields.Float(
-        string='Occupational Accident of Contribution Ratio',
+        string='Contribution Ratio',
         related='resource_accident_id.employee_ratio',
         store=True,
+        help="Employee of Occupational Accident insurance contribution ratio"
     )
     accident_premium = fields.Selection(
-        string='Occuptional Accident Insurance Premium',
+        string='Insurance Premium',
         related='company_id.accident_premium',
         store=True,
     )
     # employment insurance
     resource_employment_id = fields.Many2one(
-        string='Employment Insurance Contribution Ratio',
+        string='Policy',
         comodel_name='resource.labor.contribution_ratio',
         domian="[('base_on','=','employment')]",
         ondelete='set null',
@@ -67,12 +69,13 @@ class Contract(models.Model):
         ).resource_employment_id.id,
     )
     employment_employee_ratio = fields.Float(
-        string='Employment of Contribution Ratio',
+        string='Contribution Ratio',
         related='resource_employment_id.employee_ratio',
         store=True,
+        help="Employee of Employment insurance contribution ratio"
     )
     employment_premium = fields.Float(
-        string='Employment Insurance Premium',
+        string='Insurance Premium',
         default=lambda self: self.env["ir.config_parameter"].sudo(
         ).get_param("insurance.employment.premium"),
         store=True,
@@ -80,19 +83,20 @@ class Contract(models.Model):
 
     # health insurance
     resource_health_id = fields.Many2one(
-        string='Health Insurance Contribution Ratio',
+        string='Policy',
         comodel_name='resource.health.contribution_ratio',
         ondelete='set null',
         default=lambda self: self.env['res.company']._company_default_get(
         ).resource_health_id.id,
     )
     health_employee_ratio = fields.Float(
-        string='Health of Contribution Ratio',
+        string='Contribution Ratio',
         related='resource_health_id.employee_ratio',
         store=True,
+        help="Employee of health insurance contribution ratio"
     )
     health_premium = fields.Float(
-        string='Health Insurance Premium',
+        string='Insurance Premium',
         default=lambda self: self.env["ir.config_parameter"].sudo(
         ).get_param("insurance.health.premium"),
         store=True,

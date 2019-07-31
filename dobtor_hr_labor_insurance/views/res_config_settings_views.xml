@@ -22,7 +22,7 @@
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label for="resource_ordinary_id" class="col-lg-5 o_light_label"/>
-                                        <field name="resource_ordinary_id" domain="[('base_on', '=', 'ordinary')]" context="{'default_base_on': 'ordinary'}"/>
+                                        <field name="resource_ordinary_id" domain="[('base_on', '=', 'ordinary')]" context="{'default_base_on': 'ordinary' , 'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                     </div>
                                     <div class="row">
                                         <label for="ordinary_premium" class="col-lg-5 o_light_label"/>
@@ -42,7 +42,7 @@
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label for="resource_accident_id" class="col-lg-5 o_light_label"/>
-                                        <field name="resource_accident_id" domain="[('base_on', '=', 'accident')]" context="{'default_base_on': 'accident'}"/>
+                                        <field name="resource_accident_id" domain="[('base_on', '=', 'accident')]" context="{'default_base_on': 'accident', 'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                     </div>
                                     <div class="row">
                                         <label for="accident_premium" class="col-lg-5 o_light_label"/>
@@ -62,7 +62,7 @@
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label for="resource_employment_id" class="col-lg-5 o_light_label"/>
-                                        <field name="resource_employment_id" domain="[('base_on', '=', 'employment')]" context="{'default_base_on': 'employment'}"/>
+                                        <field name="resource_employment_id" domain="[('base_on', '=', 'employment')]" context="{'default_base_on': 'employment', 'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                     </div>
                                     <div class="row">
                                         <label for="employment_premium" class="col-lg-5 o_light_label"/>
@@ -85,7 +85,7 @@
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label for="resource_health_id" class="col-lg-5 o_light_label"/>
-                                        <field name="resource_health_id" />
+                                        <field name="resource_health_id" context="{'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                     </div>
                                     <div class="row">
                                         <label for="health_premium" class="col-lg-5 o_light_label"/>

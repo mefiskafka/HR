@@ -17,22 +17,22 @@
                             <group>
                             </group>
                             <group name="ordinary" string="Ordinary Insurance">
-                                <field name="resource_ordinary_id"/>
+                                <field name="resource_ordinary_id" domain="[('base_on','=','ordinary')]" context="{'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                 <field name="ordinary_employee_ratio" readonly="1" />
                                 <field name="ordinary_premium" readonly="1"/>
                             </group>
                             <group name="accident" string="Occupational Accident Insurance">
-                                <field name="resource_accident_id"/>
+                                <field name="resource_accident_id" domain="[('base_on','=','accident')]" context="{'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                 <field name="accident_employee_ratio" readonly="1" />
                                 <field name="accident_premium" readonly="1"/>
                             </group>
-                            <group name="employment" string="Ordinary Insurance">
-                                <field name="resource_employment_id"/>
+                            <group name="employment" string="Employment Insurance">
+                                <field name="resource_employment_id" domain="[('base_on','=','employment')]" context="{'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                 <field name="employment_employee_ratio" readonly="1" />
                                 <field name="employment_premium" readonly="1"/>
                             </group>
                             <group name="health" string="Health Insurance">
-                                <field name="resource_health_id"/>
+                                <field name="resource_health_id" context="{'form_view_ref': 'dobtor_resource_contribution_ratio.resource_common_contribution_ratio_form'}"/>
                                 <field name="dependents_number"/>
                                 <field name="health_employee_ratio" readonly="1" />
                                 <field name="health_premium" readonly="1"/>
