@@ -34,6 +34,7 @@
         'base',
         'hr',
         'hr_payroll',
+        'hr_payroll_account',
         'dobtor_resource_contribution_ratio',
     ],
     'data': [
@@ -43,5 +44,9 @@
         'data/hr_salary_structure.xml',
         'views/res_config_settings_views.xml',
         'views/hr_contract_views.xml',
+        # 'demo/hr_demo.xml',
     ],
+    'demo': [
+        'demo/hr_demo.xml',
+    ]
 }
