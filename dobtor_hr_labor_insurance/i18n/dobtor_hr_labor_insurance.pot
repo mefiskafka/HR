@@ -1,0 +1,421 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dobtor_hr_labor_insurance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-01 14:11+0000\n"
+"PO-Revision-Date: 2019-09-01 14:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.11"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.12"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.13"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.15"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.16"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.17"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.18"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.19"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.20"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.21"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.22"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.23"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.24"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.26"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.27"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.28"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.37"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.39"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.40"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.41"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.47"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.48"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.53"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.61"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.92"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: selection:res.company,accident_premium:0
+msgid "0.96"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__average_dependents_number
+msgid "Average Dependents"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Common Insurance Setting"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model,name:dobtor_hr_labor_insurance.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model,name:dobtor_hr_labor_insurance.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__accident_employee_ratio
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__employment_employee_ratio
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__health_employee_ratio
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__ordinary_employee_ratio
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__resource_accident_id
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__resource_employment_id
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__resource_health_id
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__resource_ordinary_id
+msgid "Contribution Ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model,name:dobtor_hr_labor_insurance.model_hr_employee
+msgid "Employee"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model,name:dobtor_hr_labor_insurance.model_hr_contract
+msgid "Employee Contract"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_hr_contract__employment_employee_ratio
+msgid "Employee of Employment insurance contribution ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_hr_contract__accident_employee_ratio
+msgid "Employee of Occupational Accident insurance contribution ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_hr_contract__ordinary_employee_ratio
+msgid "Employee of Ordinary insurance contribution ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_hr_contract__health_employee_ratio
+msgid "Employee of health insurance contribution ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:hr.salary.rule,name:dobtor_hr_labor_insurance.hr_rule_employment_Insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.hr_contract_insurance_form
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Employment Insurance"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_company__resource_employment_id
+msgid "Employment Insurance Contribution Ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:hr.salary.rule,name:dobtor_hr_labor_insurance.hr_rule_health_Insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.hr_contract_insurance_form
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Health Insurance"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_company__resource_health_id
+msgid "Health Insurance Contribution Ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__health_insure_wage
+msgid "Health Insure Wage"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.hr_contract_insurance_form
+msgid "Insurance"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.hr_contract_insurance_form
+msgid "Insurance Information"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__accident_premium
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__employment_premium
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__health_premium
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__ordinary_premium
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__accident_premium
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__employment_premium
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__health_premium
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__ordinary_premium
+msgid "Insurance Premium"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__insure_wage
+msgid "Insure Wage"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:151
+#, python-format
+msgid "It has to be no greater than 6.0"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Labor Insurance"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__labor_limit
+msgid "Labor Insured limit"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:hr.salary.rule.category,name:dobtor_hr_labor_insurance.INSURE
+msgid "Lobar/Health Insurance"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/res_config_setting.py:74
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_res_config_settings__average_dependents_number
+#, python-format
+msgid "Number of Average Dependents"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__dependents_number
+msgid "Number of dependents"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:hr.salary.rule,name:dobtor_hr_labor_insurance.hr_rule_occupational_accident_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.hr_contract_insurance_form
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Occupational Accident Insurance"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_company__resource_accident_id
+msgid "Occupational Accident Insurance Contribution Ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_company__accident_premium
+msgid "Occupational Accident Insurance Premium"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:hr.salary.rule,name:dobtor_hr_labor_insurance.hr_rule_ordinary_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.hr_contract_insurance_form
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Ordinary Insurance"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_company__resource_ordinary_id
+msgid "Ordinary Insurance Contribution Ratio"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__payroll_bracket_id
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_company__payroll_bracket_id
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__payroll_bracket_id
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Payroll Bracket Table"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:159
+#, python-format
+msgid "Please enter positive Value for 'Number of dependents'"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:148
+#, python-format
+msgid "Please enter positive Value for 'Self-Labor pension'"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__resource_accident_id
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__resource_employment_id
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__resource_health_id
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__resource_ordinary_id
+msgid "Policy"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:hr.salary.rule,name:dobtor_hr_labor_insurance.hr_rule_pension_premium
+msgid "Self-Labor Pension"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__pension_premium
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.hr_contract_insurance_form
+msgid "Self-Labor pension"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Set default Employment Insurance Parameter."
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Set default Health Insurance Parameter."
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Set default Occupational Accident Insurance Parameter."
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Set default Ordinary Insurance Parameter."
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
+msgid "Set default payroll bracket table Parameter."
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/res_config_setting.py:52
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_res_config_settings__employment_premium
+#, python-format
+msgid "percentage of Employment Insurance Premium"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/res_config_setting.py:67
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_res_config_settings__health_premium
+#, python-format
+msgid "percentage of Health Insurance Premium"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/company.py:55
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_hr_contract__accident_premium
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_res_company__accident_premium
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_res_config_settings__accident_premium
+#, python-format
+msgid "percentage of Occupational Accident Insurance Premium"
+msgstr ""
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/res_config_setting.py:22
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_res_config_settings__ordinary_premium
+#, python-format
+msgid "percentage of Ordinary Insurance Premium"
+msgstr ""
+
