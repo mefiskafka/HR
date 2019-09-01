@@ -1,3 +1,3 @@
 id,name,employee_ratio,employer_ratio,government_ratio
-health_insurance_employee_ratio,Employee,30,60,10
-health_insurance_employer_ratio,Employer,100,0,0
+health_insurance_employee_ratio,有一定雇主的受雇者,30,60,10
+health_insurance_employer_ratio,雇主,100,0,0
