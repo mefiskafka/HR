@@ -34,7 +34,6 @@
         'base',
         'hr',
         'hr_payroll',
-        'hr_payroll_account',
         'dobtor_resource_contribution_ratio',
     ],
     'data': [

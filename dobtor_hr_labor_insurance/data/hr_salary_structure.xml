@@ -10,6 +10,7 @@
             ref('hr_rule_occupational_accident_insurance'), 
             ref('hr_rule_employment_Insurance'), 
             ref('hr_rule_health_Insurance'), 
+            ref('hr_rule_2nd_generation_NHI'),
             ref('hr_rule_pension_premium'), 
             ref('hr_payroll.hr_rule_net')])]" name="rule_ids"/>
             <field name="company_id" ref="base.main_company"/>

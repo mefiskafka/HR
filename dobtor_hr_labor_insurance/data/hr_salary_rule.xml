@@ -52,6 +52,16 @@
             <field name="amount_python_compute">result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number))</field>
         </record>
 
+        <record id="hr_rule_2nd_generation_NHI" model="hr.salary.rule">
+            <field name="name">2nd Generation NHI</field>
+            <field name="sequence" eval="187"/>
+            <field name="code">NHI2ND</field>
+            <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round( payslip.nhi_2nd_amount )</field>
+        </record>
+
         <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
             <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.DED + categories.INSURE</field>
         </record>
