@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* dobtor_hr_labor_insurance
-# 
+#
 # Translators:
 # Ejan Chou <ejan.chou@dobtor.com>, 2019
 #
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-01 14:05+0000\n"
-"PO-Revision-Date: 2019-09-01 23:09+0800\n"
+"POT-Creation-Date: 2019-09-09 06:16+0000\n"
+"PO-Revision-Date: 2019-09-09 14:16+0800\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -151,6 +151,17 @@ msgid "0.96"
 msgstr ""
 
 #. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__nhi_2nd_premium
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__nhi_2nd_premium
+msgid "2nd Generation NHI"
+msgstr "二代健保保險費率"
+
+#. module: dobtor_hr_labor_insurance
+#: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_payslip__nhi_2nd_amount
+msgid "2nd Generation NHI amount"
+msgstr "補充保費"
+
+#. module: dobtor_hr_labor_insurance
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__average_dependents_number
 msgid "Average Dependents"
 msgstr "平均眷口數"
@@ -168,7 +179,7 @@ msgstr "公司"
 #. module: dobtor_hr_labor_insurance
 #: model:ir.model,name:dobtor_hr_labor_insurance.model_res_config_settings
 msgid "Config Settings"
-msgstr "配置設定"
+msgstr "配置設置"
 
 #. module: dobtor_hr_labor_insurance
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__accident_employee_ratio
@@ -180,7 +191,7 @@ msgstr "配置設定"
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__resource_health_id
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__resource_ordinary_id
 msgid "Contribution Ratio"
-msgstr "負擔比率"
+msgstr "負擔比例"
 
 #. module: dobtor_hr_labor_insurance
 #: model:ir.model,name:dobtor_hr_labor_insurance.model_hr_employee
@@ -269,7 +280,7 @@ msgid "Insure Wage"
 msgstr "勞保投保薪資"
 
 #. module: dobtor_hr_labor_insurance
-#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:151
+#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:157
 #, python-format
 msgid "It has to be no greater than 6.0"
 msgstr "自行提撥退休金比率不可以大於6.0"
@@ -331,6 +342,11 @@ msgid "Ordinary Insurance Contribution Ratio"
 msgstr "普通事故保險負擔比率"
 
 #. module: dobtor_hr_labor_insurance
+#: model:ir.model,name:dobtor_hr_labor_insurance.model_hr_payslip
+msgid "Pay Slip"
+msgstr "薪資單"
+
+#. module: dobtor_hr_labor_insurance
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__payroll_bracket_id
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_company__payroll_bracket_id
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__payroll_bracket_id
@@ -339,13 +355,13 @@ msgid "Payroll Bracket Table"
 msgstr "薪資級距表"
 
 #. module: dobtor_hr_labor_insurance
-#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:159
+#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:165
 #, python-format
 msgid "Please enter positive Value for 'Number of dependents'"
 msgstr "\"眷口數\"必須是正數"
 
 #. module: dobtor_hr_labor_insurance
-#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:148
+#: code:addons/dobtor_hr_labor_insurance/models/hr_contract.py:154
 #, python-format
 msgid "Please enter positive Value for 'Self-Labor pension'"
 msgstr "\"自行提撥勞工退休金\"必須是正數"
@@ -393,6 +409,18 @@ msgstr "設定合約預設的普通事故保險參數."
 #: model_terms:ir.ui.view,arch_db:dobtor_hr_labor_insurance.res_config_settings_view_form
 msgid "Set default payroll bracket table Parameter."
 msgstr "設定合約預設的薪資投保級距參數."
+
+#. module: dobtor_hr_labor_insurance
+#: model:hr.salary.rule,name:dobtor_hr_labor_insurance.hr_rule_2nd_generation_NHI
+msgid "Supplementary premium"
+msgstr "補充保費"
+
+#. module: dobtor_hr_labor_insurance
+#: code:addons/dobtor_hr_labor_insurance/models/res_config_setting.py:81
+#: model:ir.model.fields,help:dobtor_hr_labor_insurance.field_res_config_settings__nhi_2nd_premium
+#, python-format
+msgid "percentage of 2nd Generation NHI Insurance Premium"
+msgstr "二代健保保險費率百分比"
 
 #. module: dobtor_hr_labor_insurance
 #: code:addons/dobtor_hr_labor_insurance/models/res_config_setting.py:52

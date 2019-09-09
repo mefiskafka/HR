@@ -53,7 +53,7 @@
         </record>
 
         <record id="hr_rule_2nd_generation_NHI" model="hr.salary.rule">
-            <field name="name">2nd Generation NHI</field>
+            <field name="name">Supplementary premium</field>
             <field name="sequence" eval="187"/>
             <field name="code">NHI2ND</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
