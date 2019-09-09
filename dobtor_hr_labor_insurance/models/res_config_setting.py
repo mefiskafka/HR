@@ -73,6 +73,13 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
         help=_('Number of Average Dependents'),
     )
+    nhi_2nd_premium = fields.Float(
+        string='2nd Generation NHI',
+        config_parameter='insurance.nhi_2nd.premium',
+        default=1.91,
+        readonly=False,
+        help=_('percentage of 2nd Generation NHI Insurance Premium'),
+    )
 
     # Payroll Bracket Table
     payroll_bracket_id = fields.Many2one(

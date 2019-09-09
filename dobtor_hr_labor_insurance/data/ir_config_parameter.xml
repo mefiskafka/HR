@@ -22,6 +22,11 @@
             <field name="value">0.61</field>
         </record>
 
+        <record model="ir.config_parameter" id="nhi_2nd_premium">
+            <field name="key">insurance.nhi_2nd.premium</field>
+            <field name="value">1.91</field>
+        </record>
+
         <record model="ir.config_parameter" id="labor_limit">
             <field name="key">labor.insured.limit</field>
             <field name="value">45800</field>

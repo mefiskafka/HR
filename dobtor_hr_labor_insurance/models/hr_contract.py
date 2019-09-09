@@ -118,6 +118,12 @@ class Contract(models.Model):
         string='Number of dependents',
         default=0
     )
+    nhi_2nd_premium = fields.Float(
+        string='2nd Generation NHI',
+        default=lambda self: self.env["ir.config_parameter"].sudo(
+        ).get_param("insurance.nhi_2nd.premium"),
+        store=True,
+    )
 
     @api.depends('wage', 'payroll_bracket_id')
     def _compute_insure_wage(self):

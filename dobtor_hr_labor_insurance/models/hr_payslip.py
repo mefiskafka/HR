@@ -44,8 +44,8 @@ class HrPayslip(models.Model):
                 over_amount = aunnal_amount - quadruple_amount
                 over_amount = over_amount if over_amount > 0 else 0.0
                 base_amount = min(line.amount, over_amount)
-                # Todo : you need condition 10,000,000 limit
-                insurance_amount += base_amount * 0.0191
+                # condition 10,000,000 limit
+                insurance_amount += min(base_amount, 10000000)
             payslip.nhi_2nd_amount = insurance_amount
         return True
 
