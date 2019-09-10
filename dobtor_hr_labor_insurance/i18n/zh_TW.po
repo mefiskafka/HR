@@ -179,7 +179,7 @@ msgstr "公司"
 #. module: dobtor_hr_labor_insurance
 #: model:ir.model,name:dobtor_hr_labor_insurance.model_res_config_settings
 msgid "Config Settings"
-msgstr "配置設置"
+msgstr "配置設定"
 
 #. module: dobtor_hr_labor_insurance
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_hr_contract__accident_employee_ratio
@@ -191,7 +191,7 @@ msgstr "配置設置"
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__resource_health_id
 #: model:ir.model.fields,field_description:dobtor_hr_labor_insurance.field_res_config_settings__resource_ordinary_id
 msgid "Contribution Ratio"
-msgstr "負擔比例"
+msgstr "負擔比率"
 
 #. module: dobtor_hr_labor_insurance
 #: model:ir.model,name:dobtor_hr_labor_insurance.model_hr_employee
