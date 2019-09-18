@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <record id="miscellaneous_hr_salary_journal" model="account.journal">
+            <field name="name">員工薪資</field>
+            <field name="code">HRMISC</field>
+            <field name="type">general</field>
+            <field name="sequence">92</field>
+        </record>
+
+        <record id="miscellaneous_withholding_tax_journal" model="account.journal">
+            <field name="name">預扣所得稅</field>
+            <field name="code">TAXMISC</field>
+            <field name="type">general</field>
+            <field name="sequence">93</field>
+        </record>
+
+        <record id="miscellaneous_company_bli_journal" model="account.journal">
+            <field name="name">公司扣繳勞保</field>
+            <field name="code">BLIMISC</field>
+            <field name="type">general</field>
+            <field name="sequence">94</field>
+        </record>
+
+        <record id="miscellaneous_company_nhi_journal" model="account.journal">
+            <field name="name">公司扣繳健保</field>
+            <field name="code">NHIMISC</field>
+            <field name="type">general</field>
+            <field name="sequence">95</field>
+        </record>
+
+        <record id="bank_blijournal" model="account.journal">
+            <field name="name">勞保局(銀行)</field>
+            <field name="code">BLIBANK</field>
+            <field name="type">bank</field>
+            <field name="sequence">96</field>
+        </record>
+
+        <record id="back_nhi_journal" model="account.journal">
+            <field name="name">健保局(銀行)</field>
+            <field name="code">HNIBANK</field>
+            <field name="type">bank</field>
+            <field name="sequence">97</field>
+        </record>
+
+    </data>
+</odoo>

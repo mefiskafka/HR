@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dobtor_hr_labor_insurance_account_dobtor_hr_labor_insurance_account,dobtor_hr_labor_insurance_account.dobtor_hr_labor_insurance_account,model_dobtor_hr_labor_insurance_account_dobtor_hr_labor_insurance_account,,1,0,0,0
