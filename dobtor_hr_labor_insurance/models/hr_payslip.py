@@ -12,12 +12,12 @@ class HrPayslip(models.Model):
     )
 
     # handle 2nd Generation NHI
-    # ToDo : need check salary rule in salary hr_salary_structure
+    # TODO : need check salary rule in salary hr_salary_structure
     @api.multi
     def after_handle_inputs(self):
         input_obj = self.env['hr.payslip.input']
         payslip_obj = self.env['hr.payslip']
-        
+
         for payslip in self:
             aunnal = date(month=1, year=payslip.date_from.year, day=1)
             old_payslip_ids = payslip_obj.search([
@@ -33,7 +33,8 @@ class HrPayslip(models.Model):
             # Compute aunnal amount
             aunnal_amount = 0.0
             for old_payslip in old_payslip_ids:
-                aunnal_amount += sum([pline.amount for pline in old_payslip.input_line_ids])
+                aunnal_amount += sum(
+                    [pline.amount for pline in old_payslip.input_line_ids])
 
             # This Time commission
             insurance_amount = 0.0
@@ -48,4 +49,3 @@ class HrPayslip(models.Model):
                 insurance_amount += min(base_amount, 10000000)
             payslip.nhi_2nd_amount = insurance_amount
         return True
-
