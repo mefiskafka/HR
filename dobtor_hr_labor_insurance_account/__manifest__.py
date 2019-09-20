@@ -16,9 +16,11 @@
     'version': '0.1',
 
     'depends': [
-        'base'
+        'base',
         'account',
-        'hr_payroll_account'
+        'hr_payroll_account',
+        'dobtor_hr_labor_insurance',
+        'l10n_tw_standard_ifrss',
     ],
 
     # always loaded
@@ -26,7 +28,9 @@
         # 'security/ir.model.access.csv',
         'data/account_journal.xml',
         'data/res_partner.xml',
-        'views/views.xml',
+        'wizard/wizard_pay_salary.xml',
+        'views/account_menuitem.xml',
+        'views/res_config_setting_views.xml',
     ],
     'demo': [
         # 'demo/demo.xml',

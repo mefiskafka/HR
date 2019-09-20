@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- <record id="action_hr_payslip_run_tree" model="ir.actions.act_window">
+            <field name="name">Payslips Batches</field>
+            <field name="res_model">hr.payslip.run</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="hr_payslip_run_filter"/>
+        </record>          
+
+        <menuitem id="menu_commission_make_invoices" 
+            parent="menu_sale_commissions_management" 
+            sequence="30" 
+            action="action_commission_make_invoices" /> -->
+
+
+    </data>
+</odoo>

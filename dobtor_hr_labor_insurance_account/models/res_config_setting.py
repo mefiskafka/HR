@@ -15,62 +15,69 @@ class ResConfigSettings(models.TransientModel):
             return journal
         return self._default_misc_journal()
 
+    @api.depends('company_id')
+    def _compute_has_chart_of_accounts_tw(self):
+        taiwan_account_chart_id = self.env.ref(
+            'l10n_tw_standard_ifrss.l10n_chart_taiwan_standard_business', raise_if_not_found=False
+        ).id
+        self.has_chart_of_accounts = bool(
+            self.company_id.chart_template_id != taiwan_account_chart_id
+        )
+
+    taiwan_account_chart_id = fields.Many2one(
+        compute='_compute_has_chart_of_accounts_tw'
+    )
+
     hr_salary_journal = fields.Many2one(
         string='Employee Salary Journal',
         comodel_name='account.journal',
+        related='company_id.hr_salary_journal',
         domain=[('type', '=', 'general')],
         help="Accounting journal used to Employees Salary.",
-        default=lambda self: self._default_journal(
-            'dobtor_hr_labor_insurance_account.miscellaneous_hr_salary_journal'
-        )
+        readonly=False,
     )
 
     withholding_tax_journal = fields.Many2one(
         string='Withholding Tax Jouranl',
         comodel_name='account.journal',
+        related='company_id.withholding_tax_journal',
         domain=[('type', '=', 'general')],
         help="Accounting journal used to Withholding Tax.",
-        default=lambda self: self._default_journal(
-            'dobtor_hr_labor_insurance_account.miscellaneous_withholding_tax_journal'
-        )
+        readonly=False,
     )
 
     withholding_bli_journal = fields.Many2one(
         string='Withholding BLI Jouranl',
         comodel_name='account.journal',
+        related='company_id.withholding_bli_journal',
         domain=[('type', '=', 'general')],
         help="Accounting journal used to Withholding BLI.",
-        default=lambda self: self._default_journal(
-            'dobtor_hr_labor_insurance_account.miscellaneous_company_bli_journal'
-        )
+        readonly=False,
     )
 
     withholding_nhi_journal = fields.Many2one(
-        string='Withholding NHI Jouranl',
+        string='Withholding NHI Journal',
         comodel_name='account.journal',
+        related='company_id.withholding_nhi_journal',
         domain=[('type', '=', 'general')],
         help="Accounting journal used to Withholding NHI.",
-        default=lambda self: self._default_journal(
-            'dobtor_hr_labor_insurance_account.miscellaneous_company_nhi_journal'
-        )
+        readonly=False,
     )
 
     bank_bli_journal = fields.Many2one(
         string='BLI Bank',
         comodel_name='account.journal',
-        domain=[('type', '=', 'general')],
+        related='company_id.bank_bli_journal',
+        domain=[('type', '=', 'bank')],
         help="Accounting journal used to BLI (Bank).",
-        default=lambda self: self._default_journal(
-            'dobtor_hr_labor_insurance_account.bank_blijournal'
-        )
+        readonly=False,
     )
 
     back_nhi_journal = fields.Many2one(
         string='NHI Bank',
         comodel_name='account.journal',
-        domain=[('type', '=', 'general')],
+        related='company_id.back_nhi_journal',
+        domain=[('type', '=', 'bank')],
         help="Accounting journal used to NHI (Bank).",
-        default=lambda self: self._default_journal(
-            'dobtor_hr_labor_insurance_account.back_nhi_journal'
-        )
+        readonly=False,
     )
