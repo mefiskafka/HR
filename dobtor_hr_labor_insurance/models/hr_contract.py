@@ -128,22 +128,22 @@ class Contract(models.Model):
     @api.depends('wage', 'payroll_bracket_id')
     def _compute_insure_wage(self):
         for record in self:
-            if record.wage > float(self.env["ir.config_parameter"].sudo().get_param("labor.insured.limit")):
-                insure_wage = float(self.env["ir.config_parameter"].sudo(
-                ).get_param("labor.insured.limit"))
-            else:
-                insure_wage = record.payroll_bracket_id.table_ids.filtered(
-                    lambda item: item.rank >= record.wage)[0].rank
-            
+            if record.payroll_bracket_id:
+                if record.wage > float(self.env["ir.config_parameter"].sudo().get_param("labor.insured.limit")):
+                    insure_wage = float(self.env["ir.config_parameter"].sudo(
+                    ).get_param("labor.insured.limit"))
+                else:
+                    insure_wage = record.payroll_bracket_id.table_ids.filtered(
+                        lambda item: item.rank >= record.wage)[0].rank
+                
+                if record.wage > record.payroll_bracket_id.table_ids[-1].rank:
+                    health_insure_wage = record.payroll_bracket_id.table_ids[-1].rank
+                else:
+                    health_insure_wage = record.payroll_bracket_id.table_ids.filtered(
+                        lambda item: item.rank >= record.wage)[0].rank
 
-            if record.wage > record.payroll_bracket_id.table_ids[-1].rank:
-                health_insure_wage = record.payroll_bracket_id.table_ids[-1].rank
-            else:
-                health_insure_wage = record.payroll_bracket_id.table_ids.filtered(
-                    lambda item: item.rank >= record.wage)[0].rank
-
-            record.insure_wage = insure_wage
-            record.health_insure_wage = health_insure_wage
+                record.insure_wage = insure_wage
+                record.health_insure_wage = health_insure_wage
 
     @api.constrains('pension_premium')
     def _check_pension_premium(self):
