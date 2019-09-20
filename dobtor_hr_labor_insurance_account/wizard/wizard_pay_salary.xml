@@ -2,18 +2,28 @@
 <odoo>
     <data>
 
-        <!-- <record id="action_hr_payslip_run_tree" model="ir.actions.act_window">
-            <field name="name">Payslips Batches</field>
-            <field name="res_model">hr.payslip.run</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,kanban,form</field>
-            <field name="search_view_id" ref="hr_payslip_run_filter"/>
-        </record>          
+        <record id="view_pay_salary_wizard" model="ir.ui.view">
+            <field name="name">Select date to payment salary</field>
+            <field name="model">account.pay.salary</field>
+            <field name="arch" type="xml">
+                <form string="Pay Salary">
+                    <group>
+                        <p colspan="4">Select the date up to which you want to pay salary:</p>
+                    </group>
+                    <group colspan="2">
+                        <field name="date_to"/>
+                    </group>
+                    <footer>
+                        <button name="action_payment" string="Pay Salary" type="object" class="oe_highlight" />
+                        or
+                        <button name="action_cancel" string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
 
-        <menuitem id="menu_commission_make_invoices" 
-            parent="menu_sale_commissions_management" 
-            sequence="30" 
-            action="action_commission_make_invoices" /> -->
+        <act_window id="action_account_pay_salary" name="Pay Salary" res_model="account.pay.salary" view_mode="form" view_type="form" target="new" />
+
 
 
     </data>

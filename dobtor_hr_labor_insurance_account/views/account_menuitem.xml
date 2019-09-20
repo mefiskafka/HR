@@ -5,7 +5,7 @@
         <!-- cashier -->
         <menuitem id="menu_finance_cashier" name="Cashier" parent="account.menu_finance" sequence="40" groups="account.group_account_manager"/>
         <!-- cashier sub meun -->
-            <menuitem id="account_pay_salary_menu" name="Pay Salary" parent="dobtor_hr_labor_insurance_account.menu_finance_cashier" sequence="2" />
+            <menuitem id="account_pay_salary_menu" name="Pay Salary" parent="dobtor_hr_labor_insurance_account.menu_finance_cashier" sequence="2" action="action_account_pay_salary"/>
             <menuitem id="account_pay_nhi_menu" name="Pay HNI" parent="dobtor_hr_labor_insurance_account.menu_finance_cashier" sequence="3" />
             <menuitem id="account_pay_lib_menu" name="Pay LIB" parent="dobtor_hr_labor_insurance_account.menu_finance_cashier" sequence="4" />
 
