@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_pay_bli_wizard" model="ir.ui.view">
+            <field name="name">Select date to payment BLI</field>
+            <field name="model">account.pay.bli</field>
+            <field name="arch" type="xml">
+                <form string="Pay BLI">
+                    <group>
+                        <p colspan="4">Select the date up to which you want to pay BLI:</p>
+                    </group>
+                    <group colspan="2">
+                        <field name="date_to"/>
+                    </group>
+                    <footer>
+                        <button name="action_pay" string="Pay BLI" type="object" class="oe_highlight" />
+                        or
+                        <button name="action_cancel" string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_account_pay_bli" name="Pay BLI" res_model="account.pay.bli" view_mode="form" view_type="form" target="new" />
+
+
+
+    </data>
+</odoo>

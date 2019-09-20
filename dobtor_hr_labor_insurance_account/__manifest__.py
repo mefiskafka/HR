@@ -28,6 +28,8 @@
         # 'security/ir.model.access.csv',
         'data/account_journal.xml',
         'data/res_partner.xml',
+        'wizard/wizard_pay_nhi.xml',
+        'wizard/wizard_pay_bli.xml',
         'wizard/wizard_pay_salary.xml',
         'views/account_menuitem.xml',
         'views/res_config_setting_views.xml',

@@ -14,7 +14,7 @@
                         <field name="date_to"/>
                     </group>
                     <footer>
-                        <button name="action_payment" string="Pay Salary" type="object" class="oe_highlight" />
+                        <button name="action_pay" string="Pay Salary" type="object" class="oe_highlight" />
                         or
                         <button name="action_cancel" string="Cancel" class="oe_link" special="cancel" />
                     </footer>
