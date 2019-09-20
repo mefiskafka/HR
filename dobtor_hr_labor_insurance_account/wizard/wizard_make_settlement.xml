@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_make_settlement_wizard" model="ir.ui.view">
+            <field name="name">Select date to Settlement</field>
+            <field name="model">account.make.settlement</field>
+            <field name="arch" type="xml">
+                <form string="Settlement">
+                    <group>
+                        <p colspan="4">Select the date up to which you want to Settlement:</p>
+                    </group>
+                    <group colspan="2">
+                        <field name="date_to"/>
+                    </group>
+                    <footer>
+                        <button name="action_settle" string="Settlement" type="object" class="oe_highlight" />
+                        or
+                        <button name="action_cancel" string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_account_make_settlement" name="Settlement" res_model="account.make.settlement" view_mode="form" view_type="form" target="new" />
+
+
+
+    </data>
+</odoo>
