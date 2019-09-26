@@ -4,43 +4,49 @@
 
         <record id="partner_gov_bli" model="res.partner" context="{'default_is_company': True}">
             <field name="name">勞動部勞工保險局</field>
-            <field name="company_id" eval="None"/>
             <field name="customer" eval="False"/>
             <field name="is_company" eval="True"/>
+            <field name="industry_id" ref="base.res_partner_industry_O" />
             <field name="zip">10013</field>
             <field name="country_id" model="res.country" search="[('name','=','Taiwan')]" />
             <field name="street">臺北市中正區羅斯福路1段4號</field>
             <field name="phone">(02)2396-1266</field>
+            <field name="supplier" eval="True" />
             <field name="image" type="base64" file="dobtor_hr_labor_insurance_account/static/img/bli.png"/>
             <!-- <field name="property_account_payable_id" ref="l10n_tw_standard_ifrss.account_220900" /> -->
+            <!-- <field name="property_receivable_payable_id" ref="l10n_tw_standard_ifrss.account_120600" /> -->
             <field name="website">www.bli.gov.tw</field>
         </record>
 
         <record id="partner_gov_nhi" model="res.partner" context="{'default_is_company': True}">
             <field name="name">衛生福利部中央健康保險暑</field>
-            <field name="company_id" eval="None"/>
             <field name="customer" eval="False"/>
             <field name="is_company" eval="True"/>
+            <field name="industry_id" ref="base.res_partner_industry_O" />
             <field name="zip">10634</field>
             <field name="country_id" model="res.country" search="[('name','=','Taiwan')]" />
             <field name="street">臺北市大安區信義路三段140號</field>
             <field name="phone">(02)2706-5866</field>
+            <field name="supplier" eval="True" />
             <field name="image" type="base64" file="dobtor_hr_labor_insurance_account/static/img/nhi.png"/>
             <!-- <field name="property_account_payable_id" ref="l10n_tw_standard_ifrss.account_220900" /> -->
+            <!-- <field name="property_receivable_payable_id" ref="l10n_tw_standard_ifrss.account_120600" /> -->
             <field name="website">www.nhi.gov.tw</field>
         </record>     
 
         <record id="partner_gov_ntbt" model="res.partner" context="{'default_is_company': True}">
             <field name="name">財政部臺北國稅局</field>
-            <field name="company_id" eval="None"/>
             <field name="customer" eval="False"/>
             <field name="is_company" eval="True"/>
+            <field name="industry_id" ref="base.res_partner_industry_O" />
             <field name="zip">10802</field>
             <field name="country_id" model="res.country" search="[('name','=','Taiwan')]" />
             <field name="street">臺北市萬華區中華路1段2號</field>
             <field name="phone">(02)2311-3711</field>
+            <field name="supplier" eval="True" />
             <field name="image" type="base64" file="dobtor_hr_labor_insurance_account/static/img/ntbt.jpg"/>
             <!-- <field name="property_account_payable_id" ref="l10n_tw_standard_ifrss.account_220900" /> -->
+            <!-- <field name="property_receivable_payable_id" ref="l10n_tw_standard_ifrss.account_120600" /> -->
             <field name="website">www.ntbt.gov.tw/etwmain</field>
         </record> 
 

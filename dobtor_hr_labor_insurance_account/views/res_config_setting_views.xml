@@ -8,10 +8,10 @@
             <field name="inherit_id" ref="account.res_config_settings_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@data-key='account']" position="inside">
-                    <field name="taiwan_account_chart_id" invisible="1" />
-                    <h2 attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('taiwan_account_chart_id','!=', False )]}">Republic of China Finance</h2>
+                    <field name="has_chart_of_accounts_tw" invisible="1" />
+                    <h2 attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False )]}">Republic of China Finance</h2>
                     <div class="row mt16 o_settings_container">
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('taiwan_account_chart_id','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="Employee Salary Journal" for="hr_salary_journal"/>
@@ -27,7 +27,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('taiwan_account_chart_id','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="Withholding Tax Journal" for="withholding_tax_journal"/>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('taiwan_account_chart_id','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="Withholding BLI Journal" for="withholding_bli_journal"/>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('taiwan_account_chart_id','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="Withholding NHI Journal" for="withholding_nhi_journal"/>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('taiwan_account_chart_id','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="BLI Bank" for="bank_bli_journal"/>
@@ -91,7 +91,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('taiwan_account_chart_id','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="NHI Bank" for="back_nhi_journal"/>

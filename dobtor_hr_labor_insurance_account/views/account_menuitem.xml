@@ -8,9 +8,9 @@
         <menuitem id="menu_finance_settlement" name="Settlement" parent="dobtor_hr_labor_insurance_account.menu_finance_gov" sequence="6" action="action_account_make_settlement"/>
         <!-- Payment sub meun -->
         <menuitem id="menu_finance_payment" name="Payment" parent="dobtor_hr_labor_insurance_account.menu_finance_gov" sequence="10"/>
-            <menuitem id="account_pay_salary_menu" name="Pay Salary" parent="dobtor_hr_labor_insurance_account.menu_finance_cashier" sequence="12" action="action_account_pay_salary"/>
-            <menuitem id="account_pay_hni_menu" name="Pay NHI" parent="dobtor_hr_labor_insurance_account.menu_finance_cashier" sequence="13" action="action_account_pay_nhi"/>
-            <menuitem id="account_pay_bli_menu" name="Pay BLI" parent="dobtor_hr_labor_insurance_account.menu_finance_cashier" sequence="14" action="action_account_pay_bli"/>
+            <menuitem id="account_pay_salary_menu" name="Pay Salary" parent="dobtor_hr_labor_insurance_account.menu_finance_payment" sequence="12" action="action_account_pay_salary"/>
+            <menuitem id="account_pay_hni_menu" name="Pay NHI" parent="dobtor_hr_labor_insurance_account.menu_finance_payment" sequence="13" action="action_account_pay_nhi"/>
+            <menuitem id="account_pay_bli_menu" name="Pay BLI" parent="dobtor_hr_labor_insurance_account.menu_finance_payment" sequence="14" action="action_account_pay_bli"/>
 
 
     </data>

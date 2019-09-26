@@ -20,13 +20,15 @@ class ResConfigSettings(models.TransientModel):
         taiwan_account_chart_id = self.env.ref(
             'l10n_tw_standard_ifrss.l10n_chart_taiwan_standard_business', raise_if_not_found=False
         ).id
-        self.has_chart_of_accounts = bool(
-            self.company_id.chart_template_id != taiwan_account_chart_id
+        self.has_chart_of_accounts_tw = bool(
+            self.company_id.chart_template_id.id != taiwan_account_chart_id
         )
+    has_chart_of_accounts_tw = fields.Boolean(
+        compute='_compute_has_chart_of_accounts_tw', string='Company has a chart of accounts')
 
-    taiwan_account_chart_id = fields.Many2one(
-        compute='_compute_has_chart_of_accounts_tw'
-    )
+    # taiwan_account_chart_id = fields.Many2one(
+    #     compute='_compute_has_chart_of_accounts_tw'
+    # )
 
     hr_salary_journal = fields.Many2one(
         string='Employee Salary Journal',

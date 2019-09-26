@@ -17,6 +17,7 @@
 
     'depends': [
         'base',
+        'sale',
         'account',
         'hr_payroll_account',
         'dobtor_hr_labor_insurance',
@@ -28,6 +29,7 @@
         # 'security/ir.model.access.csv',
         'data/account_journal.xml',
         'data/res_partner.xml',
+        'data/product.xml',
         'wizard/wizard_make_settlement.xml',
         'wizard/wizard_pay_nhi.xml',
         'wizard/wizard_pay_bli.xml',
