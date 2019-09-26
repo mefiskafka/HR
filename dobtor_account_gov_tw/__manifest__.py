@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "dobtor_hr_labor_insurance_account",
+    'name': "dobtor_account_gov_tw",
 
     'summary': """
         handle payslip account 
@@ -31,9 +31,9 @@
         'data/res_partner.xml',
         'data/product.xml',
         'wizard/wizard_make_settlement.xml',
-        'wizard/wizard_pay_nhi.xml',
-        'wizard/wizard_pay_bli.xml',
-        'wizard/wizard_pay_salary.xml',
+        # 'wizard/wizard_pay_nhi.xml',
+        # 'wizard/wizard_pay_bli.xml',
+        # 'wizard/wizard_pay_salary.xml',
         'views/account_menuitem.xml',
         'views/res_config_setting_views.xml',
     ],

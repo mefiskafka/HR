@@ -18,7 +18,7 @@ class Company(models.Model):
         return self.env['account.journal'].search([('type', '=', 'general'), ('company_id', '=', self.env.user.company_id.id)], limit=1)
 
     def _perpare_account_journal(self, journal_ref_name, company_id):
-        if journal_ref_name == 'dobtor_hr_labor_insurance_account.miscellaneous_hr_salary_journal':
+        if journal_ref_name == 'dobtor_account_gov_tw.miscellaneous_hr_salary_journal':
             return {
                 'name': _('Employee Salary'),
                 'code': 'HRMISC',
@@ -44,22 +44,22 @@ class Company(models.Model):
         for res in self:
             if res.check_chart_template_in_tw():
                 res.hr_salary_journal = res._default_journal(
-                    'dobtor_hr_labor_insurance_account.miscellaneous_hr_salary_journal'
+                    'dobtor_account_gov_tw.miscellaneous_hr_salary_journal'
                 )
                 res.withholding_tax_journal = res._default_journal(
-                    'dobtor_hr_labor_insurance_account.miscellaneous_withholding_tax_journal'
+                    'dobtor_account_gov_tw.miscellaneous_withholding_tax_journal'
                 )
                 res.withholding_bli_journal = res._default_journal(
-                    'dobtor_hr_labor_insurance_account.miscellaneous_company_bli_journal'
+                    'dobtor_account_gov_tw.miscellaneous_company_bli_journal'
                 )
                 res.withholding_nhi_journal = res._default_journal(
-                    'dobtor_hr_labor_insurance_account.miscellaneous_company_nhi_journal'
+                    'dobtor_account_gov_tw.miscellaneous_company_nhi_journal'
                 )
                 res.bank_bli_journal = res._default_journal(
-                    'dobtor_hr_labor_insurance_account.bank_blijournal'
+                    'dobtor_account_gov_tw.bank_blijournal'
                 )
                 res.back_nhi_journal = res._default_journal(
-                    'dobtor_hr_labor_insurance_account.back_nhi_journal'
+                    'dobtor_account_gov_tw.back_nhi_journal'
                 )
 
     hr_salary_journal = fields.Many2one(
