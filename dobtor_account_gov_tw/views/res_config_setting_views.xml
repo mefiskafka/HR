@@ -107,6 +107,30 @@
                             </div>
                         </div>
 
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label string="NHI Bank" for="bli_partner"/>
+                                <div class="text-muted">
+                                    Choise Public Administration.
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="bli_partner" class="col-lg-5 o_light_label"/>
+                                        <field name="bli_partner" widget="selection"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="nhi_partner" class="col-lg-5 o_light_label"/>
+                                        <field name="nhi_partner" widget="selection"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="tax_partner" class="col-lg-5 o_light_label"/>
+                                        <field name="tax_partner" widget="selection"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </xpath>
             </field>

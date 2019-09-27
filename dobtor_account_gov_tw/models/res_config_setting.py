@@ -83,3 +83,38 @@ class ResConfigSettings(models.TransientModel):
         help="Accounting journal used to NHI (Bank).",
         readonly=False,
     )
+
+    # Public Administration
+    bli_partner = fields.Many2one(
+        string='BLI Contect',
+        comodel_name='res.partner',
+        related='company_id.bli_partner',
+        domain=[
+            ('supplier', '=', True),
+            ('is_company', '=', True),
+            ('industry_id', '=', 'Public Administration')
+        ],
+        readonly=False,
+    )
+    nhi_partner = fields.Many2one(
+        string='NHI Contect',
+        comodel_name='res.partner',
+        related='company_id.nhi_partner',
+        domain=[
+            ('supplier', '=', True),
+            ('is_company', '=', True),
+            ('industry_id', '=', 'Public Administration')
+        ],
+        readonly=False,
+    )
+    tax_partner = fields.Many2one(
+        string='TAX Contect',
+        comodel_name='res.partner',
+        related='company_id.tax_partner',
+        domain=[
+            ('supplier', '=', True),
+            ('is_company', '=', True),
+            ('industry_id', '=', 'Public Administration')
+        ],
+        readonly=False,
+    )

@@ -19,21 +19,25 @@
         'base',
         'sale',
         'account',
-        'hr_payroll_account',
-        'dobtor_hr_labor_insurance',
         'l10n_tw_standard_ifrss',
+        'dobtor_hr_labor_insurance',
+        'hr_payroll_account'
     ],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'data/account_journal.xml',
+        # 'data/hr_salary_rule_category.xml',
+        # 'data/hr_salary_rule.xml',
+        'data/notespayable_data.xml',
         'data/res_partner.xml',
         'data/product.xml',
         'wizard/wizard_make_settlement.xml',
         # 'wizard/wizard_pay_nhi.xml',
         # 'wizard/wizard_pay_bli.xml',
         # 'wizard/wizard_pay_salary.xml',
+        'views/hr_salary_rule_views.xml',
         'views/notespayable_views.xml',
         'views/account_menuitem.xml',
         'views/res_config_setting_views.xml',
