@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <form string="Notes Payable Order">
                     <header>
+                        <button string="Compute Sheet" name="action_compute_sheet" type="object" states="draft" class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,post" readonly="1"/>
                     </header>
                     <sheet>
@@ -21,22 +22,25 @@
                             </h1>
                         </div>
                         <group>
-                            <field name="partner_id" widget="selection" domain="[('supplier','=',True), ('is_company', '=', True), ('industry_id', '=', 'Public Administration')]" placeholder="Public Administration" />
-                            <field name="currency_id" groups="base.group_multi_currency"/>
-                        </group>
-                        <group>
-                            <field name="date_from"/>
-                            <field name="date_to"/>
-                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                            <group>
+                                <field name="partner_id" widget="selection" domain="[('supplier','=',True), ('is_company', '=', True), ('industry_id', '=', 'Public Administration')]" placeholder="Public Administration" />
+                                <field name="base_on" />
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                            </group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                            </group>
                         </group>
                         <notebook>
-                            <page string="Detail">
+                            <page string="Detail" name="notes_line">
                                 <field name="lines" attrs="{'readonly': [('state', 'in', ('invoiced', 'post', 'cancel'))]}">
                                     <tree string="Notes Order Lines" editable="bottom">
                                         <field name="product_type" invisible="1"/>
                                         <field name="sequence" widget="handle"/>
-                                        <!-- <field name="product_id" attrs="{'readonly': [('state', 'in',('invoiced', 'post', 'cancel'))]}" widget="selection" domain="[('gov_ok', '=', True)]" context="{'partner_id':parent.partner_id, 'company_id': parent.company_id}"/> -->
-                                        <field name="product_id" />
+                                        <field name="state" invisible="1"/>
+                                        <field name="product_id" attrs="{'readonly': [('state', 'in',('invoiced', 'post', 'cancel'))]}" widget="selection" domain="[('gov_ok', '=', True)]" />
                                         <field name="name"/>
                                         <field name="price"/>
                                     </tree>
@@ -61,6 +65,14 @@
                                 <field name="notes" class="oe_inline" placeholder="Define your terms and conditions ..."/>
                                 <div class="oe_clear"/>
                             </page>
+                            <page string="HR Setting" name="hr_setting">
+                                <group>
+                                    <group>
+                                        <field name="employee_ids" widget="many2many_tags" />
+                                        <field name="struct_id" widget="selection" />
+                                    </group>
+                                </group>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
@@ -72,6 +84,7 @@
             <field name="model">notespayable.order</field>
             <field name="arch" type="xml">
                 <tree decoration-muted="state=='cancel'" decoration-info="state in ('invoiced','post')" string="Notes Order">
+                    <!-- <tree> -->
                     <field name="name" string="Reference"/>
                     <field name="date_from" />
                     <field name="date_to" />
@@ -88,10 +101,13 @@
         <record id="action_account_notepayable_order" model="ir.actions.act_window">
             <field name="name">Notes Payable Orders</field>
             <field name="res_model">notespayable.order</field>
+            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
-            <!-- <field name="view_id" ref="notespayable_order_form"/> -->
-        </record>      
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> Click here to create a Notes.</p>
+            </field>
+        </record>
 
     </data>
 </odoo>
