@@ -67,14 +67,30 @@
             </field>
         </record>
 
+        <record id="notespayable_order_tree" model="ir.ui.view">
+            <field name="name">notespayable.order.tree</field>
+            <field name="model">notespayable.order</field>
+            <field name="arch" type="xml">
+                <tree decoration-muted="state=='cancel'" decoration-info="state in ('invoiced','post')" string="Notes Order">
+                    <field name="name" string="Reference"/>
+                    <field name="date_from" />
+                    <field name="date_to" />
+                    <field name="partner_id"/>
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    <field name="amount_total" sum="Total amount" widget="monetary"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="state"/>
+                    <!-- <field name="invoice_status" invisible="1"/> -->
+                </tree>
+            </field>
+        </record>
+
         <record id="action_account_notepayable_order" model="ir.actions.act_window">
-            <field name="type">ir.actions.act_window</field>
             <field name="name">Notes Payable Orders</field>
             <field name="res_model">notespayable.order</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_type">form</field>
             <field name="domain">[]</field>
-            <field name="context">{}</field>
+            <!-- <field name="view_id" ref="notespayable_order_form"/> -->
         </record>      
 
     </data>
