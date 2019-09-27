@@ -8,7 +8,9 @@
             <field name="arch" type="xml">
                 <form string="Notes Payable Order">
                     <header>
-                        <button string="Compute Sheet" name="action_compute_sheet" type="object" states="draft" class="oe_highlight"/>
+                        <button name="action_view_invoice" string="Create Bill" type="object" class="oe_highlight" context="{'create_bill':True}" attrs="{'invisible': ['|', ('state', 'not in', ('post', 'cancel'))]}"/>
+                        <button name="action_compute_sheet" string="Compute Sheet" type="object" states="draft" class="oe_highlight"/>
+                        <button name="action_cancel" states="draft" string="Cancel" type="object" />
                         <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,post" readonly="1"/>
                     </header>
                     <sheet>

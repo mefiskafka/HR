@@ -7,7 +7,8 @@ class HrPayrollStructure(models.Model):
     _inherit = 'hr.payroll.structure'
 
     gov_ok = fields.Boolean(
-        string='Using Government Tax',
+        string='Government Tax',
+        default=False
     )    
 
 
@@ -15,7 +16,8 @@ class HrSalaryRuleCategory(models.Model):
     _inherit = 'hr.salary.rule.category'
 
     gov_ok = fields.Boolean(
-        string='Using Government Tax',
+        string='Government Tax',
+        default=False
     )
 
 
@@ -26,6 +28,6 @@ class HrSalaryRule(models.Model):
         return self.category_id.gov_ok
 
     gov_ok = fields.Boolean(
-        string='Using Government Tax',
-        default='_default_gov_ok',
+        string='Government Tax',
+        default=_default_gov_ok,
     )

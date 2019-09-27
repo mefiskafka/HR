@@ -6,6 +6,10 @@ from odoo import models, fields, api, _
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    gov_ok = fields.Boolean(
+        string='Government tax',
+        default=False
+    )
 
     def _check_chart_of_account_is_tw(self, company_id):
         taiwan_account_chart_id = self.env.ref(

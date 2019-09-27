@@ -2,7 +2,8 @@
 <odoo>
     <data>
 
-        <record id="hr_payroll_structure_form_for_gov_tw" model="ir.ui.view">
+        <!-- hr payroll structure -->
+        <record id="hr_payroll_structure_form_gov_tw" model="ir.ui.view">
             <field name="name">hr.payroll.structure.form.gow_tw</field>
             <field name="model">hr.payroll.structure</field>
             <field name="inherit_id" ref="hr_payroll.view_hr_employee_grade_form"/>
@@ -11,6 +12,78 @@
                     <field name="gov_ok" />
                 </xpath>
             </field>
+        </record>
+
+        <record id="view_hr_payroll_structure_filter_gow_tw" model="ir.ui.view">
+            <field name="name">hr.payroll.structure.select.gow_tw</field>
+            <field name="model">hr.payroll.structure</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payroll_structure_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <filter string="General" name="general" domain="[('gov_ok', '!=', True)]"/>
+                    <separator/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_payroll.action_view_hr_payroll_structure_list_form" model="ir.actions.act_window">
+            <field name="context">{'search_default_general': 1}</field>
+        </record>
+
+        <!-- hr payroll category -->
+        <record id="hr_salary_rule_category_form_gov_tw" model="ir.ui.view">
+            <field name="name">hr.salary.rule.category.form.gow_tw</field>
+            <field name="model">hr.salary.rule.category</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_category_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="gov_ok" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_hr_salary_rule_category_filter_gov_tw" model="ir.ui.view">
+            <field name="name">hr.salary.rule.category.select.gov_tw</field>
+            <field name="model">hr.salary.rule.category</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_salary_rule_category_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <filter string="General" name="general" domain="[('gov_ok', '!=', True)]"/>
+                    <separator/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_payroll.action_hr_salary_rule_category" model="ir.actions.act_window">
+            <field name="context">{'search_default_general': 1}</field>
+        </record>
+
+        <!-- hr payroll rule -->
+        <record id="hr_salary_rule_form_gov_tw" model="ir.ui.view">
+            <field name="name">hr.salary.rule.form.gow_tw</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="gov_ok" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_hr_rule_filter_gov_tw" model="ir.ui.view">
+            <field name="name">hr.salary.rule.select.gov_tw</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_rule_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <filter string="General" name="general" domain="[('gov_ok', '!=', True)]"/>
+                    <separator/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_payroll.action_salary_rule_form" model="ir.actions.act_window">
+            <field name="context">{'search_default_general': 1}</field>
         </record>
 
     </data>

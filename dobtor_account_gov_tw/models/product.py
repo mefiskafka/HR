@@ -8,4 +8,5 @@ class Product(models.Model):
 
     gov_ok = fields.Boolean(
         string='Government tax',
+        default=False
     )

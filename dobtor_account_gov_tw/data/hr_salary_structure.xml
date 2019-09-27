@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="structure_base_with_insurance_company" model="hr.payroll.structure">
+            <field name="code">GOVTAX</field>
+            <field name="gov_ok" eval="True" />
+            <field name="name">Base with insurance for structures</field>
+            <field eval="[(6, 0, [
+            ref('hr_rule_ordinary_insurance_company'), 
+            ref('hr_rule_occupational_accident_insurance_company'), 
+            ref('hr_rule_employment_Insurance_company'), 
+            ref('hr_rule_health_Insurance_company')
+            ])]" name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+    </data>
+</odoo>

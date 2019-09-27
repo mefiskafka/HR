@@ -105,6 +105,7 @@ class Notespayable(models.Model):
         comodel_name='hr.payroll.structure',
         string='Structure',
         readonly=True,
+        domain=[('gov_ok', '=', True)],
         states={'draft': [('readonly', False)]},
     )
 
@@ -137,6 +138,13 @@ class Notespayable(models.Model):
     def action_compute_sheet(self):
         return False
 
+    @api.multi
+    def action_cancel(self):
+        return False
+
+    @api.multi
+    def action_view_invoice(self):
+        return False
 
 class NotespayableLine(models.Model):
     _name = 'notespayable.order.line'

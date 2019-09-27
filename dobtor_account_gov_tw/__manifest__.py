@@ -28,8 +28,9 @@
     'data': [
         'security/ir.model.access.csv',
         'data/account_journal.xml',
-        # 'data/hr_salary_rule_category.xml',
-        # 'data/hr_salary_rule.xml',
+        'data/hr_salary_rule_category.xml',
+        'data/hr_salary_rule.xml',
+        'data/hr_salary_structure.xml',
         'data/notespayable_data.xml',
         'data/res_partner.xml',
         'data/product.xml',
