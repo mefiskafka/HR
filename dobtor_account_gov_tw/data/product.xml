@@ -18,6 +18,7 @@
             <field name="purchase_ok" eval="False"/>
             <field name="taxes_id" eval="False"/>
             <field name="supplier_taxes_id" eval="False"/>
+            <field name="gov_ok" eval="True"/>
             <!-- <field name="property_account_income_categ_id" ref="l10n_tw_standard_ifrss.account_147100"/>
             <field name="property_account_expense_categ_id" ref="l10n_tw_standard_ifrss.account_621900"/> -->
             <field name="image" type="base64" file="dobtor_account_gov_tw/static/img/gov.png"/>
@@ -35,6 +36,7 @@
             <field name="purchase_ok" eval="False"/>
             <field name="taxes_id" eval="False"/>
             <field name="supplier_taxes_id" eval="False"/>
+            <field name="gov_ok" eval="True"/>
             <!-- <field name="property_account_income_categ_id" ref="l10n_tw_standard_ifrss.account_147100"/>
             <field name="property_account_expense_categ_id" ref="l10n_tw_standard_ifrss.account_622200"/> -->
             <field name="image" type="base64" file="dobtor_account_gov_tw/static/img/tax.png"/>

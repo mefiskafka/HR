@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="notespayable_order_form" model="ir.ui.view">
+            <field name="name">notespayable.order.form</field>
+            <field name="model">notespayable.order</field>
+            <field name="arch" type="xml">
+                <form string="Notes Payable Order">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,post" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <span class="o_form_label" attrs="{'invisible': [('state','not in',('draft'))]}">Draft</span>
+                            <span class="o_form_label" attrs="{'invisible': [('state','in',('invoiced','post'))]}">open Billing</span>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="partner_id" widget="selection" domain="[('supplier','=',True), ('is_company', '=', True), ('industry_id', '=', 'Public Administration')]" placeholder="Public Administration" />
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                        </group>
+                        <notebook>
+                            <page string="Detail">
+                                <field name="lines" attrs="{'readonly': [('state', 'in', ('invoiced', 'post', 'cancel'))]}">
+                                    <tree string="Notes Order Lines" editable="bottom">
+                                        <field name="product_type" invisible="1"/>
+                                        <field name="sequence" widget="handle"/>
+                                        <!-- <field name="product_id" attrs="{'readonly': [('state', 'in',('invoiced', 'post', 'cancel'))]}" widget="selection" domain="[('gov_ok', '=', True)]" context="{'partner_id':parent.partner_id, 'company_id': parent.company_id}"/> -->
+                                        <field name="product_id" />
+                                        <field name="name"/>
+                                        <field name="price"/>
+                                    </tree>
+                                    <from string="Notespayable Order Line">
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="product_id" />
+                                                    <field name="name"/>
+                                                    <field name="price"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </from>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <div class="oe_subtotal_footer_separator oe_inline">
+                                        <label for="amount_total"/>
+                                    </div>
+                                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                                <field name="notes" class="oe_inline" placeholder="Define your terms and conditions ..."/>
+                                <div class="oe_clear"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_notepayable_order" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Notes Payable Orders</field>
+            <field name="res_model">notespayable.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>      
+
+    </data>
+</odoo>

@@ -6,9 +6,11 @@
         <menuitem id="menu_finance_gov" name="Government" parent="account.menu_finance" sequence="40" groups="account.group_account_manager"/>
         <!-- Settlement sub menu -->
         <menuitem id="menu_finance_settlement" name="Settlement" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="6" action="action_account_make_settlement"/>
+        <!-- Notepayable menu -->
+        <menuitem id="menu_finance_notes" name="Notes" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="8" action="action_account_notepayable_order"/>
         <!-- Payment sub meun -->
-        <menuitem id="menu_finance_payment" name="Payment" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="10"/>
-            <!-- <menuitem id="account_pay_salary_menu" name="Pay Salary" parent="dobtor_account_gov_tw.menu_finance_payment" sequence="12" action="action_account_pay_salary"/>
+        <!-- <menuitem id="menu_finance_payment" name="Payment" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="10"/>
+            <menuitem id="account_pay_salary_menu" name="Pay Salary" parent="dobtor_account_gov_tw.menu_finance_payment" sequence="12" action="action_account_pay_salary"/>
             <menuitem id="account_pay_hni_menu" name="Pay NHI" parent="dobtor_account_gov_tw.menu_finance_payment" sequence="13" action="action_account_pay_nhi"/>
             <menuitem id="account_pay_bli_menu" name="Pay BLI" parent="dobtor_account_gov_tw.menu_finance_payment" sequence="14" action="action_account_pay_bli"/> -->
     </data>

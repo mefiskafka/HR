@@ -34,6 +34,7 @@
         # 'wizard/wizard_pay_nhi.xml',
         # 'wizard/wizard_pay_bli.xml',
         # 'wizard/wizard_pay_salary.xml',
+        'views/notespayable_views.xml',
         'views/account_menuitem.xml',
         'views/res_config_setting_views.xml',
     ],
