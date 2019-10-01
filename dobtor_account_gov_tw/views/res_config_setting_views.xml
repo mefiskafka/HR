@@ -32,12 +32,20 @@
                             <div class="o_setting_right_pane">
                                 <label string="Withholding Tax Journal" for="withholding_tax_journal"/>
                                 <div class="text-muted">
-                                    Accounting journal used to Withholding Tax.
+                                    Accounting journal/Contact/Product used to Withholding Tax.
                                 </div>
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label for="withholding_tax_journal" class="col-lg-5 o_light_label"/>
                                         <field name="withholding_tax_journal" widget="selection"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="tax_partner" class="col-lg-5 o_light_label"/>
+                                        <field name="tax_partner" widget="selection"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="tax_product_id" class="col-lg-5 o_light_label"/>
+                                        <field name="tax_product_id" widget="selection"/>
                                     </div>
                                 </div>
                             </div>
@@ -46,14 +54,22 @@
                         <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
-                                <label string="Withholding BLI Journal" for="withholding_bli_journal"/>
+                                <label string="Withholding BLI Default" for="withholding_bli_journal"/>
                                 <div class="text-muted">
-                                    Accounting journal used to Withholding BLI.
+                                    Accounting journal/Contact/Product used to Withholding BLI.
                                 </div>
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label for="withholding_bli_journal" class="col-lg-5 o_light_label"/>
                                         <field name="withholding_bli_journal" widget="selection"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="bli_partner" class="col-lg-5 o_light_label"/>
+                                        <field name="bli_partner" widget="selection"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="bli_product_id" class="col-lg-5 o_light_label"/>
+                                        <field name="bli_product_id" widget="selection"/>
                                     </div>
                                 </div>
                             </div>
@@ -64,12 +80,20 @@
                             <div class="o_setting_right_pane">
                                 <label string="Withholding NHI Journal" for="withholding_nhi_journal"/>
                                 <div class="text-muted">
-                                    Accounting journal used to Withholding NHI.
+                                    Accounting journal/Contact/Product used to Withholding NHI.
                                 </div>
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label for="withholding_nhi_journal" class="col-lg-5 o_light_label"/>
                                         <field name="withholding_nhi_journal" widget="selection"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="nhi_partner" class="col-lg-5 o_light_label"/>
+                                        <field name="nhi_partner" widget="selection"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="nhi_product_id" class="col-lg-5 o_light_label"/>
+                                        <field name="nhi_product_id" widget="selection"/>
                                     </div>
                                 </div>
                             </div>
@@ -102,30 +126,6 @@
                                     <div class="row mt16">
                                         <label for="back_nhi_journal" class="col-lg-5 o_light_label"/>
                                         <field name="back_nhi_journal" widget="selection"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
-                            <div class="o_setting_left_pane"/>
-                            <div class="o_setting_right_pane">
-                                <label string="NHI Bank" for="bli_partner"/>
-                                <div class="text-muted">
-                                    Choise Public Administration.
-                                </div>
-                                <div class="content-group">
-                                    <div class="row mt16">
-                                        <label for="bli_partner" class="col-lg-5 o_light_label"/>
-                                        <field name="bli_partner" widget="selection"/>
-                                    </div>
-                                    <div class="row">
-                                        <label for="nhi_partner" class="col-lg-5 o_light_label"/>
-                                        <field name="nhi_partner" widget="selection"/>
-                                    </div>
-                                    <div class="row">
-                                        <label for="tax_partner" class="col-lg-5 o_light_label"/>
-                                        <field name="tax_partner" widget="selection"/>
                                     </div>
                                 </div>
                             </div>

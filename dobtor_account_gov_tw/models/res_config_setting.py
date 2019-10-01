@@ -86,7 +86,7 @@ class ResConfigSettings(models.TransientModel):
 
     # Public Administration
     bli_partner = fields.Many2one(
-        string='BLI Contect',
+        string='BLI Contact',
         comodel_name='res.partner',
         related='company_id.bli_partner',
         domain=[
@@ -96,8 +96,17 @@ class ResConfigSettings(models.TransientModel):
         ],
         readonly=False,
     )
+    bli_product_id = fields.Many2one(
+        string='BLI Product',
+        comodel_name='product.product',
+        related='company_id.bli_product_id',
+        domain=[
+            ('gov_ok', '=', True)
+        ],
+        readonly=False,
+    )
     nhi_partner = fields.Many2one(
-        string='NHI Contect',
+        string='NHI Contact',
         comodel_name='res.partner',
         related='company_id.nhi_partner',
         domain=[
@@ -107,14 +116,32 @@ class ResConfigSettings(models.TransientModel):
         ],
         readonly=False,
     )
+    nhi_product_id = fields.Many2one(
+        string='NHI Product',
+        comodel_name='product.product',
+        related='company_id.nhi_product_id',
+        domain=[
+            ('gov_ok', '=', True)
+        ],
+        readonly=False,
+    )
     tax_partner = fields.Many2one(
-        string='TAX Contect',
+        string='TAX Contact',
         comodel_name='res.partner',
         related='company_id.tax_partner',
         domain=[
             ('supplier', '=', True),
             ('is_company', '=', True),
             ('industry_id', '=', 'Public Administration')
+        ],
+        readonly=False,
+    )
+    tax_product_id = fields.Many2one(
+        string='TAX Product',
+        comodel_name='product.product',
+        related='company_id.tax_product_id',
+        domain=[
+            ('gov_ok', '=', True)
         ],
         readonly=False,
     )

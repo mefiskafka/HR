@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models, SUPERUSER_ID, _
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class Notespayable(models.Model):
@@ -49,6 +50,12 @@ class Notespayable(models.Model):
         change_default=True,
         track_visibility='always'
     )
+    # product_id = fields.Many2one(
+    #     string='Product',
+    #     related='partner_id.gov_product_id',
+    #     comodel_name='product.product',
+    #     ondelete='set null',
+    # )
     base_on = fields.Selection(
         string='Base on',
         selection=[
@@ -65,11 +72,41 @@ class Notespayable(models.Model):
     #     column1='notes_id',
     #     column2='user_id',
     # )
-    invoice = fields.Many2one(
+    #  invoice
+    invoice_id = fields.Many2one(
         comodel_name="account.invoice",
-        string="Generated invoice",
+        string="Bills",
+        copy=False,
         readonly=True
     )
+    # invoice_exist = fields.Integer(
+    #     compute="_compute_invoice",
+    #     string='Bill Count',
+    #     copy=False,
+    #     default=0,
+    #     store=True
+    # )
+    # invoice_ids = fields.Many2many(
+    #     'account.invoice',
+    #     compute="_compute_invoice",
+    #     string='Bills',
+    #     copy=False,
+    #     store=True
+    # )
+    # invoice_status = fields.Selection(
+    #     selection=[
+    #         ('no', 'Nothing to Bill'),
+    #         ('to invoice', 'Waiting Bills'),
+    #         ('invoiced', 'No Bill to Receive'),
+    #     ],
+    #     string='Billing Status',
+    #     compute='_get_invoiced',
+    #     store=True,
+    #     readonly=True,
+    #     copy=False,
+    #     default='no'
+    # )
+    # end invoice
     lines = fields.One2many(
         comodel_name="notespayable.order.line",
         inverse_name="order_id",
@@ -91,6 +128,7 @@ class Notespayable(models.Model):
         states=READONLY_STATES,
         default=lambda self: self.env.user.company_id.id
     )
+
     notes = fields.Text('Terms and Conditions')
 
     # HR Setting
@@ -134,17 +172,78 @@ class Notespayable(models.Model):
             else:
                 record.base_on = 'other'
 
-    @api.multi
-    def action_compute_sheet(self):
-        return False
+    # @api.depends('lines.invoice_lines.invoice_id')
+    # def _compute_invoice(self):
+    #     for order in self:
+    #         invoices = self.env['account.invoice']
+    #         for line in order.lines:
+    #             invoices |= line.invoice_lines.mapped('invoice_id')
+    #         order.invoice_ids = invoices
+    #         order.invoice_count = len(invoices)
+
 
     @api.multi
-    def action_cancel(self):
-        return False
+    def action_compute_sheet(self):
+        payroll = self.env['hr.payslip']
+        lines = []
+        for order in self:
+            order.lines.unlink()
+            if not order.employee_ids:
+                order.employee_ids = self.env['hr.employee'].sudo().search(
+                    [('contract_id', '!=', False)])
+
+            for employee in order.employee_ids:
+                payslip = employee.slip_ids.filtered(lambda r: order.date_from <= r.date_from and r.date_to <= order.date_to)
+                if len(payslip):
+                    payslip = payslip[0]
+                    contract_ids = payslip.contract_id.ids or \
+                        payroll.sudo().get_contract(payslip.employee_id, payslip.date_from, payslip.date_to)
+                    lines += [(0, 0, {
+                        'name': line.get('name'),
+                        'order_id': order.id,
+                        'product_id': line.get('product_id'),
+                        'price': line.get('amount')
+                    }) for line in payroll.sudo()._get_payslip_lines(
+                        contract_ids, payslip.id) if line.get('product_id') == order.product_id]
+            if len(lines):
+                order.write({'lines': lines})
+        return True
 
     @api.multi
     def action_view_invoice(self):
-        return False
+        action = self.env.ref('account.action_vendor_bill_template')
+        result = action.read()[0]
+        create_bill = self.env.context.get('create_bill', False)
+        # override the context to get rid of the default filtering
+        result['context'] = {
+            'type': 'in_invoice',
+            'default_notes_id': self.id,
+            'default_currency_id': self.currency_id.id,
+            'default_company_id': self.company_id.id,
+            'company_id': self.company_id.id
+        }
+        # choose the view_mode accordingly
+        if len(self.invoice_id) == 1 and not create_bill:
+            result['domain'] = "[('id', '=', " + \
+                str(self.invoice_ids.id) + ")]"
+        else:
+            res = self.env.ref('account.invoice_supplier_form', False)
+            result['views'] = [(res and res.id or False, 'form')]
+            # Do not set an invoice_id if we want to create a new bill.
+            if not create_bill:
+                result['res_id'] = self.invoice_ids.id or False
+        result['context']['default_origin'] = self.name
+        return result
+
+    @api.multi
+    def action_cancel(self):
+        for order in self:
+            inv = order.invoice_id
+            if inv and inv.state not in ('cancel', 'draft'):
+                raise UserError(
+                    _("Unable to cancel this notespayable order. You must first cancel the related bills."))
+        self.write({'state': 'cancel'})
+
 
 class NotespayableLine(models.Model):
     _name = 'notespayable.order.line'
@@ -192,3 +291,10 @@ class NotespayableLine(models.Model):
         store=True,
         readonly=False
     )
+    # invoice_lines = fields.One2many(
+    #     'account.invoice.line',
+    #     'notes_line_id',
+    #     string="Bill Lines",
+    #     readonly=True,
+    #     copy=False
+    # )

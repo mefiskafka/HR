@@ -44,3 +44,16 @@ class Contract(models.Model):
         store=True,
         help=_('Number of Average Dependents'),
     )
+
+
+class HrPayslip(models.Model):
+    _inherit = 'hr.payslip'
+
+    @api.model
+    def _get_payslip_lines(self, contract_ids, payslip_id):
+        result = super()._get_payslip_lines(contract_ids, payslip_id)
+        for line in result:
+            rule = self.env['hr.salary.rule'].browse(line.get('salary_rule_id'))
+            if rule.gov_ok and rule.base_on:
+                line['base_on'] = rule.base_on
+        return result

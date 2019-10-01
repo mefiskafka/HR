@@ -66,6 +66,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='company_id']" position="after">
                     <field name="gov_ok" />
+                    <field name="base_on" attrs="{'invisible': [('gov_ok', '=', False)]}" />
                 </xpath>
             </field>
         </record>

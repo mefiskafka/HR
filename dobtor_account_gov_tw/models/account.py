@@ -3,7 +3,14 @@
 from odoo import models, fields, api, _
 
 
-# class Account(models.Model):
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
+
+    notes_id = fields.Many2one(
+        comodel_name='notespayable.order',
+        string='Add Notespayable Order',
+        readonly=True, states={'draft': [('readonly', False)]},
+    )
 
 
 
@@ -26,3 +33,22 @@ from odoo import models, fields, api, _
 #         'account.invoice', string='Vendor Bill', readonly=True)
 #     purchase_order_id = fields.Many2one(
 #         'purchase.order', string='Purchase Order', readonly=True)
+
+# class AccountInvoiceLine(models.Model):
+#     _inherit = 'account.invoice.line'
+
+#     notes_line_id = fields.Many2one(
+#         'notespayable.order.line',
+#         'Notespayable Order Line',
+#         ondelete='set null',
+#         index=True,
+#         readonly=True
+#     )
+#     notes_id = fields.Many2one(
+#         'notespayable.order', 
+#         related='notes_line_id.order_id',
+#         string='Notes Order',
+#         store=False,
+#         readonly=True,
+#         related_sudo=False,
+#     )

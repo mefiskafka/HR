@@ -10,6 +10,12 @@ class ResPartner(models.Model):
         string='Government tax',
         default=False
     )
+    gov_product_id = fields.Many2one(
+        string='Gov Product',
+        comodel_name='product.product',
+        ondelete='set null',
+        domain=[('gov_ok', '=', True)]
+    )
 
     def _check_chart_of_account_is_tw(self, company_id):
         taiwan_account_chart_id = self.env.ref(

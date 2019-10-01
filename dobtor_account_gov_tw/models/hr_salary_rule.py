@@ -31,3 +31,17 @@ class HrSalaryRule(models.Model):
         string='Government Tax',
         default=_default_gov_ok,
     )
+    base_on = fields.Selection(
+        string='Base on',
+        selection=[
+            ('bli', 'Bureau of Labor Insurance'),
+            ('nhi', 'National Health Insurance'),
+            ('tax', 'National Taxation Burean'),
+            ('other', 'Other')
+        ],
+    )
+
+    # product_id = fields.Many2one(
+    #     'product.product',
+    #     'Product'
+    # )

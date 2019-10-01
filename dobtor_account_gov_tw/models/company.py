@@ -112,17 +112,25 @@ class Company(models.Model):
 
     # Public Administration
     bli_partner = fields.Many2one(
-        string='BLI Contect',
+        string='BLI Contact',
         comodel_name='res.partner',
         domain=[
             ('supplier', '=', True),
             ('is_company', '=', True),
             ('industry_id', '=', 'Public Administration')
+        ],
+        readonly=False
+    )
+    bli_product_id = fields.Many2one(
+        string='BLI Product',
+        comodel_name='product.product',
+        domain=[
+            ('gov_ok', '=', True)
         ],
         readonly=False
     )
     nhi_partner = fields.Many2one(
-        string='NHI Contect',
+        string='NHI Contact',
         comodel_name='res.partner',
         domain=[
             ('supplier', '=', True),
@@ -131,13 +139,29 @@ class Company(models.Model):
         ],
         readonly=False
     )
+    nhi_product_id = fields.Many2one(
+        string='NHI Product',
+        comodel_name='product.product',
+        domain=[
+            ('gov_ok', '=', True)
+        ],
+        readonly=False
+    )
     tax_partner = fields.Many2one(
-        string='TAX Contect',
+        string='TAX Contact',
         comodel_name='res.partner',
         domain=[
             ('supplier', '=', True),
             ('is_company', '=', True),
             ('industry_id', '=', 'Public Administration')
+        ],
+        readonly=False
+    )
+    tax_product_id = fields.Many2one(
+        string='TAX Product',
+        comodel_name='product.product',
+        domain=[
+            ('gov_ok', '=', True)
         ],
         readonly=False
     )
