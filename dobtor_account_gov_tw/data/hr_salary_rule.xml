@@ -6,6 +6,7 @@
             <field name="name">Ordinary Insurance (Company)</field>
             <field name="sequence" eval="200"/>
             <field name="gov_ok" eval="True" />
+            <field name="base_on">bli</field>
             <field name="code">CORDINARY</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
@@ -17,6 +18,7 @@
             <field name="name">Occupational Accident Insurance (Company)</field>
             <field name="sequence" eval="201"/>
             <field name="gov_ok" eval="True" />
+            <field name="base_on">bli</field>
             <field name="code">CACCIDENT</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
@@ -28,6 +30,7 @@
             <field name="name">Employment Insurance (Company)</field>
             <field name="sequence" eval="202"/>
             <field name="gov_ok" eval="True" />
+            <field name="base_on">bli</field>
             <field name="code">CEMPLOYMENT</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
@@ -39,6 +42,7 @@
             <field name="name">Self-Labor Pension (Withholding)</field>
             <field name="sequence" eval="203"/>
             <field name="gov_ok" eval="True" />
+            <field name="base_on">tax</field>
             <field name="code">WSELF</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
@@ -50,6 +54,7 @@
             <field name="name">Health Insurance (Company)</field>
             <field name="sequence" eval="205"/>
             <field name="gov_ok" eval="True" />
+            <field name="base_on">nhi</field>
             <field name="code">CHEALTH</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>

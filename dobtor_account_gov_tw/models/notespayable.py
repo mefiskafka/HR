@@ -50,12 +50,11 @@ class Notespayable(models.Model):
         change_default=True,
         track_visibility='always'
     )
-    # product_id = fields.Many2one(
-    #     string='Product',
-    #     related='partner_id.gov_product_id',
-    #     comodel_name='product.product',
-    #     ondelete='set null',
-    # )
+    product_id = fields.Many2one(
+        string='Product',
+        comodel_name='product.product',
+        ondelete='set null',
+    )
     base_on = fields.Selection(
         string='Base on',
         selection=[
@@ -165,10 +164,13 @@ class Notespayable(models.Model):
         for record in self:
             if record.company_id.nhi_partner.id == record.partner_id.id:
                 record.base_on = 'nhi'
+                record.product_id = record.company_id.nhi_partner and record.company_id.nhi_partner.id
             elif record.company_id.bli_partner.id == record.partner_id.id:
                 record.base_on = 'bli'
+                record.product_id = record.company_id.bli_partner and record.company_id.bli_partner.id
             elif record.company_id.tax_partner.id == record.partner_id.id:
                 record.base_on = 'tax'
+                record.product_id = record.company_id.tax_partner and record.company_id.tax_partner.id
             else:
                 record.base_on = 'other'
 
@@ -201,10 +203,10 @@ class Notespayable(models.Model):
                     lines += [(0, 0, {
                         'name': line.get('name'),
                         'order_id': order.id,
-                        'product_id': line.get('product_id'),
+                        'product_id': order.product_id and order.product_id.id,
                         'price': line.get('amount')
                     }) for line in payroll.sudo()._get_payslip_lines(
-                        contract_ids, payslip.id) if line.get('product_id') == order.product_id]
+                        contract_ids, payslip.id) if line.get('base_on') == order.base_on]
             if len(lines):
                 order.write({'lines': lines})
         return True
