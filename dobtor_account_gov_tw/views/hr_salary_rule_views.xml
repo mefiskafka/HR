@@ -21,6 +21,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="before">
                     <filter string="General" name="general" domain="[('gov_ok', '!=', True)]"/>
+                    <filter string="Government tax" name="filter_to_gov" domain="[('gov_ok', '=', True)]"/>
                     <separator/>
                 </xpath>
             </field>
@@ -28,6 +29,21 @@
 
         <record id="hr_payroll.action_view_hr_payroll_structure_list_form" model="ir.actions.act_window">
             <field name="context">{'search_default_general': 1}</field>
+        </record>
+
+        <record id="action_finance_salary_struct" model="ir.actions.act_window">
+            <field name="name">Structure</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payroll.structure</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('gov_ok', '=', True)]</field>
+            <field name="context">{'default_gov_ok':1, 'search_default_filter_to_gov':1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Structure
+                </p>
+            </field>
         </record>
 
         <!-- hr payroll category -->
@@ -49,6 +65,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="before">
                     <filter string="General" name="general" domain="[('gov_ok', '!=', True)]"/>
+                    <filter string="Government tax" name="filter_to_gov" domain="[('gov_ok', '=', True)]"/>
                     <separator/>
                 </xpath>
             </field>
@@ -56,6 +73,21 @@
 
         <record id="hr_payroll.action_hr_salary_rule_category" model="ir.actions.act_window">
             <field name="context">{'search_default_general': 1}</field>
+        </record>
+
+        <record id="action_finance_salary_category" model="ir.actions.act_window">
+            <field name="name">Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('gov_ok', '=', True)]</field>
+            <field name="context">{'default_gov_ok':1, 'search_default_filter_to_gov':1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Category
+                </p>
+            </field>
         </record>
 
         <!-- hr payroll rule -->
@@ -80,6 +112,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="before">
                     <filter string="General" name="general" domain="[('gov_ok', '!=', True)]"/>
+                    <filter string="Government tax" name="filter_to_gov" domain="[('gov_ok', '=', True)]"/>
                     <separator/>
                 </xpath>
             </field>
@@ -87,6 +120,21 @@
 
         <record id="hr_payroll.action_salary_rule_form" model="ir.actions.act_window">
             <field name="context">{'search_default_general': 1}</field>
+        </record>
+
+        <record id="action_finance_salary_rule" model="ir.actions.act_window">
+            <field name="name">Rule</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('gov_ok', '=', True)]</field>
+            <field name="context">{'default_gov_ok':1, 'search_default_filter_to_gov':1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Rule
+                </p>
+            </field>
         </record>
 
     </data>

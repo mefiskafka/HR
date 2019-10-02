@@ -4,12 +4,18 @@
 
         <!-- Government -->
         <menuitem id="menu_finance_gov" name="Government" parent="account.menu_finance" sequence="40" groups="account.group_account_manager"/>
-        <!-- Settlement sub menu -->
-        <menuitem id="menu_finance_settlement" name="Settlement" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="6" action="action_account_make_settlement"/>
         <!-- Notepayable menu -->
-        <menuitem id="menu_finance_notes" name="Notes" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="8" action="action_account_notepayable_order"/>
-        <menuitem id="menu_product_notes" name="Products" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="10" action="action_product_notes"/>
-        <menuitem id="menu_contact_gov" name="Public Administration" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="12" action="action_partner_gov" />
+        <menuitem id="menu_finance_notes" name="Notes" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="10" action="action_account_notepayable_order"/>
+        <menuitem id="menu_product_notes" name="Products" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="20" action="action_product_notes"/>
+        <menuitem id="menu_contact_gov" name="Public Administration" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="30" action="action_partner_gov" />
+        <!-- Salary menu -->
+        <menuitem id="menu_finance_salary" name="Salary" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="40"/>
+        <menuitem id="menu_finance_salary_struct" name="Structure" parent="dobtor_account_gov_tw.menu_finance_salary" sequence="42" action="action_finance_salary_struct"/>
+        <menuitem id="menu_finance_salary_category" name="Category" parent="dobtor_account_gov_tw.menu_finance_salary" sequence="44" action="action_finance_salary_category"/>
+        <menuitem id="menu_finance_salary_rule" name="Rule" parent="dobtor_account_gov_tw.menu_finance_salary" sequence="46" action="action_finance_salary_rule"/>
+
+        <!-- Settlement sub menu -->
+        <!-- <menuitem id="menu_finance_settlement" name="Settlement" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="6" action="action_account_make_settlement"/> -->
         <!-- Payment sub meun -->
         <!-- <menuitem id="menu_finance_payment" name="Payment" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="10"/>
             <menuitem id="account_pay_salary_menu" name="Pay Salary" parent="dobtor_account_gov_tw.menu_finance_payment" sequence="12" action="action_account_pay_salary"/>

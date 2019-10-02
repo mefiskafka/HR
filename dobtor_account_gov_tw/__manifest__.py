@@ -34,7 +34,7 @@
         'data/notespayable_data.xml',
         'data/res_partner.xml',
         'data/product.xml',
-        'wizard/wizard_make_settlement.xml',
+        # 'wizard/wizard_make_settlement.xml',
         # 'wizard/wizard_pay_nhi.xml',
         # 'wizard/wizard_pay_bli.xml',
         # 'wizard/wizard_pay_salary.xml',

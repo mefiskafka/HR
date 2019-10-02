@@ -44,9 +44,7 @@ class AccountInvoice(models.Model):
 
     @api.onchange('notes_id')
     def notespayable_order_change(self):
-        print('here')
         if not self.notes_id:
-            print('opps')
             return {}
         if not self.partner_id:
             self.partner_id = self.notes_id.partner_id.id
@@ -78,7 +76,6 @@ class AccountInvoice(models.Model):
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
-        print('Load NO partner')
         payment_term_id = False
         res = super()._onchange_partner_id()
         if payment_term_id:
