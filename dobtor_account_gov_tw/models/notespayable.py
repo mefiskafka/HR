@@ -183,11 +183,11 @@ class Notespayable(models.Model):
             if record.company_id.nhi_partner.id == record.partner_id.id:
                 record.base_on = 'nhi'
                 record.product_id = record.company_id.nhi_product_id and record.company_id.nhi_product_id.id
-                record.journal_id = record.company_id.withholding_bli_journal and record.company_id.withholding_bli_journal.id
+                record.journal_id = record.company_id.withholding_nhi_journal and record.company_id.withholding_nhi_journal.id
             elif record.company_id.bli_partner.id == record.partner_id.id:
                 record.base_on = 'bli'
                 record.product_id = record.company_id.bli_product_id and record.company_id.bli_product_id.id
-                record.journal_id = record.company_id.withholding_nhi_journal and record.company_id.withholding_nhi_journal.id
+                record.journal_id = record.company_id.withholding_bli_journal and record.company_id.withholding_bli_journal.id
             elif record.company_id.tax_partner.id == record.partner_id.id:
                 record.base_on = 'tax'
                 record.product_id = record.company_id.tax_product_id and record.company_id.tax_product_id.id
@@ -227,7 +227,7 @@ class Notespayable(models.Model):
                         'product_id': order.product_id and order.product_id.id,
                         'name': '{} - {}'.format(line.get('name'), employee.name),
                         'order_id': order.id,
-                        'price': line.get('amount')
+                        'price': -line.get('amount')
                     }) for line in payroll.sudo()._get_payslip_lines(
                         contract_ids, payslip.id) if line.get('base_on') == order.base_on and line.get('amount') != 0]
                     (query, query_args) = self._delete_temp_payslip(payslip)

@@ -27,6 +27,7 @@ class AccountInvoice(models.Model):
             'uom_id': self.env['uom.uom'].search([], limit=1, order='id').id,
             'product_id': line.product_id.id,
             'account_id': invoice_line.with_context({'journal_id': self.journal_id.id, 'type': 'in_invoice'})._default_account(),
+            # 'account_id': line.product_id.
             'price_unit': line.order_id.currency_id._convert(
                 line.price, self.currency_id, line.company_id, date or fields.Date.today(), round=False),
             'quantity': qty,
@@ -36,7 +37,7 @@ class AccountInvoice(models.Model):
             # 'invoice_line_tax_ids': invoice_line_tax_ids.ids
         }
         account = invoice_line.get_invoice_line_account(
-            'in_invoice', line.product_id, line.order_id.fiscal_position_id, self.env.user.company_id)
+            'in_invoice', line.product_id, False, self.env.user.company_id)
         if account:
             data['account_id'] = account.id
         return data
@@ -47,8 +48,8 @@ class AccountInvoice(models.Model):
         if not self.notes_id:
             print('opps')
             return {}
-        # if not self.partner_id:
-        #     self.partner_id = self.purchase_id.partner_id.id
+        if not self.partner_id:
+            self.partner_id = self.notes_id.partner_id.id
 
         # vendor_ref = self.notes_id.partner_ref
         vendor_ref = ''
@@ -58,7 +59,7 @@ class AccountInvoice(models.Model):
                 [self.reference, vendor_ref]) if self.reference else vendor_ref
 
         if not self.invoice_line_ids:
-            #as there's no invoice line yet, we keep the currency of the PO
+            #as there's no invoice line yet, we keep the currency of the Nontes Order
             self.currency_id = self.notes_id.currency_id
 
         new_lines = self.env['account.invoice.line']
@@ -100,26 +101,6 @@ class AccountInvoice(models.Model):
             if self.partner_id.property_purchase_currency_id:
                 self.currency_id = self.partner_id.property_purchase_currency_id
         return res
-
-
-# class NotesPayableBillUnion(models.Model):
-#     _name = 'notespayable.bill.union'
-#     _auto = False
-#     _description = 'Notes Payable & Bills Union'
-#     _order = "date desc, name desc"
-
-#     name = fields.Char(string='Reference', readonly=True)
-#     reference = fields.Char(string='Source', readonly=True)
-#     partner_id = fields.Many2one('res.partner', string='Vendor', readonly=True)
-#     date = fields.Date(string='Date', readonly=True)
-#     amount = fields.Float(string='Amount', readonly=True)
-#     currency_id = fields.Many2one(
-#         'res.currency', string='Currency', readonly=True)
-#     company_id = fields.Many2one('res.company', 'Company', readonly=True)
-#     vendor_bill_id = fields.Many2one(
-#         'account.invoice', string='Vendor Bill', readonly=True)
-#     purchase_order_id = fields.Many2one(
-#         'purchase.order', string='Purchase Order', readonly=True)
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'

@@ -2,7 +2,6 @@
 <odoo>
     <data>
 
-    <!--  -->
         <record id="res_partner_form_gov_tw" model="ir.ui.view">
             <field name="name">res.partner.form.gow_tw</field>
             <field name="model">res.partner</field>
@@ -32,7 +31,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="domain">[]</field>
-            <field name="context">{'default_gov_ok':1, 'search_default_filter_to_gov':1, 'default_is_company': True, 'default_customer': False}</field>
+            <field name="context">{'default_gov_ok':1, 'search_default_filter_to_gov':1, 'default_is_company': 1, 'default_customer': 0, 'default_supplier': 1}</field>
             <field name="filter" eval="True"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
