@@ -42,7 +42,7 @@
             <field name="name">Self-Labor Pension (Withholding)</field>
             <field name="sequence" eval="203"/>
             <field name="gov_ok" eval="True" />
-            <field name="base_on">tax</field>
+            <field name="base_on">bli</field>
             <field name="code">WSELF</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>

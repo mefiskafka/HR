@@ -5,7 +5,7 @@
         <record id="structure_base_with_insurance_company" model="hr.payroll.structure">
             <field name="code">GOVTAX</field>
             <field name="gov_ok" eval="True" />
-            <field name="name">Base with insurance for structures</field>
+            <field name="name">Base with insurance for structures (Company)</field>
             <field eval="[(6, 0, [
             ref('hr_rule_ordinary_insurance_company'), 
             ref('hr_rule_occupational_accident_insurance_company'), 

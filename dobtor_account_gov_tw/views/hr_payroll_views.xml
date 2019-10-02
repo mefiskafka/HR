@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_contract_form_gov_tw" model="ir.ui.view">
+            <field name="name">hr.contract.form.gow_tw</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_payroll.hr_contract_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='struct_id']" position="attributes">
+                    <attribute name="domain">[('gov_ok', '!=', True)]</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

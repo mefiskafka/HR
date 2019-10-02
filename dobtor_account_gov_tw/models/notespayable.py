@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+from datetime import date, datetime, time
+from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
@@ -27,8 +28,18 @@ class Notespayable(models.Model):
         readonly=True,
         store=True
     )
-    date_from = fields.Date(string="From")
-    date_to = fields.Date(string="To")
+    date_from = fields.Date(
+        string="From",
+        default=lambda self: fields.Date.to_string(
+            date.today().replace(day=1)),
+        states={'draft': [('readonly', False)]}
+    )
+    date_to = fields.Date(
+        string="To",
+        default=lambda self: fields.Date.to_string(
+            (datetime.now() + relativedelta(months=+1, day=1, days=-1)).date()),
+        states={'draft': [('readonly', False)]}
+    )
     state = fields.Selection(
         string='Status',
         selection=[
@@ -127,7 +138,7 @@ class Notespayable(models.Model):
         states=READONLY_STATES,
         default=lambda self: self.env.user.company_id.id
     )
-
+    payment_term_id = fields.Many2one('account.payment.term', 'Payment Terms')
     notes = fields.Text('Terms and Conditions')
 
     # HR Setting
@@ -136,7 +147,7 @@ class Notespayable(models.Model):
         relation='hr_employee_notespayable_rel',
         column1='notes_id',
         column2='employee_id',
-        domain=[('contract_id', '!=', False)]
+        domain=[('contract_ids', '!=', False)]
     )
     struct_id = fields.Many2one(
         comodel_name='hr.payroll.structure',
@@ -164,13 +175,13 @@ class Notespayable(models.Model):
         for record in self:
             if record.company_id.nhi_partner.id == record.partner_id.id:
                 record.base_on = 'nhi'
-                record.product_id = record.company_id.nhi_partner and record.company_id.nhi_partner.id
+                record.product_id = record.company_id.nhi_product_id and record.company_id.nhi_product_id.id
             elif record.company_id.bli_partner.id == record.partner_id.id:
                 record.base_on = 'bli'
-                record.product_id = record.company_id.bli_partner and record.company_id.bli_partner.id
+                record.product_id = record.company_id.bli_product_id and record.company_id.bli_product_id.id
             elif record.company_id.tax_partner.id == record.partner_id.id:
                 record.base_on = 'tax'
-                record.product_id = record.company_id.tax_partner and record.company_id.tax_partner.id
+                record.product_id = record.company_id.tax_product_id and record.company_id.tax_product_id.id
             else:
                 record.base_on = 'other'
 
@@ -183,33 +194,41 @@ class Notespayable(models.Model):
     #         order.invoice_ids = invoices
     #         order.invoice_count = len(invoices)
 
-
     @api.multi
     def action_compute_sheet(self):
         payroll = self.env['hr.payslip']
+        contract = self.env['hr.contract']
         lines = []
         for order in self:
             order.lines.unlink()
             if not order.employee_ids:
                 order.employee_ids = self.env['hr.employee'].sudo().search(
-                    [('contract_id', '!=', False)])
+                    [('contract_ids', '!=', False)])
 
             for employee in order.employee_ids:
-                payslip = employee.slip_ids.filtered(lambda r: order.date_from <= r.date_from and r.date_to <= order.date_to)
+                payslip = employee.slip_ids.filtered(
+                    lambda r: order.date_from <= r.date_from and r.date_to <= order.date_to)
                 if len(payslip):
-                    payslip = payslip[0]
+                    payslip = payslip[0].copy()
+                    payslip.struct_id = order.struct_id
                     contract_ids = payslip.contract_id.ids or \
                         payroll.sudo().get_contract(payslip.employee_id, payslip.date_from, payslip.date_to)
                     lines += [(0, 0, {
-                        'name': line.get('name'),
-                        'order_id': order.id,
                         'product_id': order.product_id and order.product_id.id,
+                        'name': '{} - {}'.format(line.get('name'), employee.name),
+                        'order_id': order.id,
                         'price': line.get('amount')
                     }) for line in payroll.sudo()._get_payslip_lines(
-                        contract_ids, payslip.id) if line.get('base_on') == order.base_on]
+                        contract_ids, payslip.id) if line.get('base_on') == order.base_on and line.get('amount') != 0]
+                    (query, query_args) = self._delete_temp_payslip(payslip)
+                    self.env.cr.execute(query, query_args)
             if len(lines):
                 order.write({'lines': lines})
+            
         return True
+
+    def _delete_temp_payslip(self, payslip):
+        return ("""Delete FROM hr_payslip WHERE id = %(payslip_id)s;""", {'payslip_id': payslip.id})
 
     @api.multi
     def action_view_invoice(self):
@@ -271,7 +290,8 @@ class NotespayableLine(models.Model):
         'product.product',
         string='Product',
         domain=[('gov_ok', '=', True)],
-        change_default=True,
+        ondelete='set null',
+        # change_default=True,
         # required=True
     )
     product_type = fields.Selection(
@@ -293,10 +313,16 @@ class NotespayableLine(models.Model):
         store=True,
         readonly=False
     )
-    # invoice_lines = fields.One2many(
-    #     'account.invoice.line',
-    #     'notes_line_id',
-    #     string="Bill Lines",
-    #     readonly=True,
-    #     copy=False
-    # )
+    invoice_lines = fields.One2many(
+        'account.invoice.line',
+        'notes_line_id',
+        string="Bill Lines",
+        readonly=True,
+        copy=False
+    )
+
+    # @api.model
+    # def create(self, vals):
+    #     res = super().create(vals)
+    #     print(vals)
+    #     return res

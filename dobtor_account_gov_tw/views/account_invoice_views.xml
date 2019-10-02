@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_invoice_supplier_form_gov_tw" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.gov_tw</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="groups_id" eval="[(4,ref('purchase.group_purchase_user'))]"/>
+            <field name="arch" type="xml">
+                <field name="vendor_bill_id" position="after">
+                    <field name="notes_id" class="oe_edit_only" invisible="1" context="{'show_total_amount': True}"/>
+                </field>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='company_id']" position="after">
+                    <field name="notes_line_id" invisible="1" readonly="0"/>
+                    <field name="notes_id" invisible="1" readonly="0"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
