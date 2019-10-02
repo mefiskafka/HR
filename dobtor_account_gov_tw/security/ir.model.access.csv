@@ -3,3 +3,6 @@ access_notespayable_order_billing_manager,Notes Payable Order: Billing Manager,d
 access_notespayable_order_line_billing_manager,Notes Payable Order Line: Billing Manager,dobtor_account_gov_tw.model_notespayable_order_line,account.group_account_manager,1,1,1,1
 access_notespayable_order_billing,Notes Payable Order: Billing,dobtor_account_gov_tw.model_notespayable_order,account.group_account_invoice,1,1,0,0
 access_notespayable_order_line_billing,Notes Payable Order Line: Billing,dobtor_account_gov_tw.model_notespayable_order_line,account.group_account_invoice,1,1,0,0
+access_hr_struct_billing_manager,Salary Structure: Billing Manager,hr_payroll.model_hr_payroll_structure,account.group_account_manager,1,1,1,1
+access_hr_category_billing_manager,Salary Category: Billing Manager,hr_payroll.model_hr_salary_rule_category,account.group_account_manager,1,1,1,1
+access_hr_rule_billing_manager,Salary Rule: Billing Manager,hr_payroll.model_hr_salary_rule,account.group_account_manager,1,1,1,1
