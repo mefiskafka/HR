@@ -1,8 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_notespayable_order_billing_manager,Notes Payable Order: Billing Manager,dobtor_account_gov_tw.model_notespayable_order,account.group_account_manager,1,1,1,1
-access_notespayable_order_line_billing_manager,Notes Payable Order Line: Billing Manager,dobtor_account_gov_tw.model_notespayable_order_line,account.group_account_manager,1,1,1,1
-access_notespayable_order_billing,Notes Payable Order: Billing,dobtor_account_gov_tw.model_notespayable_order,account.group_account_invoice,1,1,0,0
-access_notespayable_order_line_billing,Notes Payable Order Line: Billing,dobtor_account_gov_tw.model_notespayable_order_line,account.group_account_invoice,1,1,0,0
-access_hr_struct_billing_manager,Salary Structure: Billing Manager,hr_payroll.model_hr_payroll_structure,account.group_account_manager,1,1,1,1
-access_hr_category_billing_manager,Salary Category: Billing Manager,hr_payroll.model_hr_salary_rule_category,account.group_account_manager,1,1,1,1
-access_hr_rule_billing_manager,Salary Rule: Billing Manager,hr_payroll.model_hr_salary_rule,account.group_account_manager,1,1,1,1
+access_notespayable_order_billing_manager,Gov : Notes Payable Order,dobtor_account_gov_tw.model_notespayable_order,account.group_account_manager,1,1,1,1
+access_notespayable_order_line_billing_manager,Gov : Notes Payable Order Line,dobtor_account_gov_tw.model_notespayable_order_line,account.group_account_manager,1,1,1,1
+access_notespayable_order_billing,Gov : Notes Payable Order,dobtor_account_gov_tw.model_notespayable_order,account.group_account_invoice,1,1,0,0
+access_notespayable_order_line_billing,Gov : Notes Payable Order Line,dobtor_account_gov_tw.model_notespayable_order_line,account.group_account_invoice,1,1,0,0
+access_hr_struct_billing_manager,Gov : Salary Structure,hr_payroll.model_hr_payroll_structure,account.group_account_manager,1,1,1,1
+access_hr_category_billing_manager,Gov : Salary Category,hr_payroll.model_hr_salary_rule_category,account.group_account_manager,1,1,1,1
+access_hr_rule_billing_manager,Gov : Salary Rule,hr_payroll.model_hr_salary_rule,account.group_account_manager,1,1,1,1
+access_hr_payslip_billing_manager,Gov: Payslip,hr_payroll.model_hr_payslip,account.group_account_manager,1,0,0,0
+access_hr_payslip_billing_manager,Gov: WorkDays,hr_payroll.model_hr_payslip_worked_days,account.group_account_manager,1,0,0,0

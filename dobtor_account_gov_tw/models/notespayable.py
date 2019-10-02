@@ -206,7 +206,7 @@ class Notespayable(models.Model):
 
     @api.multi
     def action_compute_sheet(self):
-        payroll = self.env['hr.payslip']
+        payroll = self.env['hr.payslip'].sudo()
         contract = self.env['hr.contract']
         lines = []
         for order in self:
@@ -216,13 +216,13 @@ class Notespayable(models.Model):
                     [('contract_ids', '!=', False)])
 
             for employee in order.employee_ids:
-                payslip = employee.slip_ids.filtered(
+                payslip = employee.sudo().slip_ids.filtered(
                     lambda r: order.date_from <= r.date_from and r.date_to <= order.date_to)
                 if len(payslip):
-                    payslip = payslip[0].copy()
+                    payslip = payslip[0].sudo().copy()
                     payslip.struct_id = order.struct_id
                     contract_ids = payslip.contract_id.ids or \
-                        payroll.sudo().get_contract(payslip.employee_id, payslip.date_from, payslip.date_to)
+                        payroll.get_contract(payslip.employee_id, payslip.date_from, payslip.date_to)
                     lines += [(0, 0, {
                         'product_id': order.product_id and order.product_id.id,
                         'name': '{} - {}'.format(line.get('name'), employee.name),
