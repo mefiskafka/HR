@@ -8,6 +8,8 @@
         <menuitem id="menu_finance_settlement" name="Settlement" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="6" action="action_account_make_settlement"/>
         <!-- Notepayable menu -->
         <menuitem id="menu_finance_notes" name="Notes" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="8" action="action_account_notepayable_order"/>
+        <menuitem id="menu_product_notes" name="Products" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="10" action="action_product_notes"/>
+        <menuitem id="menu_contact_gov" name="Public Administration" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="12" action="action_partner_gov" />
         <!-- Payment sub meun -->
         <!-- <menuitem id="menu_finance_payment" name="Payment" parent="dobtor_account_gov_tw.menu_finance_gov" sequence="10"/>
             <menuitem id="account_pay_salary_menu" name="Pay Salary" parent="dobtor_account_gov_tw.menu_finance_payment" sequence="12" action="action_account_pay_salary"/>

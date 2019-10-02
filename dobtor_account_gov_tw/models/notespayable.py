@@ -141,7 +141,7 @@ class Notespayable(models.Model):
     payment_term_id = fields.Many2one('account.payment.term', 'Payment Terms')
     notes = fields.Text('Terms and Conditions')
 
-    # HR Setting
+    # Other Setting
     employee_ids = fields.Many2many(
         comodel_name='hr.employee',
         relation='hr_employee_notespayable_rel',
@@ -155,6 +155,13 @@ class Notespayable(models.Model):
         readonly=True,
         domain=[('gov_ok', '=', True)],
         states={'draft': [('readonly', False)]},
+        default=lambda self: self.env.user.company_id.struct_id.id
+    )
+    journal_id = fields.Many2one(
+        comodel_name='account.journal',
+        string='Journal',
+        states={'draft': [('readonly', False)]},
+        domain="[('type', 'in', ('purchase', 'general')), ('company_id', '=', company_id)]"
     )
 
     @api.model
@@ -176,12 +183,15 @@ class Notespayable(models.Model):
             if record.company_id.nhi_partner.id == record.partner_id.id:
                 record.base_on = 'nhi'
                 record.product_id = record.company_id.nhi_product_id and record.company_id.nhi_product_id.id
+                record.journal_id = record.company_id.withholding_bli_journal and record.company_id.withholding_bli_journal.id
             elif record.company_id.bli_partner.id == record.partner_id.id:
                 record.base_on = 'bli'
                 record.product_id = record.company_id.bli_product_id and record.company_id.bli_product_id.id
+                record.journal_id = record.company_id.withholding_nhi_journal and record.company_id.withholding_nhi_journal.id
             elif record.company_id.tax_partner.id == record.partner_id.id:
                 record.base_on = 'tax'
                 record.product_id = record.company_id.tax_product_id and record.company_id.tax_product_id.id
+                record.journal_id = record.company_id.withholding_tax_journal and record.company_id.withholding_tax_journal.id
             else:
                 record.base_on = 'other'
 
@@ -224,7 +234,7 @@ class Notespayable(models.Model):
                     self.env.cr.execute(query, query_args)
             if len(lines):
                 order.write({'lines': lines})
-            
+
         return True
 
     def _delete_temp_payslip(self, payslip):
@@ -241,6 +251,7 @@ class Notespayable(models.Model):
             'default_notes_id': self.id,
             'default_currency_id': self.currency_id.id,
             'default_company_id': self.company_id.id,
+            'default_journal_id': self.journal_id.id,
             'company_id': self.company_id.id
         }
         # choose the view_mode accordingly
@@ -320,6 +331,20 @@ class NotespayableLine(models.Model):
         readonly=True,
         copy=False
     )
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        related='order_id.company_id',
+        string='Company',
+        store=True,
+        readonly=True
+    )
+    # taxes_id = fields.Many2many(
+    #     comodel_name='account.tax',
+    #     string='Taxes',
+    #     domain=[
+    #         '|', ('active', '=', False), ('active', '=', True)
+    #     ]
+    # )
 
     # @api.model
     # def create(self, vals):

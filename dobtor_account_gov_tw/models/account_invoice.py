@@ -15,15 +15,15 @@ class AccountInvoice(models.Model):
     def _prepare_invoice_line_from_no_line(self, line):
         if line.product_id.gov_ok == True:
             qty = 1
-        taxes = line.taxes_id
-        invoice_line_tax_ids = line.order_id.fiscal_position_id.map_tax(
-            taxes, line.product_id, line.order_id.partner_id)
+        # taxes = line.taxes_id
+        # invoice_line_tax_ids = line.order_id.fiscal_position_id.map_tax(
+        #     taxes, line.product_id, line.order_id.partner_id)
         invoice_line = self.env['account.invoice.line']
         date = self.date or self.date_invoice
         data = {
             'notes_line_id': line.id,
             'name': line.order_id.name + ': ' + line.name,
-            'origin': line.order_id.origin,
+            'origin': line.order_id.name,
             'uom_id': self.env['uom.uom'].search([], limit=1, order='id').id,
             'product_id': line.product_id.id,
             'account_id': invoice_line.with_context({'journal_id': self.journal_id.id, 'type': 'in_invoice'})._default_account(),
@@ -33,7 +33,7 @@ class AccountInvoice(models.Model):
             'discount': 0.0,
             # 'account_analytic_id': line.account_analytic_id.id,
             # 'analytic_tag_ids': line.analytic_tag_ids.ids,
-            'invoice_line_tax_ids': invoice_line_tax_ids.ids
+            # 'invoice_line_tax_ids': invoice_line_tax_ids.ids
         }
         account = invoice_line.get_invoice_line_account(
             'in_invoice', line.product_id, line.order_id.fiscal_position_id, self.env.user.company_id)

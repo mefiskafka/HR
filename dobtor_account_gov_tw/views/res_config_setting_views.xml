@@ -131,6 +131,22 @@
                             </div>
                         </div>
 
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label string="Structure" for="struct_id"/>
+                                <div class="text-muted">
+                                    Set default Public Administration Structure.
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="struct_id" class="col-lg-5 o_light_label"/>
+                                        <field name="struct_id" widget="selection"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </xpath>
             </field>

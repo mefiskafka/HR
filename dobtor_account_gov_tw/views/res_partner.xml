@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+    <!--  -->
+        <record id="res_partner_form_gov_tw" model="ir.ui.view">
+            <field name="name">res.partner.form.gow_tw</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='purchase']" position="inside">
+                    <field name="gov_ok"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_partner_search_gov_tw" model="ir.ui.view">
+            <field name="name">res.partner.search.gow_tw</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='supplier']" position="after">
+                    <filter string="Public Administration" name="filter_to_gov" domain="[('gov_ok', '=', True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_partner_gov" model="ir.actions.act_window">
+            <field name="name">Public Administration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'default_gov_ok':1, 'search_default_filter_to_gov':1, 'default_is_company': True, 'default_customer': False}</field>
+            <field name="filter" eval="True"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Public Administration
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

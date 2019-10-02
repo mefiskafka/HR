@@ -67,11 +67,16 @@
                                 <field name="notes" class="oe_inline" placeholder="Define your terms and conditions ..."/>
                                 <div class="oe_clear"/>
                             </page>
-                            <page string="HR Setting" name="hr_setting">
-                                <group>
+                            <page string="Other Setting" name="other_setting">
+                                <group string="HR Setting"> 
                                     <group>
                                         <field name="employee_ids" widget="many2many_tags" />
                                         <field name="struct_id" widget="selection" />
+                                    </group>
+                                </group>
+                                <group string="Account Setting">
+                                    <group>
+                                        <field name="journal_id" />
                                     </group>
                                 </group>
                             </page>

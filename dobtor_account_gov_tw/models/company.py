@@ -115,9 +115,7 @@ class Company(models.Model):
         string='BLI Contact',
         comodel_name='res.partner',
         domain=[
-            ('supplier', '=', True),
-            ('is_company', '=', True),
-            ('industry_id', '=', 'Public Administration')
+            ('gov_ok', '=', True)
         ],
         readonly=False
     )
@@ -133,9 +131,7 @@ class Company(models.Model):
         string='NHI Contact',
         comodel_name='res.partner',
         domain=[
-            ('supplier', '=', True),
-            ('is_company', '=', True),
-            ('industry_id', '=', 'Public Administration')
+            ('gov_ok', '=', True)
         ],
         readonly=False
     )
@@ -151,9 +147,7 @@ class Company(models.Model):
         string='TAX Contact',
         comodel_name='res.partner',
         domain=[
-            ('supplier', '=', True),
-            ('is_company', '=', True),
-            ('industry_id', '=', 'Public Administration')
+            ('gov_ok', '=', True)
         ],
         readonly=False
     )
@@ -165,4 +159,9 @@ class Company(models.Model):
         ],
         readonly=False
     )
-    
+    struct_id = fields.Many2one(
+        comodel_name='hr.payroll.structure',
+        string='Structure',
+        readonly=False,
+        domain=[('gov_ok', '=', True)],
+    )

@@ -90,9 +90,7 @@ class ResConfigSettings(models.TransientModel):
         comodel_name='res.partner',
         related='company_id.bli_partner',
         domain=[
-            ('supplier', '=', True),
-            ('is_company', '=', True),
-            ('industry_id', '=', 'Public Administration')
+            ('gov_ok', '=', True)
         ],
         readonly=False,
     )
@@ -110,9 +108,7 @@ class ResConfigSettings(models.TransientModel):
         comodel_name='res.partner',
         related='company_id.nhi_partner',
         domain=[
-            ('supplier', '=', True),
-            ('is_company', '=', True),
-            ('industry_id', '=', 'Public Administration')
+            ('gov_ok', '=', True)
         ],
         readonly=False,
     )
@@ -130,9 +126,7 @@ class ResConfigSettings(models.TransientModel):
         comodel_name='res.partner',
         related='company_id.tax_partner',
         domain=[
-            ('supplier', '=', True),
-            ('is_company', '=', True),
-            ('industry_id', '=', 'Public Administration')
+            ('gov_ok', '=', True),
         ],
         readonly=False,
     )
@@ -144,4 +138,12 @@ class ResConfigSettings(models.TransientModel):
             ('gov_ok', '=', True)
         ],
         readonly=False,
+    )
+
+    struct_id = fields.Many2one(
+        comodel_name='hr.payroll.structure',
+        string='Structure',
+        related='company_id.struct_id',
+        readonly=False,
+        domain=[('gov_ok', '=', True)],
     )
