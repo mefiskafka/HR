@@ -110,6 +110,14 @@ class Company(models.Model):
         readonly=False,
     )
 
+    back_ntbt_journal = fields.Many2one(
+        string='NTBT Bank',
+        comodel_name='account.journal',
+        domain=[('type', '=', 'bank')],
+        help="Accounting journal used to NTBT (Bank).",
+        readonly=False,
+    )
+
     # Public Administration
     bli_partner = fields.Many2one(
         string='BLI Contact',

@@ -15,21 +15,6 @@ class ResConfigSettings(models.TransientModel):
             return journal
         return self._default_misc_journal()
 
-    @api.depends('company_id')
-    def _compute_has_chart_of_accounts_tw(self):
-        taiwan_account_chart_id = self.env.ref(
-            'l10n_tw_standard_ifrss.l10n_chart_taiwan_standard_business', raise_if_not_found=False
-        ).id
-        self.has_chart_of_accounts_tw = bool(
-            self.company_id.chart_template_id.id != taiwan_account_chart_id
-        )
-    has_chart_of_accounts_tw = fields.Boolean(
-        compute='_compute_has_chart_of_accounts_tw', string='Company has a chart of accounts')
-
-    # taiwan_account_chart_id = fields.Many2one(
-    #     compute='_compute_has_chart_of_accounts_tw'
-    # )
-
     hr_salary_journal = fields.Many2one(
         string='Employee Salary Journal',
         comodel_name='account.journal',
@@ -81,6 +66,15 @@ class ResConfigSettings(models.TransientModel):
         related='company_id.back_nhi_journal',
         domain=[('type', '=', 'bank')],
         help="Accounting journal used to NHI (Bank).",
+        readonly=False,
+    )
+    
+    back_ntbt_journal = fields.Many2one(
+        string='NTBT Bank',
+        comodel_name='account.journal',
+        related='company_id.back_ntbt_journal',
+        domain=[('type', '=', 'bank')],
+        help="Accounting journal used to NTBT (Bank).",
         readonly=False,
     )
 

@@ -38,10 +38,17 @@
         </record>
 
         <record id="back_nhi_journal" model="account.journal">
-            <field name="name">健保局(銀行)</field>
+            <field name="name">健保署(銀行)</field>
             <field name="code">HNIBANK</field>
             <field name="type">bank</field>
             <field name="sequence">97</field>
+        </record>
+
+        <record id="bank_ntbt_journal" model="account.journal">
+            <field name="name">國稅局(銀行)</field>
+            <field name="code">NTBTBANK</field>
+            <field name="type">bank</field>
+            <field name="sequence">98</field>
         </record>
 
     </data>

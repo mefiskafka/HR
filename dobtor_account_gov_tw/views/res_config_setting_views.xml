@@ -8,13 +8,12 @@
             <field name="inherit_id" ref="account.res_config_settings_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@data-key='account']" position="inside">
-                    <field name="has_chart_of_accounts_tw" invisible="1" />
-                    <h2 attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False )]}">Republic of China Finance</h2>
+                    <h2>Republic of China Finance</h2>
                     <div class="row mt16 o_settings_container">
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
-                                <label string="Employee Salary Journal" for="hr_salary_journal"/>
+                                <label string="Employee Salary Default" for="hr_salary_journal"/>
                                 <div class="text-muted">
                                     Accounting journal used to Employees Salary.
                                 </div>
@@ -27,10 +26,10 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
-                                <label string="Withholding Tax Journal" for="withholding_tax_journal"/>
+                                <label string="Withholding Tax Default" for="withholding_tax_journal"/>
                                 <div class="text-muted">
                                     Accounting journal/Contact/Product used to Withholding Tax.
                                 </div>
@@ -47,11 +46,15 @@
                                         <label for="tax_product_id" class="col-lg-5 o_light_label"/>
                                         <field name="tax_product_id" widget="selection"/>
                                     </div>
+                                    <div class="row">
+                                        <label for="back_ntbt_journal" string="Bank Journal" class="col-lg-5 o_light_label"/>
+                                        <field name="back_ntbt_journal" widget="selection"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="Withholding BLI Default" for="withholding_bli_journal"/>
@@ -71,11 +74,15 @@
                                         <label for="bli_product_id" class="col-lg-5 o_light_label"/>
                                         <field name="bli_product_id" widget="selection"/>
                                     </div>
+                                    <div class="row">
+                                        <label for="bank_bli_journal" string="Bank Journal" class="col-lg-5 o_light_label"/>
+                                        <field name="bank_bli_journal" widget="selection"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="Withholding NHI Journal" for="withholding_nhi_journal"/>
@@ -95,43 +102,15 @@
                                         <label for="nhi_product_id" class="col-lg-5 o_light_label"/>
                                         <field name="nhi_product_id" widget="selection"/>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
-                            <div class="o_setting_left_pane"/>
-                            <div class="o_setting_right_pane">
-                                <label string="BLI Bank" for="bank_bli_journal"/>
-                                <div class="text-muted">
-                                    Accounting journal used to BLI (Bank).
-                                </div>
-                                <div class="content-group">
-                                    <div class="row mt16">
-                                        <label for="bank_bli_journal" class="col-lg-5 o_light_label"/>
-                                        <field name="bank_bli_journal" widget="selection"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
-                            <div class="o_setting_left_pane"/>
-                            <div class="o_setting_right_pane">
-                                <label string="NHI Bank" for="back_nhi_journal"/>
-                                <div class="text-muted">
-                                    Accounting journal used to NHI (Bank).
-                                </div>
-                                <div class="content-group">
-                                    <div class="row mt16">
-                                        <label for="back_nhi_journal" class="col-lg-5 o_light_label"/>
+                                    <div class="row">
+                                        <label for="back_nhi_journal" string="Bank Journal" class="col-lg-5 o_light_label"/>
                                         <field name="back_nhi_journal" widget="selection"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|',('has_accounting_entries','!=',False), ('has_chart_of_accounts_tw','!=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
                                 <label string="Structure" for="struct_id"/>
@@ -153,7 +132,7 @@
             </field>
         </record>
 
-        <record id="res_config_settings_view_form" model="ir.ui.view">
+        <record id="res_config_settings_view_form_inhert" model="ir.ui.view">
             <field name="name">res.config.settings.view.form.inherit.tax.l18n.finance</field>
             <field name="model">res.config.settings</field>
             <field name="inherit_id" ref="dobtor_hr_labor_insurance.res_config_settings_view_form"/>
