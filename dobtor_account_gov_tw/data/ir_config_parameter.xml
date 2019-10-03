@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
 
         <record model="ir.config_parameter" id="withholding_tax_limit">
             <field name="key">withholding.tax.limit</field>

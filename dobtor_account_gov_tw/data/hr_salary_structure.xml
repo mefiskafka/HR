@@ -8,10 +8,15 @@
             <field name="name">Base with insurance for structures (Company)</field>
             <field eval="[(6, 0, [
             ref('hr_rule_ordinary_insurance_company'), 
+            ref('hr_rule_ordinary_insurance_withholding'), 
             ref('hr_rule_occupational_accident_insurance_company'), 
+            ref('hr_rule_occupational_accident_insurance_withholding'), 
             ref('hr_rule_employment_Insurance_company'), 
+            ref('hr_rule_employment_Insurance_withholding'), 
             ref('hr_rule_pension_premium_withholding'),
             ref('hr_rule_health_Insurance_company'),
+            ref('hr_rule_health_Insurance_withholding'),
+            ref('hr_rule_2nd_generation_NHI_withholding'),
             ref('hr_rule_withholding_tax')
             ])]" name="rule_ids"/>
             <field name="company_id" ref="base.main_company"/>

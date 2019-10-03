@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
 
         <record id="partner_gov_bli" model="res.partner" context="{'default_is_company': True}">
             <field name="name">勞動部勞工保險局</field>

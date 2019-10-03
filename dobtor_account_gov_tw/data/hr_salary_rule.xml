@@ -13,6 +13,18 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employer_ratio/100.00) )</field>
         </record>
+
+        <record id="hr_rule_ordinary_insurance_withholding" model="hr.salary.rule">
+            <field name="name">Ordinary Insurance (Withholding)</field>
+            <field name="sequence" eval="203"/>
+            <field name="gov_ok" eval="True" />
+            <field name="base_on">bli</field>
+            <field name="code">WORDINARY</field>
+            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employee_ratio/100.00) )</field>
+        </record>
         
         <record id="hr_rule_occupational_accident_insurance_company" model="hr.salary.rule">
             <field name="name">Occupational Accident Insurance (Company)</field>
@@ -24,6 +36,18 @@
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = -round( contract.insure_wage * (float(contract.accident_premium)/100.00) * (contract.accident_employer_ratio/100.00) )</field>
+        </record>
+
+        <record id="hr_rule_occupational_accident_insurance_withholding" model="hr.salary.rule">
+            <field name="name">Occupational Accident Insurance (Withholding)</field>
+            <field name="sequence" eval="204"/>
+            <field name="gov_ok" eval="True" />
+            <field name="base_on">bli</field>
+            <field name="code">WACCIDENT</field>
+            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round( contract.insure_wage * (float(contract.accident_premium)/100.00) * (contract.accident_employee_ratio/100.00) )</field>
         </record>
 
         <record id="hr_rule_employment_Insurance_company" model="hr.salary.rule">
@@ -38,9 +62,21 @@
             <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employer_ratio/100.00) )</field>
         </record>
 
+        <record id="hr_rule_employment_Insurance_withholding" model="hr.salary.rule">
+            <field name="name">Employment Insurance (Withholding)</field>
+            <field name="sequence" eval="205"/>
+            <field name="gov_ok" eval="True" />
+            <field name="base_on">bli</field>
+            <field name="code">WEMPLOYMENT</field>
+            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employee_ratio/100.00) )</field>
+        </record>
+
         <record id="hr_rule_pension_premium_withholding" model="hr.salary.rule">
             <field name="name">Self-Labor Pension (Withholding)</field>
-            <field name="sequence" eval="203"/>
+            <field name="sequence" eval="209"/>
             <field name="gov_ok" eval="True" />
             <field name="base_on">bli</field>
             <field name="code">WSELF</field>
@@ -52,7 +88,7 @@
 
         <record id="hr_rule_health_Insurance_company" model="hr.salary.rule">
             <field name="name">Health Insurance (Company)</field>
-            <field name="sequence" eval="205"/>
+            <field name="sequence" eval="210"/>
             <field name="gov_ok" eval="True" />
             <field name="base_on">nhi</field>
             <field name="code">CHEALTH</field>
@@ -62,9 +98,33 @@
             <field name="amount_python_compute">result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employer_ratio/100.00) * (1 + contract.average_dependents_number))</field>
         </record>
 
+        <record id="hr_rule_health_Insurance_withholding" model="hr.salary.rule">
+            <field name="name">Health Insurance (Withholding)</field>
+            <field name="sequence" eval="211"/>
+            <field name="gov_ok" eval="True" />
+            <field name="base_on">nhi</field>
+            <field name="code">WHEALTH</field>
+            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number))</field>
+        </record>
+
+        <record id="hr_rule_2nd_generation_NHI_withholding" model="hr.salary.rule">
+            <field name="name">Supplementary premium (Withholding)</field>
+            <field name="sequence" eval="212"/>
+            <field name="gov_ok" eval="True" />
+            <field name="base_on">nhi</field>
+            <field name="code">WNHI2ND</field>
+            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round( payslip.nhi_2nd_amount * (contract.nhi_2nd_premium/100.00) )</field>
+        </record>
+
         <record id="hr_rule_withholding_tax" model="hr.salary.rule">
             <field name="name">Tax (Withholding)</field>
-            <field name="sequence" eval="209"/>
+            <field name="sequence" eval="299"/>
             <field name="gov_ok" eval="True" />
             <field name="base_on">tax</field>
             <field name="code">CTAX</field>
@@ -73,21 +133,6 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = -round( contract.wage * (contract.tax_premium/100.00) ) if round( contract.wage * (contract.tax_premium/100.00) ) > round( contract.withholding_tax_limit * (contract.tax_premium/100.00) ) else 0.00</field>
         </record>
-
-        <!-- <record id="hr_rule_2nd_generation_NHI_company" model="hr.salary.rule">
-            <field name="name">Supplementary premium (Company)</field>
-            <field name="sequence" eval="207"/>
-            <field name="gov_ok" eval="True" />
-            <field name="code">CNHI2ND</field>
-            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
-            <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( payslip.nhi_2nd_amount * (contract.nhi_2nd_premium/100.00) )</field>
-        </record> -->
-
-        <!-- <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
-            <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.DED + categories.GOVTAX</field>
-        </record> -->
 
     </data>
 </odoo>
