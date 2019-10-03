@@ -6,5 +6,6 @@ access_notespayable_order_line_billing,Gov : Notes Payable Order Line,dobtor_a
 access_hr_struct_billing_manager,Gov : Salary Structure,hr_payroll.model_hr_payroll_structure,account.group_account_manager,1,1,1,1
 access_hr_category_billing_manager,Gov : Salary Category,hr_payroll.model_hr_salary_rule_category,account.group_account_manager,1,1,1,1
 access_hr_rule_billing_manager,Gov : Salary Rule,hr_payroll.model_hr_salary_rule,account.group_account_manager,1,1,1,1
-access_hr_payslip_billing_manager,Gov: Payslip,hr_payroll.model_hr_payslip,account.group_account_manager,1,0,0,0
+access_hr_payslip_billing_manager,Gov: Payslip,hr_payroll.model_hr_payslip,account.group_account_manager,1,1,0,0
+access_hr_contribution_registe_billing_manager,Gov: Contribution Registe,hr_payroll.model_hr_contribution_register,account.group_account_manager,1,0,0,0
 access_hr_payslip_billing_manager,Gov: WorkDays,hr_payroll.model_hr_payslip_worked_days,account.group_account_manager,1,0,0,0

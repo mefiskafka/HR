@@ -8,13 +8,18 @@
             <field name="arch" type="xml">
                 <form string="Notes Payable Order">
                     <header>
-                        <button name="action_view_invoice" string="Create Bill" type="object" class="oe_highlight" context="{'create_bill':True}" attrs="{'invisible': ['|', ('state', 'in', ('post', 'cancel'))]}"/>
-                        <button name="action_compute_sheet" string="Compute Sheet" type="object" states="draft" class="oe_highlight"/>
+                        <field name="invoice_amount_diff" invisible="1" />
+                        <button name="action_view_invoice" string="Create Bill" type="object" class="oe_highlight" context="{'create_bill':True}" attrs="{'invisible': ['|', ('invoice_amount_diff', '=', 0),('state', 'in', ('post', 'cancel'))]}"/>
+                        <button name="action_compute_sheet" string="Compute Sheet" type="object" states="draft" class="oe_highlight"  />
                         <button name="action_cancel" states="draft" string="Cancel" type="object" />
                         <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,post" readonly="1"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
+                            <button type="object" name="action_view_invoice" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible':['|', ('invoice_count', '=', 0), ('state', 'in', ('post','cancel'))]}">
+                                <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                                <field name='invoice_ids' invisible="1"/>
+                            </button>
                         </div>
                         <div class="oe_title">
                             <span class="o_form_label" attrs="{'invisible': [('state','not in',('draft'))]}">Draft</span>
@@ -68,7 +73,7 @@
                                 <div class="oe_clear"/>
                             </page>
                             <page string="Other Setting" name="other_setting">
-                                <group string="HR Setting"> 
+                                <group string="HR Setting">
                                     <group>
                                         <field name="employee_ids" widget="many2many_tags" />
                                         <field name="struct_id" widget="selection" />

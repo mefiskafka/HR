@@ -165,3 +165,7 @@ class Company(models.Model):
         readonly=False,
         domain=[('gov_ok', '=', True)],
     )
+
+    # limit_tax = fields.Float(
+    #     comodel_name=
+    # )

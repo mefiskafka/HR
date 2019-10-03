@@ -9,8 +9,38 @@ class AccountInvoice(models.Model):
     notes_id = fields.Many2one(
         comodel_name='notespayable.order',
         string='Add Notespayable Order',
-        readonly=True, states={'draft': [('readonly', False)]},
+        readonly=True,
+        states={'draft': [('readonly', False)]},
     )
+
+    @api.multi
+    def action_invoice_open(self):
+        res = super().action_invoice_open()
+        for inv in self:
+            notes_id = self.env['notespayable.order'].search([('name', '=', inv.origin)], limit=1)
+            if notes_id and inv.state in ('open'):
+                notes_id.action_invoiced()
+        return res
+
+    @api.multi
+    def action_invoice_paid(self):
+        res = super().action_invoice_paid()
+        for inv in self:
+            notes_id = self.env['notespayable.order'].search(
+                [('name', '=', inv.origin)], limit=1)
+            if notes_id and inv.state in ('paid', 'in_payment'):
+                notes_id.action_posted()
+        return res
+
+    @api.multi
+    def action_cancel(self):
+        res = super().action_cancel()
+        for inv in self:
+            notes_id = self.env['notespayable.order'].search(
+                [('name', '=', inv.origin)], limit=1)
+            if notes_id and inv.state in ('cancel'):
+                notes_id.action_cancel()
+        return res
 
     def _prepare_invoice_line_from_no_line(self, line):
         if line.product_id.gov_ok == True:
@@ -57,7 +87,7 @@ class AccountInvoice(models.Model):
                 [self.reference, vendor_ref]) if self.reference else vendor_ref
 
         if not self.invoice_line_ids:
-            #as there's no invoice line yet, we keep the currency of the Nontes Order
+            # as there's no invoice line yet, we keep the currency of the Nontes Order
             self.currency_id = self.notes_id.currency_id
 
         new_lines = self.env['account.invoice.line']
@@ -98,6 +128,7 @@ class AccountInvoice(models.Model):
             if self.partner_id.property_purchase_currency_id:
                 self.currency_id = self.partner_id.property_purchase_currency_id
         return res
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'

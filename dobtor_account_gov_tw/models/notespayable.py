@@ -2,6 +2,7 @@
 from datetime import date, datetime, time
 from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, _
+from odoo.tools.float_utils import float_compare
 from odoo.exceptions import UserError
 
 
@@ -22,6 +23,10 @@ class Notespayable(models.Model):
         index=True,
         copy=False,
         default='New'
+    )
+    employee_ref = fields.Char(
+        'Vendor Reference',
+        copy=False
     )
     amount_total = fields.Float(
         compute="_compute_total",
@@ -76,33 +81,27 @@ class Notespayable(models.Model):
         ],
         compute='_compute_base_on',
     )
-    # user_ids = fields.Many2many(
-    #     comodel_name='res.users',
-    #     relation='res_user_notespayable_rel',
-    #     column1='notes_id',
-    #     column2='user_id',
-    # )
     #  invoice
-    invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
-        string="Bills",
+    invoice_ids = fields.Many2many(
+        'account.invoice',
+        compute="_compute_invoice",
+        string='Bills',
         copy=False,
-        readonly=True
+        store=True
     )
-    # invoice_exist = fields.Integer(
-    #     compute="_compute_invoice",
-    #     string='Bill Count',
-    #     copy=False,
-    #     default=0,
-    #     store=True
-    # )
-    # invoice_ids = fields.Many2many(
-    #     'account.invoice',
-    #     compute="_compute_invoice",
-    #     string='Bills',
-    #     copy=False,
-    #     store=True
-    # )
+    invoice_count = fields.Integer(
+        compute="_compute_invoice",
+        string='Bill Count',
+        copy=False,
+        default=0,
+        store=True
+    )
+    invoice_amount_diff = fields.Float(
+        string='invoice amount diff',
+        store=True,
+        readonly=True,
+        compute='_compute_invoice'
+    )
     # invoice_status = fields.Selection(
     #     selection=[
     #         ('no', 'Nothing to Bill'),
@@ -195,14 +194,15 @@ class Notespayable(models.Model):
             else:
                 record.base_on = 'other'
 
-    # @api.depends('lines.invoice_lines.invoice_id')
-    # def _compute_invoice(self):
-    #     for order in self:
-    #         invoices = self.env['account.invoice']
-    #         for line in order.lines:
-    #             invoices |= line.invoice_lines.mapped('invoice_id')
-    #         order.invoice_ids = invoices
-    #         order.invoice_count = len(invoices)
+    @api.depends('lines.invoice_lines.invoice_id')
+    def _compute_invoice(self):
+        for order in self:
+            invoices = self.env['account.invoice']
+            for line in order.lines:
+                invoices |= line.invoice_lines.mapped('invoice_id')
+            order.invoice_ids = invoices
+            order.invoice_count = len(invoices)
+            order.invoice_amount_diff = sum(x.amount_total for x in invoices) - order.amount_total
 
     @api.multi
     def action_compute_sheet(self):
@@ -230,8 +230,11 @@ class Notespayable(models.Model):
                         'price': -line.get('amount')
                     }) for line in payroll.sudo()._get_payslip_lines(
                         contract_ids, payslip.id) if line.get('base_on') == order.base_on and line.get('amount') != 0]
+                    order.employee_ref = order.employee_ref + ',' + payslip.name if order.employee_ref else payslip.name
+
                     (query, query_args) = self._delete_temp_payslip(payslip)
                     self.env.cr.execute(query, query_args)
+
             if len(lines):
                 order.write({'lines': lines})
 
@@ -255,9 +258,9 @@ class Notespayable(models.Model):
             'company_id': self.company_id.id
         }
         # choose the view_mode accordingly
-        if len(self.invoice_id) == 1 and not create_bill:
-            result['domain'] = "[('id', '=', " + \
-                str(self.invoice_ids.id) + ")]"
+        if len(self.invoice_ids) > 1 and not create_bill:
+            result['domain'] = "[('id', 'in', " + \
+                str(self.invoice_ids.ids) + ")]"
         else:
             res = self.env.ref('account.invoice_supplier_form', False)
             result['views'] = [(res and res.id or False, 'form')]
@@ -267,15 +270,27 @@ class Notespayable(models.Model):
         result['context']['default_origin'] = self.name
         return result
 
+    def check_and_alert_message(self, action, states):
+        for order in self:
+            for inv in order.invoice_ids:
+                if inv and inv.state not in states:
+                    raise UserError(
+                        _("Unable to {} this notespayable order. You must first {} the related bills.").format(action, action))
+
     @api.multi
     def action_cancel(self):
-        for order in self:
-            inv = order.invoice_id
-            if inv and inv.state not in ('cancel', 'draft'):
-                raise UserError(
-                    _("Unable to cancel this notespayable order. You must first cancel the related bills."))
+        self.check_and_alert_message('cancel', ('cancel', 'draft'))
         self.write({'state': 'cancel'})
 
+    @api.multi
+    def action_invoiced(self):
+        self.check_and_alert_message('invoiced', ('open'))
+        self.write({'state': 'invoiced'})
+
+    @api.multi
+    def action_posted(self):
+        self.check_and_alert_message('posted', ('paid', 'in_payment'))
+        self.write({'state': 'post'})
 
 class NotespayableLine(models.Model):
     _name = 'notespayable.order.line'
