@@ -43,15 +43,13 @@
                         <notebook>
                             <page string="Detail" name="notes_line">
                                 <field name="lines" attrs="{'readonly': [('state', 'in', ('invoiced', 'post', 'cancel'))]}">
-                                    <tree string="Notes Order Lines" editable="bottom">
-                                        <field name="product_type" invisible="1"/>
+                                    <tree editable="top" string="Notes Order Lines">
                                         <field name="sequence" widget="handle"/>
-                                        <field name="state" invisible="1"/>
-                                        <field name="product_id" attrs="{'readonly': [('state', 'in',('invoiced', 'post', 'cancel'))]}" widget="selection" domain="[('gov_ok', '=', True)]" />
+                                        <field name="product_id" idget="selection" domain="[('gov_ok', '=', True)]" />
                                         <field name="name"/>
                                         <field name="price"/>
                                     </tree>
-                                    <from string="Notespayable Order Line">
+                                    <form string="Notespayable Order Line">
                                         <sheet>
                                             <group>
                                                 <group>
@@ -61,7 +59,7 @@
                                                 </group>
                                             </group>
                                         </sheet>
-                                    </from>
+                                    </form>
                                 </field>
                                 <group class="oe_subtotal_footer oe_right">
                                     <div class="oe_subtotal_footer_separator oe_inline">
@@ -95,8 +93,8 @@
             <field name="name">notespayable.order.tree</field>
             <field name="model">notespayable.order</field>
             <field name="arch" type="xml">
-                <!-- <tree decoration-muted="state=='cancel'" decoration-info="state in ('invoiced','post')" string="Notes Order"> -->
-                <tree>
+                <tree decoration-muted="state=='cancel'" decoration-info="state in ('invoiced','post')" string="Notes Order">
+                <!-- <tree> -->
                     <field name="name" string="Reference"/>
                     <field name="date_from" />
                     <field name="date_to" />

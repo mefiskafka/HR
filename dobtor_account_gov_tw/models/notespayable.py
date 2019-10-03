@@ -317,8 +317,7 @@ class NotespayableLine(models.Model):
         string='Product',
         domain=[('gov_ok', '=', True)],
         ondelete='set null',
-        # change_default=True,
-        # required=True
+        required=True
     )
     product_type = fields.Selection(
         related='product_id.type',
@@ -326,7 +325,6 @@ class NotespayableLine(models.Model):
     )
     price = fields.Monetary(
         string='Price',
-        # store=True
     )
     currency_id = fields.Many2one(
         related='order_id.currency_id',
@@ -353,16 +351,3 @@ class NotespayableLine(models.Model):
         store=True,
         readonly=True
     )
-    # taxes_id = fields.Many2many(
-    #     comodel_name='account.tax',
-    #     string='Taxes',
-    #     domain=[
-    #         '|', ('active', '=', False), ('active', '=', True)
-    #     ]
-    # )
-
-    # @api.model
-    # def create(self, vals):
-    #     res = super().create(vals)
-    #     print(vals)
-    #     return res
