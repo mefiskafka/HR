@@ -102,19 +102,6 @@ class Notespayable(models.Model):
         readonly=True,
         compute='_compute_invoice'
     )
-    # invoice_status = fields.Selection(
-    #     selection=[
-    #         ('no', 'Nothing to Bill'),
-    #         ('to invoice', 'Waiting Bills'),
-    #         ('invoiced', 'No Bill to Receive'),
-    #     ],
-    #     string='Billing Status',
-    #     compute='_get_invoiced',
-    #     store=True,
-    #     readonly=True,
-    #     copy=False,
-    #     default='no'
-    # )
     # end invoice
     lines = fields.One2many(
         comodel_name="notespayable.order.line",

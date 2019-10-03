@@ -40,8 +40,3 @@ class HrSalaryRule(models.Model):
             ('other', 'Other')
         ],
     )
-
-    # product_id = fields.Many2one(
-    #     'product.product',
-    #     'Product'
-    # )
