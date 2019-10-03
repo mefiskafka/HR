@@ -62,6 +62,18 @@
             <field name="amount_python_compute">result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employer_ratio/100.00) * (1 + contract.average_dependents_number))</field>
         </record>
 
+        <record id="hr_rule_withholding_tax" model="hr.salary.rule">
+            <field name="name">Tax (Withholding)</field>
+            <field name="sequence" eval="209"/>
+            <field name="gov_ok" eval="True" />
+            <field name="base_on">tax</field>
+            <field name="code">CTAX</field>
+            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round( contract.wage * (contract.tax_premium/100.00) ) if round( contract.wage * (contract.tax_premium/100.00) ) > round( contract.withholding_tax_limit * (contract.tax_premium/100.00) ) else 0.00</field>
+        </record>
+
         <!-- <record id="hr_rule_2nd_generation_NHI_company" model="hr.salary.rule">
             <field name="name">Supplementary premium (Company)</field>
             <field name="sequence" eval="207"/>

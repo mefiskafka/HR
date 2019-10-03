@@ -27,6 +27,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_config_parameter.xml',
         'data/account_journal.xml',
         'data/hr_salary_rule_category.xml',
         'data/hr_salary_rule.xml',

@@ -147,3 +147,17 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
         domain=[('gov_ok', '=', True)],
     )
+
+    # withholding Tax
+    withholding_tax_limit = fields.Float(
+        string='Withholding Tax Limit',
+        config_parameter='withholding.tax.limit',
+        default=40000,
+        readonly=False,
+    )
+    tax_premium = fields.Float(
+        string='Tax Premium',
+        config_parameter='withholding.tax.premium',
+        default=5,
+        readonly=False,
+    )

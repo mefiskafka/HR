@@ -149,6 +149,36 @@
 
                     </div>
                 </xpath>
+
+            </field>
+        </record>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.tax.l18n.finance</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="dobtor_hr_labor_insurance.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='hr_payroll_bracket_table']/parent::div" position="inside">
+                    <div class="col-12 col-lg-6 o_setting_box" id="hr_withholding_tax">
+                        <div class="o_setting_right_pane">
+                            <label string="Withholding Tax" for="tax_premium"/>
+                            <span class="fa fa-lg fa-pie-chart" />
+                            <div class="text-muted">
+                                    Set default withholding Tax Parameter.
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="tax_premium" class="col-lg-5 o_light_label"/>
+                                    <field name="tax_premium" />
+                                </div>
+                                <div class="row">
+                                    <label for="withholding_tax_limit" class="col-lg-5 o_light_label"/>
+                                    <field name="withholding_tax_limit"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
             </field>
         </record>
 

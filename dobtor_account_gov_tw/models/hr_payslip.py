@@ -45,6 +45,31 @@ class Contract(models.Model):
         help=_('Number of Average Dependents'),
     )
 
+    # withholding Tax
+    withholding_tax_limit = fields.Float(
+        string='withholding tax limit',
+        default=lambda self: self.env["ir.config_parameter"].sudo(
+        ).get_param("withholding.tax.limit"),
+        store=True,
+    )
+    tax_premium = fields.Float(
+        string='tax Premium',
+        config_parameter='withholding.tax.premium',
+        default=lambda self: self.env["ir.config_parameter"].sudo(
+        ).get_param("withholding.tax.premium"),
+        store=True,
+    )
+
+    @api.multi
+    def action_update_premium(self):
+        super().action_update_premium()
+        for res in self:
+            res.average_dependents_number = self.env["ir.config_parameter"].sudo(
+            ).get_param("health.average.dependents")
+            res.withholding_tax_limit = self.env["ir.config_parameter"].sudo(
+            ).get_param("withholding.tax.limit")
+            res.tax_premium = self.env["ir.config_parameter"].sudo(
+            ).get_param("withholding.tax.premium")
 
 class HrPayslip(models.Model):
     _inherit = 'hr.payslip'
@@ -53,7 +78,8 @@ class HrPayslip(models.Model):
     def _get_payslip_lines(self, contract_ids, payslip_id):
         result = super()._get_payslip_lines(contract_ids, payslip_id)
         for line in result:
-            rule = self.env['hr.salary.rule'].browse(line.get('salary_rule_id'))
+            rule = self.env['hr.salary.rule'].browse(
+                line.get('salary_rule_id'))
             if rule.gov_ok and rule.base_on:
                 line['base_on'] = rule.base_on
         return result
