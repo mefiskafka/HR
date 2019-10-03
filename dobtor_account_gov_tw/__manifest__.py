@@ -27,7 +27,6 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        # 'security/ir_rule.xml',
         'data/account_journal.xml',
         'data/hr_salary_rule_category.xml',
         'data/hr_salary_rule.xml',
@@ -35,10 +34,6 @@
         'data/notespayable_data.xml',
         'data/res_partner.xml',
         'data/product.xml',
-        # 'wizard/wizard_make_settlement.xml',
-        # 'wizard/wizard_pay_nhi.xml',
-        # 'wizard/wizard_pay_bli.xml',
-        # 'wizard/wizard_pay_salary.xml',
         'views/product_views.xml',
         'views/res_partner.xml',
         'views/hr_payroll_views.xml',
