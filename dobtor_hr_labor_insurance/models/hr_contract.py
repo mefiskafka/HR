@@ -41,7 +41,6 @@ class Contract(models.Model):
     )
     ordinary_premium = fields.Float(
         string='Insurance Premium',
-        compute='_compute_premium',
         default=lambda self: self.env["ir.config_parameter"].sudo(
         ).get_param("insurance.ordinary.premium"),
         store=True,
@@ -83,7 +82,6 @@ class Contract(models.Model):
     )
     employment_premium = fields.Float(
         string='Insurance Premium',
-        compute='_compute_premium',
         default=lambda self: self.env["ir.config_parameter"].sudo(
         ).get_param("insurance.employment.premium"),
         store=True,
@@ -112,7 +110,6 @@ class Contract(models.Model):
     )
     health_premium = fields.Float(
         string='Insurance Premium',
-        compute='_compute_premium',
         default=lambda self: self.env["ir.config_parameter"].sudo(
         ).get_param("insurance.health.premium"),
         store=True,
@@ -123,14 +120,13 @@ class Contract(models.Model):
     )
     nhi_2nd_premium = fields.Float(
         string='2nd Generation NHI',
-        compute='_compute_premium',
         default=lambda self: self.env["ir.config_parameter"].sudo(
         ).get_param("insurance.nhi_2nd.premium"),
         store=True,
     )
 
     @api.multi
-    def _compute_premium(self):
+    def action_update_premium(self):
         for res in self:
             res.ordinary_premium = self.env["ir.config_parameter"].sudo(
             ).get_param("insurance.ordinary.premium")
@@ -140,6 +136,7 @@ class Contract(models.Model):
             ).get_param("insurance.health.premium")
             res.nhi_2nd_premium = self.env["ir.config_parameter"].sudo(
             ).get_param("insurance.nhi_2nd.premium")
+
 
     @api.depends('wage', 'payroll_bracket_id')
     def _compute_insure_wage(self):
