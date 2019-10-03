@@ -41,6 +41,7 @@
         'data/hr_salary_rule_category.xml',
         'data/hr_salary_rule.xml',
         'data/hr_salary_structure.xml',
+        'wizard/wizard_update_premium.xml',
         'views/res_config_settings_views.xml',
         'views/hr_contract_views.xml',
         # 'demo/hr_demo.xml',

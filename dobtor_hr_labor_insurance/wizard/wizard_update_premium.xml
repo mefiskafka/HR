@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_batch_update_insurance_premium_wizard" model="ir.ui.view">
+            <field name="name">Batch Update insurance premium</field>
+            <field name="model">hr.update.insurance.premium</field>
+            <field name="arch" type="xml">
+                <form string="Settlement">
+                    <group>
+                        <p colspan="4">Select the contract to which you want to Update insurance premium:</p>
+                    </group>
+                    <group colspan="4">
+                        <p colspan="4">(keep empty for making the update of all contract)</p>
+                        <field name="contract_ids" widget="many2many_tags" />
+                    </group>
+                    <footer>
+                        <button name="action_update_premium" string="Batch Update" type="object" class="oe_highlight" />
+                        or
+                        <button name="action_cancel" string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_hr_update_insurance_premium" name="Batch Update insurance premium" res_model="hr.update.insurance.premium" view_mode="form" view_type="form" target="new" />
+
+    </data>
+</odoo>
