@@ -11,7 +11,7 @@
                         <p colspan="4">Select the contract to which you want to Update insurance premium:</p>
                     </group>
                     <group colspan="4">
-                        <p colspan="4">(keep empty for making the update of all contract)</p>
+                        <p colspan="2">(keep empty for making the update of all contract)</p>
                         <field name="contract_ids" widget="many2many_tags" />
                     </group>
                     <footer>
