@@ -127,6 +127,10 @@
                                         <label for="labor_limit" class="col-lg-5 o_light_label"/>
                                         <field name="labor_limit"/>
                                     </div>
+                                    <div class="row">
+                                        <label for="labor_pension_premium" class="col-lg-5 o_light_label"/>
+                                        <field name="labor_pension_premium"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>

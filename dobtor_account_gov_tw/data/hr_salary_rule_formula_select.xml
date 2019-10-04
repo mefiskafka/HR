@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="hr_rule_formula_select_cordinary" model="hr.salary.rule.formula.select">
+            <field name="name">Ordinary Insurance (Compnay)</field>
+            <field name="sequence" eval="11"/>
+            <field name="code">cordinary</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company"/>
+        </record>
+
+        <record id="hr_rule_formula_select_caccident" model="hr.salary.rule.formula.select">
+            <field name="name">Occupational Accident Insurance (Company)</field>
+            <field name="sequence" eval="12"/>
+            <field name="code">caccident</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company"/>
+        </record>
+
+        <record id="hr_rule_formula_select_cemployment" model="hr.salary.rule.formula.select">
+            <field name="name">Employment Insurance (Company)</field>
+            <field name="sequence" eval="13"/>
+            <field name="code">cemployment</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company"/>
+        </record>
+
+        <record id="hr_rule_formula_select_cpension" model="hr.salary.rule.formula.select">
+            <field name="name">Labor Pension (Company)</field>
+            <field name="sequence" eval="14"/>
+            <field name="code">cpension</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company"/>
+        </record>
+
+        <record id="hr_rule_formula_select_chealth" model="hr.salary.rule.formula.select">
+            <field name="name">Health Insurance (Company)</field>
+            <field name="sequence" eval="15"/>
+            <field name="code">chealth</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company"/>
+        </record>
+
+        <record id="hr_rule_formula_select_cnhi2nd" model="hr.salary.rule.formula.select">
+            <field name="name">Supplementary premium (Company)</field>
+            <field name="sequence" eval="16"/>
+            <field name="code">cnhi2nd</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company"/>
+        </record>
+
+        <record id="hr_rule_formula_select_wordinary" model="hr.salary.rule.formula.select">
+            <field name="name">Ordinary Insurance (Withholding)</field>
+            <field name="sequence" eval="21"/>
+            <field name="code">wordinary</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding"/>
+        </record>
+
+        <record id="hr_rule_formula_select_waccident" model="hr.salary.rule.formula.select">
+            <field name="name">Occupational Accident Insurance (Withholding)</field>
+            <field name="sequence" eval="22"/>
+            <field name="code">waccident</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding"/>
+        </record>
+
+        <record id="hr_rule_formula_select_wemployment" model="hr.salary.rule.formula.select">
+            <field name="name">Employment Insurance (Withholding)</field>
+            <field name="sequence" eval="23"/>
+            <field name="code">wemployment</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding"/>
+        </record>
+
+        <record id="hr_rule_formula_select_wself" model="hr.salary.rule.formula.select">
+            <field name="name">Self-Labor Pension (Withholding)</field>
+            <field name="sequence" eval="24"/>
+            <field name="code">wself</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding"/>
+        </record>
+
+        <record id="hr_rule_formula_select_whealth" model="hr.salary.rule.formula.select">
+            <field name="name">Health Insurance (Withholding)</field>
+            <field name="sequence" eval="25"/>
+            <field name="code">whealth</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding"/>
+        </record>
+
+        <record id="hr_rule_formula_select_wnhi2nd" model="hr.salary.rule.formula.select">
+            <field name="name">Supplementary premium (Withholding)</field>
+            <field name="sequence" eval="26"/>
+            <field name="code">wnhi2nd</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding"/>
+        </record>
+        
+        <record id="hr_rule_formula_select_wtax" model="hr.salary.rule.formula.select">
+            <field name="name">Tax (Withholding)</field>
+            <field name="sequence" eval="27"/>
+            <field name="code">wtax</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding"/>
+        </record>
+
+    </data>
+</odoo>

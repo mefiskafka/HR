@@ -10,8 +10,9 @@
             <field name="code">CORDINARY</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employer_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_cordinary" />
         </record>
 
         <record id="hr_rule_ordinary_insurance_withholding" model="hr.salary.rule">
@@ -22,8 +23,9 @@
             <field name="code">WORDINARY</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employee_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_wordinary" />
         </record>
         
         <record id="hr_rule_occupational_accident_insurance_company" model="hr.salary.rule">
@@ -34,8 +36,9 @@
             <field name="code">CACCIDENT</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (float(contract.accident_premium)/100.00) * (contract.accident_employer_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_caccident" />
         </record>
 
         <record id="hr_rule_occupational_accident_insurance_withholding" model="hr.salary.rule">
@@ -46,8 +49,9 @@
             <field name="code">WACCIDENT</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (float(contract.accident_premium)/100.00) * (contract.accident_employee_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_waccident" />
         </record>
 
         <record id="hr_rule_employment_Insurance_company" model="hr.salary.rule">
@@ -58,8 +62,9 @@
             <field name="code">CEMPLOYMENT</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employer_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_cemployment" />
         </record>
 
         <record id="hr_rule_employment_Insurance_withholding" model="hr.salary.rule">
@@ -70,8 +75,22 @@
             <field name="code">WEMPLOYMENT</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employee_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_wemployment" />
+        </record>
+
+        <record id="hr_rule_pension_premium_company" model="hr.salary.rule">
+            <field name="name">Labor Pension (Company)</field>
+            <field name="sequence" eval="208"/>
+            <field name="gov_ok" eval="True" />
+            <field name="base_on">bli</field>
+            <field name="code">CPENSION</field>
+            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_cpension" />
         </record>
 
         <record id="hr_rule_pension_premium_withholding" model="hr.salary.rule">
@@ -82,8 +101,9 @@
             <field name="code">WSELF</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round(contract.insure_wage * (contract.pension_premium/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_wself" />
         </record>
 
         <record id="hr_rule_health_Insurance_company" model="hr.salary.rule">
@@ -94,8 +114,9 @@
             <field name="code">CHEALTH</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employer_ratio/100.00) * (1 + contract.average_dependents_number))</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_chealth" />
         </record>
 
         <record id="hr_rule_health_Insurance_withholding" model="hr.salary.rule">
@@ -106,20 +127,35 @@
             <field name="code">WHEALTH</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number))</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_whealth" />
+        </record>
+
+        <record id="hr_rule_2nd_generation_NHI_company" model="hr.salary.rule">
+            <field name="name">Supplementary premium (Company)</field>
+            <field name="sequence" eval="212"/>
+            <field name="gov_ok" eval="True" />
+            <field name="base_on">nhi</field>
+            <field name="code">CNHI2ND</field>
+            <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_company" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_cnhi2nd" />
         </record>
 
         <record id="hr_rule_2nd_generation_NHI_withholding" model="hr.salary.rule">
             <field name="name">Supplementary premium (Withholding)</field>
-            <field name="sequence" eval="212"/>
+            <field name="sequence" eval="213"/>
             <field name="gov_ok" eval="True" />
             <field name="base_on">nhi</field>
             <field name="code">WNHI2ND</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( payslip.nhi_2nd_amount * (contract.nhi_2nd_premium/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_wnhi2nd" />
         </record>
 
         <record id="hr_rule_withholding_tax" model="hr.salary.rule">
@@ -130,8 +166,9 @@
             <field name="code">CTAX</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.wage * (contract.tax_premium/100.00) ) if round( contract.wage * (contract.tax_premium/100.00) ) > round( contract.withholding_tax_limit * (contract.tax_premium/100.00) ) else 0.00</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_wtax" />
         </record>
 
     </data>

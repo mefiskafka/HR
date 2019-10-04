@@ -54,9 +54,16 @@ class Contract(models.Model):
     )
     tax_premium = fields.Float(
         string='tax Premium',
-        config_parameter='withholding.tax.premium',
         default=lambda self: self.env["ir.config_parameter"].sudo(
         ).get_param("withholding.tax.premium"),
+        store=True,
+    )
+
+    # pension
+    labor_pension_premium = fields.Float(
+        string='Labor Pension Premium',
+        default=lambda self: self.env["ir.config_parameter"].sudo(
+        ).get_param("insurance.pension.premium"),
         store=True,
     )
 

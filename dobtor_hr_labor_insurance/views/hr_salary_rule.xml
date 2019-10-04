@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_salary_rule_formula" model="ir.ui.view">
+            <field name="name">hr.salary.rule.formula</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='quantity']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('amount_select','in',('code', 'formula'))], 'required':[('amount_select','not in',('code', 'formula'))]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_percentage']" position="after">
+                    <newline/>
+                    <field name="type_id" widget="selection" attrs="{'invisible':[('amount_select','!=','formula')], 'required':[('amount_select','=','formula')]}"/>
+                    <newline/>
+                    <field name="formula_select" widget="selection" attrs="{'invisible':[('amount_select','!=','formula')], 'required':[('amount_select','=','formula')]}" domain="[('type_id', '=', type_id )]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="hr_rule_formula_select_ordinary" model="hr.salary.rule.formula.select">
+            <field name="name">Ordinary Insurance</field>
+            <field name="sequence" eval="1"/>
+            <field name="code">ordinary</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary"/>
+        </record>
+
+        <record id="hr_rule_formula_select_accident" model="hr.salary.rule.formula.select">
+            <field name="name">Occupational Accident Insurance</field>
+            <field name="sequence" eval="2"/>
+            <field name="code">accident</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary"/>
+        </record>
+
+        <record id="hr_rule_formula_select_employment" model="hr.salary.rule.formula.select">
+            <field name="name">Employment Insurance</field>
+            <field name="sequence" eval="3"/>
+            <field name="code">employment</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary"/>
+        </record>
+
+        <record id="hr_rule_formula_select_self" model="hr.salary.rule.formula.select">
+            <field name="name">Self-Labor Pension</field>
+            <field name="sequence" eval="4"/>
+            <field name="code">self</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary"/>
+        </record>
+
+        <record id="hr_rule_formula_select_health" model="hr.salary.rule.formula.select">
+            <field name="name">Health Insurance</field>
+            <field name="sequence" eval="5"/>
+            <field name="code">health</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary"/>
+        </record>
+
+        <record id="hr_rule_formula_select_nhi2nd" model="hr.salary.rule.formula.select">
+            <field name="name">Supplementary premium</field>
+            <field name="sequence" eval="6"/>
+            <field name="code">nhi2nd</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary"/>
+        </record>
+
+    </data>
+</odoo>

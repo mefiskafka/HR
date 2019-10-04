@@ -30,6 +30,8 @@
         'data/ir_config_parameter.xml',
         'data/account_journal.xml',
         'data/hr_salary_rule_category.xml',
+        'data/hr_salary_rule_formula_type.xml',
+        'data/hr_salary_rule_formula_select.xml',
         'data/hr_salary_rule.xml',
         'data/hr_salary_structure.xml',
         'data/notespayable_data.xml',

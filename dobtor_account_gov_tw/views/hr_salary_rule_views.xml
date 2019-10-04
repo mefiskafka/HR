@@ -9,7 +9,7 @@
             <field name="inherit_id" ref="hr_payroll.view_hr_employee_grade_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='company_id']" position="after">
-                    <field name="gov_ok" />
+                    <field name="gov_ok" invisible="1" />
                 </xpath>
             </field>
         </record>
@@ -28,6 +28,7 @@
         </record>
 
         <record id="hr_payroll.action_view_hr_payroll_structure_list_form" model="ir.actions.act_window">
+            <field name="domain">[('gov_ok', '!=', True)]</field>
             <field name="context">{'search_default_general': 1}</field>
         </record>
 
@@ -53,7 +54,7 @@
             <field name="inherit_id" ref="hr_payroll.hr_salary_rule_category_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='parent_id']" position="after">
-                    <field name="gov_ok" />
+                    <field name="gov_ok" invisible="1"/>
                 </xpath>
             </field>
         </record>
@@ -72,6 +73,7 @@
         </record>
 
         <record id="hr_payroll.action_hr_salary_rule_category" model="ir.actions.act_window">
+            <field name="domain">[('gov_ok', '!=', True)]</field>
             <field name="context">{'search_default_general': 1}</field>
         </record>
 
@@ -97,11 +99,14 @@
             <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='company_id']" position="before">
-                    <field name="gov_ok" />
+                    <field name="gov_ok" invisible="1"/>
                 </xpath>
                 <xpath expr="//field[@name='company_id']" position="after">
                     <field name="base_on" attrs="{'invisible': [('gov_ok', '=', False)]}" />
                 </xpath>
+                <!-- <xpath expr="//field[@name='type_id']" position="attributes">
+
+                </xpath> -->
             </field>
         </record>
 
@@ -119,6 +124,7 @@
         </record>
 
         <record id="hr_payroll.action_salary_rule_form" model="ir.actions.act_window">
+            <field name="domain">[('gov_ok', '!=', True)]</field>
             <field name="context">{'search_default_general': 1}</field>
         </record>
 

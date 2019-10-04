@@ -94,3 +94,9 @@ class ResConfigSettings(models.TransientModel):
         default=45800,
         readonly=False,
     )
+    labor_pension_premium = fields.Float(
+        string='Labor Pension Premium',
+        config_parameter='insurance.pension.premium',
+        default=6.0,
+        readonly=False,
+    )

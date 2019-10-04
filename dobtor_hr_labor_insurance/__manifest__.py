@@ -37,13 +37,17 @@
         'dobtor_resource_contribution_ratio',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/ir_config_parameter.xml',
         'data/hr_salary_rule_category.xml',
+        'data/hr_salary_rule_formula_type.xml',
+        'data/hr_salary_rule_formula_select.xml',
         'data/hr_salary_rule.xml',
         'data/hr_salary_structure.xml',
         'wizard/wizard_update_premium.xml',
         'views/res_config_settings_views.xml',
         'views/hr_contract_views.xml',
+        'views/hr_salary_rule.xml',
         # 'demo/hr_demo.xml',
     ],
     'demo': [

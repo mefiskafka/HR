@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
 
         <record id="hr_rule_ordinary_insurance" model="hr.salary.rule">
             <field name="name">Ordinary Insurance</field>
@@ -8,8 +8,9 @@
             <field name="code">ORDINARY</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employee_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary" />
+            <field name="formula_select" ref="dobtor_hr_labor_insurance.hr_rule_formula_select_ordinary" />
         </record>
         
         <record id="hr_rule_occupational_accident_insurance" model="hr.salary.rule">
@@ -18,8 +19,9 @@
             <field name="code">ACCIDENT</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (float(contract.accident_premium)/100.00) * (contract.accident_employee_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary" />
+            <field name="formula_select" ref="dobtor_hr_labor_insurance.hr_rule_formula_select_accident" />
         </record>
 
         <record id="hr_rule_employment_Insurance" model="hr.salary.rule">
@@ -28,8 +30,9 @@
             <field name="code">EMPLOYMENT</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employee_ratio/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary" />
+            <field name="formula_select" ref="dobtor_hr_labor_insurance.hr_rule_formula_select_employment" />
         </record>
 
         <record id="hr_rule_pension_premium" model="hr.salary.rule">
@@ -38,8 +41,9 @@
             <field name="code">SELF</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round(contract.insure_wage * (contract.pension_premium/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary" />
+            <field name="formula_select" ref="dobtor_hr_labor_insurance.hr_rule_formula_select_self" />
         </record>
 
         <record id="hr_rule_health_Insurance" model="hr.salary.rule">
@@ -48,8 +52,9 @@
             <field name="code">HEALTH</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number))</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary" />
+            <field name="formula_select" ref="dobtor_hr_labor_insurance.hr_rule_formula_select_health" />
         </record>
 
         <record id="hr_rule_2nd_generation_NHI" model="hr.salary.rule">
@@ -58,8 +63,9 @@
             <field name="code">NHI2ND</field>
             <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
             <field name="condition_select">none</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -round( payslip.nhi_2nd_amount * (contract.nhi_2nd_premium/100.00) )</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary" />
+            <field name="formula_select" ref="dobtor_hr_labor_insurance.hr_rule_formula_select_nhi2nd" />
         </record>
 
         <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">

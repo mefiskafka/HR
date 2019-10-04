@@ -27,6 +27,11 @@
             <field name="value">1.91</field>
         </record>
 
+        <record model="ir.config_parameter" id="labor_pension_premium">
+            <field name="key">insurance.pension.premium</field>
+            <field name="value">6.0</field>
+        </record>
+
         <record model="ir.config_parameter" id="labor_limit">
             <field name="key">labor.insured.limit</field>
             <field name="value">45800</field>
