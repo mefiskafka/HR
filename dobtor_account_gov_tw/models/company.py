@@ -71,7 +71,7 @@ class Company(models.Model):
     )
 
     withholding_tax_journal = fields.Many2one(
-        string='Withholding Tax Jouranl',
+        string='Withholding Tax Journal',
         comodel_name='account.journal',
         domain=[('type', '=', 'general')],
         help="Accounting journal used to Withholding Tax.",

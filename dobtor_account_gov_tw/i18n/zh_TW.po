@@ -1,0 +1,897 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dobtor_account_gov_tw
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20190430\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-05 03:09+0000\n"
+"PO-Revision-Date: 2019-10-05 13:57+0800\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: zh_TW\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',('draft'))]}\">Draft</span>\n"
+"                            <span class=\"o_form_label\" attrs=\"{'invisible': [('state','in',('invoiced','post'))]}\">open Billing</span>"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_notespayable_order_line__product_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"可庫存商品是指在倉庫中受存量管控的產品。 要使用此專案您必須安裝倉庫模組。\n"
+"可消耗商品是指不受庫存量管控的產品。\n"
+"服務是指您提供的非產品類服務業務。"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Account Setting"
+msgstr "會計設定"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_company__bank_bli_journal
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_config_settings__bank_bli_journal
+msgid "Accounting journal used to BLI (Bank)."
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_company__hr_salary_journal
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_config_settings__hr_salary_journal
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Accounting journal used to Employees Salary."
+msgstr "員工薪資預設帳本."
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_company__back_nhi_journal
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_config_settings__back_nhi_journal
+msgid "Accounting journal used to NHI (Bank)."
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_company__back_ntbt_journal
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_config_settings__back_ntbt_journal
+msgid "Accounting journal used to NTBT (Bank)."
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_company__withholding_bli_journal
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_config_settings__withholding_bli_journal
+msgid "Accounting journal used to Withholding BLI."
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_company__withholding_nhi_journal
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_config_settings__withholding_nhi_journal
+msgid "Accounting journal used to Withholding NHI."
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_company__withholding_tax_journal
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_res_config_settings__withholding_tax_journal
+msgid "Accounting journal used to Withholding Tax."
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Accounting journal/Contact/Product used to Withholding BLI."
+msgstr "代扣勞保預設的相關參數."
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Accounting journal/Contact/Product used to Withholding NHI."
+msgstr "代扣健保預設的相關參數."
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Accounting journal/Contact/Product used to Withholding Tax."
+msgstr "代扣所得稅預設的相關參數."
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_account_invoice__notes_id
+msgid "Add Notespayable Order"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__amount_total
+msgid "Amount Total"
+msgstr "總金額"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__average_dependents_number
+msgid "Average Dependents"
+msgstr "平均眷口數"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__bank_bli_journal
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__bank_bli_journal
+msgid "BLI Bank"
+msgstr "勞保局銀行帳本"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__bli_partner
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__bli_partner
+msgid "BLI Contact"
+msgstr "勞保相關聯絡人"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__bli_product_id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__bli_product_id
+msgid "BLI Product"
+msgstr "勞保相關產品"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Bank Journal"
+msgstr "銀行帳本"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_payslip_line__base_on
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_salary_rule__base_on
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__base_on
+msgid "Base on"
+msgstr "機關單位"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__invoice_count
+msgid "Bill Count"
+msgstr "帳單計數"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__invoice_lines
+msgid "Bill Lines"
+msgstr "帳單明細"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__invoice_ids
+msgid "Bills"
+msgstr "帳單"
+
+#. module: dobtor_account_gov_tw
+#: selection:hr.payslip.line,base_on:0 selection:hr.salary.rule,base_on:0
+#: selection:notespayable.order,base_on:0
+msgid "Bureau of Labor Insurance"
+msgstr "勞保局"
+
+#. module: dobtor_account_gov_tw
+#: code:addons/dobtor_account_gov_tw/models/notespayable.py:54
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+#: selection:notespayable.order,state:0
+#, python-format
+msgid "Cancel"
+msgstr "取消"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.actions.act_window,name:dobtor_account_gov_tw.action_finance_salary_category
+#: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_finance_salary_category
+msgid "Category"
+msgstr "規則類別"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.actions.act_window,help:dobtor_account_gov_tw.action_account_notepayable_order
+msgid "Click here to create a Notes."
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_res_company
+msgid "Companies"
+msgstr "公司"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule.formula.type,name:dobtor_account_gov_tw.hr_rule_formula_company
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__company_id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__ordinary_employer_ratio
+msgid "Company Contribution Ratio"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_contract__accident_employer_ratio
+msgid "Company of Occupational Accident insurance contribution ratio"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_contract__ordinary_employer_ratio
+msgid "Company of Ordinary insurance contribution ratio"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_contract__employment_employer_ratio
+msgid "Compnay of Employment insurance contribution ratio"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_contract__health_employer_ratio
+msgid "Compnay of health insurance contribution ratio"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Compute Sheet"
+msgstr "計算表"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置設置"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_res_partner
+msgid "Contact"
+msgstr "聯絡人"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__accident_employer_ratio
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__employment_employer_ratio
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__health_employer_ratio
+msgid "Contribution Ratio"
+msgstr "負擔比例"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Create Bill"
+msgstr "創建帳單"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.actions.act_window,help:dobtor_account_gov_tw.action_finance_salary_category
+msgid "Create a new Category"
+msgstr "創建薪資規則類別"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.actions.act_window,help:dobtor_account_gov_tw.action_partner_gov
+msgid "Create a new Public Administration"
+msgstr "創建政府機關單位"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.actions.act_window,help:dobtor_account_gov_tw.action_finance_salary_rule
+msgid "Create a new Rule"
+msgstr "創建新規則"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.actions.act_window,help:dobtor_account_gov_tw.action_finance_salary_struct
+msgid "Create a new Structure"
+msgstr "創建薪資規則"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.actions.act_window,help:dobtor_account_gov_tw.action_product_notes
+msgid "Create a new notes product"
+msgstr "創建其他應付費用相關產品"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__create_uid
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__create_uid
+msgid "Created by"
+msgstr "創建者"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__create_date
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__create_date
+msgid "Created on"
+msgstr "創建時間"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__currency_id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__currency_id
+msgid "Currency"
+msgstr "貨幣"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Define your terms and conditions ..."
+msgstr "定義您的條款和條件…"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__name
+msgid "Description"
+msgstr "描述"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Detail"
+msgstr "明細"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__display_name
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__employee_ids
+msgid "Employee"
+msgstr "員工"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_hr_contract
+msgid "Employee Contract"
+msgstr "員工合約"
+
+#. module: dobtor_account_gov_tw
+#: code:addons/dobtor_account_gov_tw/models/company.py:23
+#, python-format
+msgid "Employee Salary"
+msgstr "員工薪資"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Employee Salary Default"
+msgstr "預設員工薪資設定"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__hr_salary_journal
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__hr_salary_journal
+msgid "Employee Salary Journal"
+msgstr "員工薪資帳本"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_employment_Insurance_company
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_cemployment
+msgid "Employment Insurance (Company)"
+msgstr "就業保險 (公司負擔)"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_employment_Insurance_withholding
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_wemployment
+msgid "Employment Insurance (Withholding)"
+msgstr "就業保險 (代扣保險費)"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__date_from
+msgid "From"
+msgstr "從"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.view_hr_payroll_structure_filter_gow_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.view_hr_rule_filter_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.view_hr_salary_rule_category_filter_gov_tw
+msgid "General"
+msgstr "常規"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_finance_gov
+msgid "Government"
+msgstr "政府稅務"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule.category,name:dobtor_account_gov_tw.GOVTAX
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_payroll_structure__gov_ok
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_payslip_line__gov_ok
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_salary_rule__gov_ok
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_salary_rule_category__gov_ok
+msgid "Government Tax"
+msgstr "政府稅務相關"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_product_product__gov_ok
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_product_template__gov_ok
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_partner__gov_ok
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_users__gov_ok
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.product_template_search_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.view_hr_payroll_structure_filter_gow_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.view_hr_rule_filter_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.view_hr_salary_rule_category_filter_gov_tw
+msgid "Government tax"
+msgstr "可用於政府稅務相關"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "HR Setting"
+msgstr "HR 設定"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_health_Insurance_company
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_chealth
+msgid "Health Insurance (Company)"
+msgstr "勞工健康保險 (公司負擔)"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_health_Insurance_withholding
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_whealth
+msgid "Health Insurance (Withholding)"
+msgstr "勞工健康保險 (代扣保險費)"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_account_invoice
+msgid "Invoice"
+msgstr "發票"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "憑單行"
+
+#. module: dobtor_account_gov_tw
+#: code:addons/dobtor_account_gov_tw/models/notespayable.py:52
+#: selection:notespayable.order,state:0
+#, python-format
+msgid "Invoiced"
+msgstr "已開立憑單"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__journal_id
+msgid "Journal"
+msgstr "日記帳"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_pension_premium_company
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_cpension
+msgid "Labor Pension (Company)"
+msgstr "勞工退休金 (公司負擔)"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__labor_pension_premium
+msgid "Labor Pension Premium"
+msgstr "提撥勞退費率"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order____last_update
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line____last_update
+msgid "Last Modified on"
+msgstr "最後修改時間"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__write_uid
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__write_uid
+msgid "Last Updated by"
+msgstr "最後更新人"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__write_date
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__write_date
+msgid "Last Updated on"
+msgstr "最後更新時間"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__back_nhi_journal
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__back_nhi_journal
+msgid "NHI Bank"
+msgstr "健保局銀行帳本"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__nhi_partner
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__nhi_partner
+msgid "NHI Contact"
+msgstr "健保局相關聯絡人"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__nhi_product_id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__nhi_product_id
+msgid "NHI Product"
+msgstr "健保局相關產品"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__back_ntbt_journal
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__back_ntbt_journal
+msgid "NTBT Bank"
+msgstr "國稅局銀行帳本"
+
+#. module: dobtor_account_gov_tw
+#: selection:hr.payslip.line,base_on:0 selection:hr.salary.rule,base_on:0
+#: selection:notespayable.order,base_on:0
+msgid "National Health Insurance"
+msgstr "保險署"
+
+#. module: dobtor_account_gov_tw
+#: selection:hr.payslip.line,base_on:0 selection:hr.salary.rule,base_on:0
+#: selection:notespayable.order,base_on:0
+msgid "National Taxation Burean"
+msgstr "國稅局"
+
+#. module: dobtor_account_gov_tw
+#: code:addons/dobtor_account_gov_tw/models/notespayable.py:51
+#: selection:notespayable.order,state:0
+#, python-format
+msgid "New"
+msgstr "票據"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_finance_notes
+msgid "Notes"
+msgstr "其他應付帳款"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_account_invoice_line__notes_id
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_tree
+msgid "Notes Order"
+msgstr "其他應付帳款"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Notes Order Lines"
+msgstr "其他應付票據明細"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Notes Payable Order"
+msgstr "其他應付帳款"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_notespayable_order_line
+msgid "Notes Payable Order Line"
+msgstr "其他應付帳款明細"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.actions.act_window,name:dobtor_account_gov_tw.action_account_notepayable_order
+msgid "Notes Payable Orders"
+msgstr "其他應付帳款"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__name
+msgid "Notes Payable Referance"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_account_invoice_line__notes_line_id
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Notespayable Order Line"
+msgstr "其他應付帳款明細"
+
+#. module: dobtor_account_gov_tw
+#: code:addons/dobtor_account_gov_tw/models/hr_payslip.py:45
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_contract__average_dependents_number
+#, python-format
+msgid "Number of Average Dependents"
+msgstr "平均眷口數"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_occupational_accident_insurance_company
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_caccident
+msgid "Occupational Accident Insurance (Company)"
+msgstr "職業災害保險 (公司負擔)"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_occupational_accident_insurance_withholding
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_waccident
+msgid "Occupational Accident Insurance (Withholding)"
+msgstr "職業災害保險 (代扣保險費)"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__order_id
+msgid "Order Reference"
+msgstr "訂單參照"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__lines
+msgid "Order lines"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_ordinary_insurance_company
+msgid "Ordinary Insurance (Company)"
+msgstr "普通事故保險 (公司負擔)"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_cordinary
+msgid "Ordinary Insurance (Compnay)"
+msgstr "普通事故保險 (公司負擔)"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_ordinary_insurance_withholding
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_wordinary
+msgid "Ordinary Insurance (Withholding)"
+msgstr "普通事故保險 (代扣保險費)"
+
+#. module: dobtor_account_gov_tw
+#: selection:hr.payslip.line,base_on:0 selection:hr.salary.rule,base_on:0
+#: selection:notespayable.order,base_on:0
+msgid "Other"
+msgstr "其他"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Other Setting"
+msgstr "其他設定"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_hr_payslip
+msgid "Pay Slip"
+msgstr "薪資單"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__payment_term_id
+msgid "Payment Terms"
+msgstr "付款條款"
+
+#. module: dobtor_account_gov_tw
+#: code:addons/dobtor_account_gov_tw/models/notespayable.py:53
+#: selection:notespayable.order,state:0
+#, python-format
+msgid "Posted"
+msgstr "已付款"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__price
+msgid "Price"
+msgstr "價格"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__product_id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__product_id
+msgid "Product"
+msgstr "商品"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_product_template
+msgid "Product Template"
+msgstr "產品模板"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__product_type
+msgid "Product Type"
+msgstr "產品類型"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.actions.act_window,name:dobtor_account_gov_tw.action_product_notes
+#: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_product_notes
+msgid "Products"
+msgstr "產品"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.actions.act_window,name:dobtor_account_gov_tw.action_partner_gov
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__partner_id
+#: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_contact_gov
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_partner_search_gov_tw
+msgid "Public Administration"
+msgstr "政府機關業務"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_tree
+msgid "Reference"
+msgstr "參照"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Republic of China Finance"
+msgstr "中華民國稅務"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.actions.act_window,name:dobtor_account_gov_tw.action_finance_salary_rule
+#: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_finance_salary_rule
+msgid "Rule"
+msgstr "規則"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_finance_salary
+msgid "Salary"
+msgstr "薪資設定"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_hr_salary_rule
+msgid "Salary Rule"
+msgstr "薪酬制度"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_hr_salary_rule_category
+msgid "Salary Rule Category"
+msgstr "薪資規則類別"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_hr_payroll_structure
+msgid "Salary Structure"
+msgstr "薪資結構"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_pension_premium_withholding
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_wself
+msgid "Self-Labor Pension (Withholding)"
+msgstr "自行提撥勞工退休金 (代扣保險費)"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__sequence
+msgid "Sequence"
+msgstr "序列"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Set default Public Administration Structure."
+msgstr "設定政府機關業務的預設薪資結構."
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form_inhert
+msgid "Set default withholding Tax Parameter."
+msgstr "設定代扣所得稅的預設參數."
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__state
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__state
+msgid "Status"
+msgstr "狀態"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.actions.act_window,name:dobtor_account_gov_tw.action_finance_salary_struct
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__struct_id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__struct_id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__struct_id
+#: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_finance_salary_struct
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Structure"
+msgstr "薪資結構"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_2nd_generation_NHI_company
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_cnhi2nd
+msgid "Supplementary premium (Company)"
+msgstr "補充保費 (公司負擔)"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_2nd_generation_NHI_withholding
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_wnhi2nd
+msgid "Supplementary premium (Withholding)"
+msgstr "補充保費 (代扣保險費)"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__tax_partner
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__tax_partner
+msgid "TAX Contact"
+msgstr "國稅局相關聯絡人"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__tax_product_id
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__tax_product_id
+msgid "TAX Product"
+msgstr "國稅局相關產品"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_withholding_tax
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_wtax
+msgid "Tax (Withholding)"
+msgstr "代扣所得稅 (代扣稅)"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__tax_premium
+msgid "Tax Premium"
+msgstr "代扣所得稅費率"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__notes
+msgid "Terms and Conditions"
+msgstr "條款和條件"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__date_to
+msgid "To"
+msgstr "至"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_tree
+msgid "Total amount"
+msgstr "合計金額"
+
+#. module: dobtor_account_gov_tw
+#: code:addons/dobtor_account_gov_tw/models/notespayable.py:265
+#, python-format
+msgid "Unable to {} this notespayable order. You must first {} the related bills."
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:product.product,uom_name:dobtor_account_gov_tw.partner_gov_insurance
+#: model:product.product,uom_name:dobtor_account_gov_tw.partner_gov_tax
+#: model:product.template,uom_name:dobtor_account_gov_tw.partner_gov_insurance_product_template
+#: model:product.template,uom_name:dobtor_account_gov_tw.partner_gov_tax_product_template
+msgid "Unit(s)"
+msgstr "件"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
+msgid "Vendor Bills"
+msgstr "供應商帳單"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__employee_ref
+msgid "Vendor Reference"
+msgstr "供應商參照"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule.formula.type,name:dobtor_account_gov_tw.hr_rule_formula_withholding
+msgid "Withholding"
+msgstr "代扣"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Withholding BLI Default"
+msgstr "預設代扣勞保"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__withholding_bli_journal
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__withholding_bli_journal
+msgid "Withholding BLI Journal"
+msgstr "代扣勞保帳本"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__withholding_nhi_journal
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__withholding_nhi_journal
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Withholding NHI Journal"
+msgstr "代扣健保帳本"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form_inhert
+msgid "Withholding Tax"
+msgstr "代扣所得稅"
+
+#. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Withholding Tax Default"
+msgstr "預設代扣所得稅"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__withholding_tax_journal
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__withholding_tax_journal
+msgid "Withholding Tax Jouranl"
+msgstr "代扣所得稅帳本"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__withholding_tax_limit
+msgid "Withholding Tax Limit"
+msgstr "最低代扣所得稅"
+
+#. module: dobtor_account_gov_tw
+#: model:product.category,name:dobtor_account_gov_tw.product_category_gov
+msgid "government"
+msgstr "政府稅務"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__invoice_amount_diff
+msgid "invoice amount diff"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:product.product,weight_uom_name:dobtor_account_gov_tw.partner_gov_insurance
+#: model:product.product,weight_uom_name:dobtor_account_gov_tw.partner_gov_tax
+#: model:product.template,weight_uom_name:dobtor_account_gov_tw.partner_gov_insurance_product_template
+#: model:product.template,weight_uom_name:dobtor_account_gov_tw.partner_gov_tax_product_template
+msgid "kg"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model,name:dobtor_account_gov_tw.model_notespayable_order
+msgid "notes payable order"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__tax_premium
+msgid "tax Premium"
+msgstr "代扣所得稅費率"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__withholding_tax_limit
+msgid "withholding tax limit"
+msgstr "最低代扣所得稅"
+
+#. module: dobtor_account_gov_tw
+#: model:product.product,description:dobtor_account_gov_tw.partner_gov_insurance
+#: model:product.product,name:dobtor_account_gov_tw.partner_gov_insurance
+#: model:product.template,description:dobtor_account_gov_tw.partner_gov_insurance_product_template
+#: model:product.template,name:dobtor_account_gov_tw.partner_gov_insurance_product_template
+msgid "管理費用-保險費"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:product.product,description:dobtor_account_gov_tw.partner_gov_tax
+#: model:product.product,name:dobtor_account_gov_tw.partner_gov_tax
+#: model:product.template,description:dobtor_account_gov_tw.partner_gov_tax_product_template
+#: model:product.template,name:dobtor_account_gov_tw.partner_gov_tax_product_template
+msgid "管理費用-稅捐"
+msgstr ""
