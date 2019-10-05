@@ -30,7 +30,7 @@
                         </div>
                         <group>
                             <group>
-                                <field name="partner_id" widget="selection" domain="[('supplier','=',True), ('is_company', '=', True), ('industry_id', '=', 'Public Administration')]" placeholder="Public Administration" />
+                                <field name="partner_id" widget="selection" domain="[('gov_ok', '=', True)]" placeholder="Public Administration" />
                                 <field name="base_on" />
                                 <field name="currency_id" groups="base.group_multi_currency"/>
                             </group>
