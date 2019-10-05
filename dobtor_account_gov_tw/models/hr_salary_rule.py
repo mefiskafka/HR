@@ -97,6 +97,4 @@ class HrSalaryRule(models.Model):
         return self._formula_salary_nhi2nd()
 
     def _formula_withholding_wtax(self):
-        return """result = -round( contract.wage * (contract.tax_premium/100.00) ) 
-            if round( contract.wage * (contract.tax_premium/100.00) ) > round( contract.withholding_tax_limit * (contract.tax_premium/100.00) ) 
-            else 0.00"""
+        return """result = -round( contract.wage * (contract.tax_premium/100.00) ) if round( contract.wage * (contract.tax_premium/100.00) ) > round( contract.withholding_tax_limit * (contract.tax_premium/100.00) ) else 0.00"""
