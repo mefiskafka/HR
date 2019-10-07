@@ -40,12 +40,19 @@ class HrSalaryRule(models.Model):
             ('other', 'Other')
         ],
     )
+    superposition = fields.Boolean(
+        string='superposition principle',
+        default=False,
+        help="help to NHI2nd (Company)"
+    )
 
+    @api.depends('amount_select')
     @api.onchange('amount_select')
     def onchange_amount_select(self):
         self.onchange_type_id()
         return super().onchange_amount_select()
 
+    @api.depends('gov_ok', 'base_on', 'type_id')
     @api.onchange('gov_ok', 'base_on', 'type_id')
     def onchange_type_id(self):
         self.formula_select = False
@@ -58,6 +65,12 @@ class HrSalaryRule(models.Model):
                 return {'domain': {'type_id': [('code', '=', 'other')]}}
         return {'domain': {'type_id': [('code', '=', 'salary')]}}
 
+    @api.depends('formula_select')
+    @api.onchange('formula_select')
+    def onchange_formula_select(self):
+        self.superposition = bool(self.formula_select.id == self.env.ref(
+            'dobtor_account_gov_tw.hr_rule_formula_select_cnhi2nd').id)
+
     # Company
     def _formula_company_cordinary(self):
         return """result = -round( contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employer_ratio/100.00) )"""
@@ -69,13 +82,13 @@ class HrSalaryRule(models.Model):
         return """result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employer_ratio/100.00) )"""
 
     def _formula_company_cpension(self):
-        return """result = -round(contract.health_insure_wage * (contract.labor_pension_premium/100.00) )"""
+        return """result = -round( contract.health_insure_wage * (contract.labor_pension_premium/100.00) )"""
 
     def _formula_company_chealth(self):
-        return """result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employer_ratio/100.00) * (1 + contract.average_dependents_number))"""
+        return """result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employer_ratio/100.00) * (1 + contract.average_dependents_number) )"""
 
     def _formula_company_cnhi2nd(self):
-        return """result = 0.00"""
+        return """result = -round( contract.wage + payslip.line_amount - contract.health_insure_wage )"""
 
     # withholding
     def _formula_withholding_wordinary(self):

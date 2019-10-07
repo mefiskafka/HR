@@ -89,4 +89,6 @@ class HrPayslip(models.Model):
                 line.get('salary_rule_id'))
             if rule.gov_ok and rule.base_on:
                 line['base_on'] = rule.base_on
+                if rule.superposition:
+                    line['superposition'] = rule.superposition
         return result

@@ -136,6 +136,7 @@
             <field name="name">Supplementary premium (Company)</field>
             <field name="sequence" eval="212"/>
             <field name="gov_ok" eval="True" />
+            <field name="superposition" eval="True" />
             <field name="base_on">nhi</field>
             <field name="code">CNHI2ND</field>
             <field name="category_id" ref="dobtor_account_gov_tw.GOVTAX"/>

@@ -93,8 +93,7 @@
             <field name="name">notespayable.order.tree</field>
             <field name="model">notespayable.order</field>
             <field name="arch" type="xml">
-                <tree decoration-muted="state=='cancel'" decoration-info="state in ('invoiced','post')" string="Notes Order">
-                <!-- <tree> -->
+                <tree decoration-muted="state == 'cancel'" decoration-info="state == 'post'" string="Notes Order">
                     <field name="name" string="Reference"/>
                     <field name="date_from" />
                     <field name="date_to" />

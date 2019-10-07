@@ -189,7 +189,26 @@ class Notespayable(models.Model):
                 invoices |= line.invoice_lines.mapped('invoice_id')
             order.invoice_ids = invoices
             order.invoice_count = len(invoices)
-            order.invoice_amount_diff = sum(x.amount_total for x in invoices) - order.amount_total
+            order.invoice_amount_diff = sum(
+                x.amount_total for x in invoices) - order.amount_total
+
+    def _compute_superposition(self, order, lines, final_lines):
+        Superposition_amount = 0.00
+        for line in lines:
+            rescord = line[2]
+            if rescord.get('superposition', False):
+                Superposition_amount += float(rescord.get('price'))
+            else:
+                del rescord['superposition']
+                final_lines.append(line)
+        if Superposition_amount > 0.00:
+            final_lines.append([(0, 0, {
+                'product_id': order.product_id and order.product_id.id,
+                'name': self.formula_select.id == self.env.ref('dobtor_account_gov_tw.hr_rule_formula_select_cnhi2nd').name,
+                'order_id': order.id,
+                'price': Superposition_amount
+            })])
+        return final_lines
 
     @api.multi
     def action_compute_sheet(self):
@@ -209,22 +228,28 @@ class Notespayable(models.Model):
                     payslip = payslip[0].sudo().copy()
                     payslip.struct_id = order.struct_id
                     contract_ids = payslip.contract_id.ids or \
-                        payroll.get_contract(payslip.employee_id, payslip.date_from, payslip.date_to)
+                        payroll.get_contract(
+                            payslip.employee_id, payslip.date_from, payslip.date_to)
+                    # Regular
                     lines += [(0, 0, {
                         'product_id': order.product_id and order.product_id.id,
                         'name': '{} - {}'.format(line.get('name'), employee.name),
                         'order_id': order.id,
+                        'superposition': line.get('superposition', False),
                         'price': -line.get('amount')
                     }) for line in payroll.sudo()._get_payslip_lines(
                         contract_ids, payslip.id) if line.get('base_on') == order.base_on and line.get('amount') != 0]
-                    order.employee_ref = order.employee_ref + ',' + payslip.name if order.employee_ref else payslip.name
+                    order.employee_ref = order.employee_ref + ',' + \
+                        payslip.name if order.employee_ref else payslip.name
 
                     (query, query_args) = self._delete_temp_payslip(payslip)
                     self.env.cr.execute(query, query_args)
 
+            final_lines = []
             if len(lines):
-                order.write({'lines': lines})
-
+                # Superposition
+                final_lines = self._compute_superposition(order, lines, final_lines)
+                order.write({'lines': final_lines})
         return True
 
     def _delete_temp_payslip(self, payslip):
@@ -278,6 +303,7 @@ class Notespayable(models.Model):
     def action_posted(self):
         self.check_and_alert_message('posted', ('paid', 'in_payment'))
         self.write({'state': 'post'})
+
 
 class NotespayableLine(models.Model):
     _name = 'notespayable.order.line'
@@ -338,3 +364,5 @@ class NotespayableLine(models.Model):
         store=True,
         readonly=True
     )
+    superposition = fields.Boolean()
+    

@@ -22,6 +22,7 @@ class HrSalaryRule(models.Model):
         ondelete='set null',
     )
 
+    @api.depends('amount_select')
     @api.onchange('amount_select')
     def onchange_amount_select(self):
         return {'domain': {'type_id': [('code', '=', 'salary')]}}
@@ -52,7 +53,7 @@ class HrSalaryRule(models.Model):
             return super()._compute_rule(localdict)
 
     def _formula_salary_ordinary(self):
-        return """result = -round(contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employee_ratio/100.00))"""
+        return """result = -round( contract.insure_wage * (contract.ordinary_premium/100.00) * (contract.ordinary_employee_ratio/100.00) )"""
 
     def _formula_salary_accident(self):
         return """result = -round( contract.insure_wage * (float(contract.accident_premium)/100.00) * (contract.accident_employee_ratio/100.00) )"""
@@ -61,10 +62,10 @@ class HrSalaryRule(models.Model):
         return """result = -round( contract.insure_wage * (contract.employment_premium/100.00) * (contract.employment_employee_ratio/100.00) )"""
 
     def _formula_salary_self(self):
-        return """result = -round(contract.health_insure_wage * (contract.pension_premium/100.00) )"""
+        return """result = -round( contract.health_insure_wage * (contract.pension_premium/100.00) )"""
     
     def _formula_salary_health(self):
-        return """result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number))"""
+        return """result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number) )"""
 
     def _formula_salary_nhi2nd(self):
         return """result = -round( payslip.nhi_2nd_amount * (contract.nhi_2nd_premium/100.00) )"""

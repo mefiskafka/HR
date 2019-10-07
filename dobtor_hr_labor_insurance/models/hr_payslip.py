@@ -10,6 +10,7 @@ class HrPayslip(models.Model):
     nhi_2nd_amount = fields.Float(
         string='2nd Generation NHI amount'
     )
+    line_amount = fields.Float()
 
     # handle 2nd Generation NHI
     # TODO : need check salary rule in salary hr_salary_structure
@@ -38,14 +39,17 @@ class HrPayslip(models.Model):
 
             # This Time commission
             insurance_amount = 0.0
+            current_payslip_amount = 0.0
             for line in payslip.input_line_ids:
                 base_amount = 0.0
                 # Over amount
+                current_payslip_amount += line.amount
                 aunnal_amount += line.amount
                 over_amount = aunnal_amount - quadruple_amount
                 over_amount = over_amount if over_amount > 0 else 0.0
                 base_amount = min(line.amount, over_amount)
                 # condition 10,000,000 limit
                 insurance_amount += min(base_amount, 10000000)
+            payslip.line_amount = current_payslip_amount
             payslip.nhi_2nd_amount = insurance_amount
         return True
