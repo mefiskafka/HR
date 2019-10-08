@@ -137,7 +137,7 @@
             <field name="model">res.config.settings</field>
             <field name="inherit_id" ref="dobtor_hr_labor_insurance.res_config_settings_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@id='hr_payroll_bracket_table']/parent::div" position="inside">
+                <xpath expr="//div[@id='hr_payroll_bracket_table']" position="after">
                     <div class="col-12 col-lg-6 o_setting_box" id="hr_withholding_tax">
                         <div class="o_setting_right_pane">
                             <label string="Withholding Tax" for="tax_premium"/>
@@ -157,6 +157,7 @@
                             </div>
                         </div>
                     </div>
+
                 </xpath>
             </field>
         </record>

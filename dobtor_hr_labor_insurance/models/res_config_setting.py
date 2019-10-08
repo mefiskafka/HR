@@ -100,3 +100,10 @@ class ResConfigSettings(models.TransientModel):
         default=6.0,
         readonly=False,
     )
+
+    update_premium = fields.Char()
+
+    @api.multi
+    def open_update_premium(self):
+        action = self.env.ref('dobtor_hr_labor_insurance.action_hr_update_insurance_premium').read()[0]
+        return action

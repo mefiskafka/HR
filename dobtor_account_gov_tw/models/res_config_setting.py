@@ -155,3 +155,5 @@ class ResConfigSettings(models.TransientModel):
         default=5,
         readonly=False,
     )
+
+

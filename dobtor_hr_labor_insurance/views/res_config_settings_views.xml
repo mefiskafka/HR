@@ -134,6 +134,21 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" id="hr_contract_update_premium">
+                            <div class="o_setting_right_pane">
+                                <label string="Batch Update" for="update_premium"/>
+                                <span class="fa fa-lg fa-pie-chart" />
+                                <div class="text-muted">
+                                    Batch Update Premium.
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <button type="object" name="open_update_premium" string="Batch Update Premium" icon="fa-arrow-right" class="btn-link"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </xpath>
             </field>
