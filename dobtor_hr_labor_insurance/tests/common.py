@@ -24,6 +24,7 @@ class TestHrCommon(TransactionCase):
             'type_id': self.ref('hr_contract.hr_contract_type_emp'),
             'employee_id': self.michael_emp,
             'struct_id': self.salart_structure,
+            'pension_premium': 3.5,
         })
 
         # create an employee Payslip for "Michael"
@@ -33,5 +34,3 @@ class TestHrCommon(TransactionCase):
             'contract_id': self.michael_contract.id,
             # 'journal_id': self.env['account.journal'].search([('type', '=', 'general')], limit=1).id
         })
-        # self.michael_payslip.onchange_employee()
-        # self.michael_payslip.onchange_contract()
