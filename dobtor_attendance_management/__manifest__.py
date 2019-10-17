@@ -20,6 +20,7 @@
     'version': '0.1',
     'depends': [
         'base',
+        'hr_attendance',
         'hr_holidays',
     ],
     'data': [
@@ -28,6 +29,7 @@
         'data/hr_attendance_policies_data.xml',
         'views/hr_attendance_late_views.xml',
         'views/hr_attendance_policies_views.xml',
+        'views/hr_attendance_sheet_views.xml',
         'views/hr_attendance_menuitem.xml',
     ],
     # 'demo': [

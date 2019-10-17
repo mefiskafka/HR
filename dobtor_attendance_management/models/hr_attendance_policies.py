@@ -3,7 +3,7 @@
 from odoo import models, fields, api
 
 
-class hr_attendance_policies(models.Model):
+class HRAttendancePolicies(models.Model):
     _name = 'hr.attendance.policies'
     _description = 'HR Attendance Policies'
 

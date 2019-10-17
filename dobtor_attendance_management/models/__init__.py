@@ -2,3 +2,4 @@
 
 from . import hr_attendance_late
 from . import hr_attendance_policies
+from . import hr_attendance_sheet
