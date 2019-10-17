@@ -68,6 +68,7 @@ class HrSalaryRule(models.Model):
         return """result = -round( contract.health_insure_wage * (contract.health_premium/100.00) * (contract.health_employee_ratio/100.00) * (1 + contract.dependents_number) )"""
 
     def _formula_salary_nhi2nd(self):
+        # return """result = -round( inputs.INCENTIVE.amount * (contract.nhi_2nd_premium/100.00) )"""
         return """result = -round( payslip.nhi_2nd_amount * (contract.nhi_2nd_premium/100.00) )"""
 
 

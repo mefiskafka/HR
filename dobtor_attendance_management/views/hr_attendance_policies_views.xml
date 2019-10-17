@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_attendance_policies_form_view" model="ir.ui.view">
+            <field name="name">hr.attendance.policies.form.view</field>
+            <field name="model">hr.attendance.policies</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                        <group string="Late In Rule">
+                            <field name="late_rule_id" nolabel="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_attendance_policies_tree_view" model="ir.ui.view">
+            <field name="name">hr.attendance.policies.tree.view</field>
+            <field name="model">hr.attendance.policies</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_attendance_policies" model="ir.actions.act_window">
+            <field name="name">Attendance Policies</field>
+            <field name="res_model">hr.attendance.policies</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> Click here to create a Policy. </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

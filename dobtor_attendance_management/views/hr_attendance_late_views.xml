@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_attendance_late_rule_form_view" model="ir.ui.view">
+            <field name="name">hr.attendance.late.rule.form.view</field>
+            <field name="model">hr.attendance.late.rule</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                            <div name="options">
+                                <div>
+                                    <field name="real_time_ok" />
+                                    <label for="real_time_ok" />
+                                </div>
+                            </div>
+                        </div>
+                        <notebook attrs="{'invisible': [('real_time_ok', '=', True)]}">
+                            <page string="Late Detail" name="late_line" >
+                                <field name="late_line_ids">
+                                    <tree editable="top">
+                                        <field name="sequence" widget="handle" />
+                                        <field name="late_time" widget="float_time" />
+                                        <field name="deduction_time" widget="float_time" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_attendance_late_rule_tree_view" model="ir.ui.view">
+            <field name="name">hr.attendance.late.rule.tree.view</field>
+            <field name="model">hr.attendance.late.rule</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_attendance_late" model="ir.actions.act_window">
+            <field name="name">Late In Rules</field>
+            <field name="res_model">hr.attendance.late.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> Click here to create a Late in Rule. </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_hr_attendance_settings" name="Attendance Settings" parent="hr_attendance.menu_hr_attendance_root" sequence="40" groups="hr_attendance.group_hr_attendance_manager" />
+        <menuitem id="menu_hr_attendance_policies_action" name="Attendances Policies" parent="menu_hr_attendance_settings" action="action_hr_attendance_policies" sequence="10" />
+        <!-- Rule menu -->
+        <menuitem id="menu_hr_attendance_rules" name="Attendances Rules" parent="menu_hr_attendance_settings" sequence="20" />
+        <menuitem id="menu_hr_attendance_late_action" name="Late Rules" parent="menu_hr_attendance_rules" action="action_hr_attendance_late" sequence="10" />
+
+    </data>
+</odoo>

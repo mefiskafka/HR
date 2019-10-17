@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_attendance_policies_manager,Attendance : Policy,dobtor_attendance_management.model_hr_attendance_policies,hr_attendance.group_hr_attendance_manager,1,1,1,1
+access_hr_attendance_policies_user,Attendance : Policy,dobtor_attendance_management.model_hr_attendance_policies,hr_attendance.group_hr_attendance_user,1,0,0,0
+access_hr_attendance_late_rule_manager,Attendance : Late Rule,dobtor_attendance_management.model_hr_attendance_late_rule,hr_attendance.group_hr_attendance_manager,1,1,1,1
+access_hr_attendance_late_rule_user,Attendance : Late Rule,dobtor_attendance_management.model_hr_attendance_late_rule,hr_attendance.group_hr_attendance_user,1,0,0,0
+access_hr_attendance_late_rule_line_manager,Attendance : Late Rule Line,dobtor_attendance_management.model_hr_attendance_late_rule_line,hr_attendance.group_hr_attendance_manager,1,1,1,1
+access_hr_attendance_late_rule_line_user,Attendance : Late Rule Line,dobtor_attendance_management.model_hr_attendance_late_rule_line,hr_attendance.group_hr_attendance_user,1,0,0,0

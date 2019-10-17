@@ -34,3 +34,5 @@ class TestHrCommon(TransactionCase):
             'contract_id': self.michael_contract.id,
             # 'journal_id': self.env['account.journal'].search([('type', '=', 'general')], limit=1).id
         })
+        # self.michael_payslip.onchange_employee()
+        # self.michael_payslip.onchange_contract()

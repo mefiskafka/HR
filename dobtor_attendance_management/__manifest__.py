@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "dobtor_leave_management",
+    'name': "dobtor_attendance_management",
 
     'summary': """
         annual leave & compensate the missed work time & work overtime Feature
     """,
 
     'description': """
+       - Attendance
+           - Late
        - Annual Leave
        - Compensate the missed work time
        - Work Overtime
@@ -21,8 +23,12 @@
         'hr_holidays',
     ],
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
+        'security/ir.model.access.csv',
+        'data/hr_attendance_late_data.xml',
+        'data/hr_attendance_policies_data.xml',
+        'views/hr_attendance_late_views.xml',
+        'views/hr_attendance_policies_views.xml',
+        'views/hr_attendance_menuitem.xml',
     ],
     # 'demo': [
     #     'demo/demo.xml',
