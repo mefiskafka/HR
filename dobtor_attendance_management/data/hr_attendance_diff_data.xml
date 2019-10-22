@@ -2,121 +2,122 @@
 <odoo>
     <data noupdate="0">
 
-        <record id="late_rule" model="hr.attendance.late.rule">
-            <field name="name">Late Rule</field>
+        <record id="diff_rule" model="hr.attendance.diff.rule">
+            <field name="name">Difference Rule</field>
             <field name="real_time_ok" eval="False" />
         </record>
-        
-        <record id="late_rule_line_01" model="hr.attendance.late.rule.line">
+
+        <record id="diff_rule_line_01" model="hr.attendance.diff.rule.line">
             <field name="sequence">1</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="1.0/60.0" />
             <field name="deduction_time" eval="0.5" />
         </record>
 
-        <record id="late_rule_line_02" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_02" model="hr.attendance.diff.rule.line">
             <field name="sequence">2</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="31.0/60.0" />
             <field name="deduction_time" eval="1.0" />
         </record>
 
-        <record id="late_rule_line_03" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_03" model="hr.attendance.diff.rule.line">
             <field name="sequence">3</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="1.0 + 1.0/60.0" />
             <field name="deduction_time" eval="1.5" />
         </record>
 
-        <record id="late_rule_line_04" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_04" model="hr.attendance.diff.rule.line">
             <field name="sequence">4</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="1.0 + 31.0/60.0" />
             <field name="deduction_time" eval="2.0" />
         </record>
 
-        <record id="late_rule_line_05" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_05" model="hr.attendance.diff.rule.line">
             <field name="sequence">5</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="2.0 + 1.0/60.0" />
             <field name="deduction_time" eval="2.5" />
         </record>
 
-        <record id="late_rule_line_06" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_06" model="hr.attendance.diff.rule.line">
             <field name="sequence">6</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="2.0 + 31.0/60.0" />
             <field name="deduction_time" eval="3.0" />
         </record>
 
-        <record id="late_rule_line_07" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_07" model="hr.attendance.diff.rule.line">
             <field name="sequence">7</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="3.0 + 1.0/60.0" />
             <field name="deduction_time" eval="3.5" />
         </record>
 
-        <record id="late_rule_line_08" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_08" model="hr.attendance.diff.rule.line">
             <field name="sequence">8</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="3.0 + 31.0/60.0" />
             <field name="deduction_time" eval="4.0" />
         </record>
 
-        <record id="late_rule_line_09" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_09" model="hr.attendance.diff.rule.line">
             <field name="sequence">9</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="4.0 + 1.0/60.0" />
             <field name="deduction_time" eval="4.5" />
         </record>
 
-        <record id="late_rule_line_10" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_10" model="hr.attendance.diff.rule.line">
             <field name="sequence">10</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="4.0 + 31.0/60.0" />
             <field name="deduction_time" eval="5.0" />
         </record>
 
-        <record id="late_rule_line_11" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_11" model="hr.attendance.diff.rule.line">
             <field name="sequence">11</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="5.0 + 1.0/60.0" />
             <field name="deduction_time" eval="5.5" />
         </record>
 
-        <record id="late_rule_line_12" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_12" model="hr.attendance.diff.rule.line">
             <field name="sequence">12</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="5.0 + 31.0/60.0" />
             <field name="deduction_time" eval="6.0" />
         </record>
 
-        <record id="late_rule_line_13" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_13" model="hr.attendance.diff.rule.line">
             <field name="sequence">13</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="6.0 + 1.0/60.0" />
             <field name="deduction_time" eval="6.5" />
         </record>
 
-        <record id="late_rule_line_14" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_14" model="hr.attendance.diff.rule.line">
             <field name="sequence">14</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="6.0 + 31.0/60.0" />
             <field name="deduction_time" eval="7.0" />
         </record>
 
-        <record id="late_rule_line_15" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_15" model="hr.attendance.diff.rule.line">
             <field name="sequence">15</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="7.0 + 1.0/60.0" />
             <field name="deduction_time" eval="7.5" />
         </record>
 
-        <record id="late_rule_line_16" model="hr.attendance.late.rule.line">
+        <record id="diff_rule_line_16" model="hr.attendance.diff.rule.line">
             <field name="sequence">16</field>
-            <field name="rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="rule_id" ref="dobtor_attendance_management.diff_rule" />
             <field name="time" eval="7.0 + 31.0/60.0" />
             <field name="deduction_time" eval="8.0" />
         </record>
+
     </data>
 </odoo>

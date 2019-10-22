@@ -21,10 +21,10 @@
                         </div>
                         <notebook attrs="{'invisible': [('real_time_ok', '=', True)]}">
                             <page string="Late Detail" name="late_line" >
-                                <field name="late_line_ids">
+                                <field name="line_ids">
                                     <tree editable="top">
                                         <field name="sequence" widget="handle" />
-                                        <field name="late_time" widget="float_time" />
+                                        <field name="time" widget="float_time" />
                                         <field name="deduction_time" widget="float_time" />
                                     </tree>
                                 </field>

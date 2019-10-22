@@ -272,6 +272,28 @@ class HRAttendanceSheet(models.Model):
                     diff_time += diff_in[1] - diff_in[0]
         return diff_time
 
+    def get_policies_time(self, strategy, policy, period):
+        res = period
+        flag = False
+        if policy:
+            __field__ = '{}_rule_id'.format(strategy)
+            __rule_id__ = getattr(policy, __field__)
+            if __rule_id__:
+                if __rule_id__.real_time_ok:
+                    flag = True
+                    res = period
+                else:
+                    time_ids =__rule_id__.line_ids.sorted(
+                        key=lambda r: r.time, reverse=True)
+                for line in time_ids:
+                    if period >= line.time:
+                        flag = True
+                        res = line.deduction_time
+                        break
+                if not flag:
+                    res = 0
+        return res
+
     def get_late(self, policy, period):
         res = period
         flag = False
@@ -281,14 +303,33 @@ class HRAttendanceSheet(models.Model):
                     flag = True
                     res = period
                 else:
-                    time_ids = policy.late_rule_id.late_line_ids.sorted(
-                        key=lambda r: r.late_time, reverse=True)
+                    time_ids = policy.late_rule_id.line_ids.sorted(
+                        key=lambda r: r.time, reverse=True)
                     for line in time_ids:
-                        if period >= line.late_time:
+                        if period >= line.time:
                             flag = True
                             res = line.deduction_time
                             break
+                if not flag:
+                    res = 0
+        return res
 
+    def get_diff(self, policy, period):
+        res = period
+        flag = False
+        if policy:
+            if policy.diff_rule_id:
+                if policy.diff_rule_id.real_time_ok:
+                    flag = True
+                    res = period
+                else:
+                    time_ids = policy.diff_rule_id.line_ids.sorted(
+                        key=lambda r: r.time, reverse=True)
+                for line in time_ids:
+                    if period >= line.time:
+                        flag = True
+                        res = line.deduction_time
+                        break
                 if not flag:
                     res = 0
         return res
@@ -301,6 +342,16 @@ class HRAttendanceSheet(models.Model):
             'plan_sign_out': data.get('plan_sign_out'),
             'sheet_id': self.id,
         }
+
+    # Action
+
+    @api.multi
+    def action_confirm(self):
+        for records in self:
+            records.write({'state': 'confirm'})
+            for line in records.sheet_line_ids:
+                line.write({'state': 'confirm'})
+        return True
 
     @api.multi
     def compute_attendances(self):
@@ -427,11 +478,12 @@ class HRAttendanceSheet(models.Model):
                     # Handle Diffance Time
                     diff_time = self._handle_diff(diff_intervals, leaves)
                     float_diff = diff_time.total_seconds() / 3600
+                    policy_diff = self.get_policies_time('diff',policy_id, float_diff)
 
                     # Handle Late Time
                     late_in = self._handle_late(late_in_interval, leaves)
                     float_late = late_in.total_seconds() / 3600
-                    policy_late = self.get_late(policy_id, float_late)
+                    policy_late = self.get_policies_time('late', policy_id, float_late)
 
                     # Leave Stutus
                     if leaves:
@@ -439,7 +491,7 @@ class HRAttendanceSheet(models.Model):
 
                     # Create Attendance Sheet Data
                     values.update({
-                        'diff_time': float_diff,
+                        'diff_time': policy_diff,
                         'late_in': policy_late,
                         'actual_sign_in': actual_sign_in,
                         'actual_sign_out': actual_sign_out,
@@ -465,7 +517,7 @@ class AttendanceSheetLine(models.Model):
     day = fields.Char(string="Day", readonly=True)
     sheet_id = fields.Many2one(
         string='Attendance Sheet',
-        comodel_name='attendance.sheet',
+        comodel_name='hr.attendance.sheet',
         readonly=True
     )
     plan_sign_in = fields.Float(string="Planned sign in", readonly=True)

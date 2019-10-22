@@ -3,9 +3,9 @@
 from odoo import models, fields, api
 
 
-class HRAttendanceLateRule(models.Model):
-    _name = 'hr.attendance.late.rule'
-    _description = 'Late Rule'
+class HRAttendanceDiffRule(models.Model):
+    _name = 'hr.attendance.diff.rule'
+    _description = 'Difference Rule'
 
     name = fields.Char(
         string='name',
@@ -17,15 +17,15 @@ class HRAttendanceLateRule(models.Model):
         default=False
     )
     line_ids = fields.One2many(
-        string='Late Section',
-        comodel_name='hr.attendance.late.rule.line',
+        string='Difference Section',
+        comodel_name='hr.attendance.diff.rule.line',
         inverse_name='rule_id',
     )
 
 
-class HRAttendanceLateRuleLine(models.Model):
-    _name = 'hr.attendance.late.rule.line'
-    _description = 'Late Rule Line'
+class HRAttendanceDiffRuleLine(models.Model):
+    _name = 'hr.attendance.diff.rule.line'
+    _description = 'Difference Rule Line'
     _order = 'sequence, id'
 
     sequence = fields.Integer(
@@ -33,11 +33,11 @@ class HRAttendanceLateRuleLine(models.Model):
         default=10
     )
     rule_id = fields.Many2one(
-        string='Late Rule',
-        comodel_name='hr.attendance.late.rule',
+        string='Difference Rule',
+        comodel_name='hr.attendance.diff.rule',
         ondelete='cascade',
     )
     time = fields.Float(
-        string='Late Time',
+        string='Difference Time',
     )
     deduction_time = fields.Float(string='Deduction time')

@@ -16,3 +16,8 @@ class HRAttendancePolicies(models.Model):
         comodel_name="hr.attendance.late.rule",
         required=True,
     )
+    diff_rule_id = fields.Many2one(
+        string="Difference Time Rule",
+        comodel_name="hr.attendance.diff.rule",
+        required=True,
+    )

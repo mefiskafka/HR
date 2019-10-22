@@ -5,6 +5,7 @@
         <record id="policies_general" model="hr.attendance.policies">
             <field name="name">General</field>
             <field name="late_rule_id" ref="dobtor_attendance_management.late_rule" />
+            <field name="diff_rule_id" ref="dobtor_attendance_management.diff_rule" />
         </record>
 
     </data>

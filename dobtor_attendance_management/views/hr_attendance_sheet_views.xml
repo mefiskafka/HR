@@ -9,6 +9,8 @@
                 <form string="">
                     <header>
                         <button name="compute_attendances" string="Compute Sheets" class="oe_highlight" states="draft" type="object"/>
+                        <button name="action_confirm" states="draft" string="Post to Manager" type="object" class="oe_highlight"/>
+
                         <field name="state" widget="statusbar" statusbar_visible="new,confirm,done"/>
                     </header>
                     <sheet>
