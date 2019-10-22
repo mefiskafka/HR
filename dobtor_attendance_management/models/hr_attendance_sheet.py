@@ -81,14 +81,14 @@ class HRAttendanceSheet(models.Model):
         date_from = self.date_from
         date_to = self.date_to
 
-        ttyme = datetime.fromtimestamp(time.mktime(
-            time.strptime(date_from, "%Y-%m-%d")))
+        ttyme = datetime.combine(fields.Date.from_string(date_from), time.min)
         locale = self.env.context.get('lang', 'en_US')
         self.name = _('{} sheet : {}'.format(employee.name,
-            tools.ustr(babel.dates.format_date(date=ttyme, format='MMMM-y', locale=locale))
-        ))
+                                             tools.ustr(babel.dates.format_date(
+                                                 date=ttyme, format='MMMM-y', locale=locale))
+                                             ))
 
-        contract_ids = elf.env['hr.payslip'].get_contract(
+        contract_ids = self.env['hr.payslip'].get_contract(
             employee, date_from, date_to)
         if not contract_ids:
             return
@@ -100,14 +100,14 @@ class HRAttendanceSheet(models.Model):
 
     @api.multi
     def _compute_attendance_info(self):
-        late=0
-        num_late=0
+        late = 0
+        num_late = 0
         for sheet in self:
             for line in sheet.sheet_line_ids:
                 if line.late_in > 0:
                     late += line.late_in
                     num_late += 1
-            values={
+            values = {
                 'total_late': late,
                 'num_late': num_late
             }
@@ -142,110 +142,310 @@ class HRAttendanceSheet(models.Model):
             return
 
     def get_work_intervals(self, calender, day_start, day_end):
-        tz = self.get_timezone()
-        working_intervals = []
+        # tz = self.get_timezone()
         start_dt = day_start.replace(
-            hour = 0, minute = 0, second = 0, tzinfo = pytz.UTC)
-        end_dt=day_end.replace(tzinfo = pytz.UTC)
+            hour=0, minute=0, second=0, tzinfo=pytz.UTC)
+        end_dt = day_end.replace(tzinfo=pytz.UTC)
 
-        for intervals in calender._work_intervals(start_dt, end_dt):
-            working_intervals.append((
+        return [(
                 self.convert_time_tz_2_utc(intervals[0]),
                 self.convert_time_tz_2_utc(intervals[1]),
-            ))
-        return working_intervals
+                ) for intervals in calender._work_intervals(start_dt, end_dt)]
 
     def get_attendance_intervals(self, employee_id, day_start, day_end):
-        attendance_intervals=[]
-        attendance=self.env['hr.attendance']
+        attendance = self.env['hr.attendance']
 
-        attendances=attendance.search([
+        attendances = attendance.search([
             ('employee_id.id', '=', employee_id.id),
             ('check_in', '>=', self.convert_time_tz_2_utc(day_start)),
             ('check_out', '<', self.convert_time_tz_2_utc(day_end))
-        ], order = "check_in")
+        ], order="check_in")
 
-        for att in attendances:
-            attendance_intervals.append(
-                (att.check_in, att.check_out, att.worked_hours))
-        return attendance_intervals
+        return [(att.check_in, att.check_out, att.worked_hours) for att in attendances]
+
+    def get_employee_leave_intervals(self, employee_id, day_start=None, day_end=None):
+        leaves = []
+        leave_obj = self.env['hr.leave']
+        leave_ids = leave_obj.search([
+            ('employee_id', '=', employee_id.id),
+            ('state', 'in', ('validate', 'validate1'))
+        ])
+        for leave in leave_ids:
+            if day_end and leave.date_from > day_end:
+                continue
+            if day_start and leave.date_to < day_start:
+                continue
+            leaves.append((leave.date_from, leave.date_to))
+        return leaves
+
+    @api.model
+    def interval_without_leaves(self, interval, leave_intervals):
+        """ Compute withou leaves late intervals.
+        Arguments:
+            interval {[Array]} -- [orgin late intervals, (planned and attendance)]
+            leave_intervals {[Array]} -- [leave intervals]
+        Returns:
+            [Array] -- [after leaves we have new late intervals]
+        """
+        if not interval:
+            return interval
+        if leave_intervals is None:
+            leave_intervals = []
+        intervals = []
+        # here should be clean repeat leave interval
+        # now, I hope not an idiot to repeat the leaves
+        # leave_intervals = self.interval_clean(leave_intervals)
+        pl_sign_in = interval[0]
+        att_sign_in = interval[1]
+        # if late
+        #  planned                ->|██████████████|
+        #  attendance                 ->|██████████|
+        interval_start = pl_sign_in
+        for leave in leave_intervals:
+            leave_start = leave[0]
+            leave_end = leave[1]
+            if leave_end <= pl_sign_in:
+                # Skip odd leaves (Not related to Late).
+                #  planned         ->|██████████████|
+                #  leaves     |██|<-
+                continue
+            if leave_start >= att_sign_in:
+                # Not related to Late.
+                #  planned           |██████████████|
+                #  attendance        ->|███████|
+                #  leaves                    ->|████|
+                break
+            if pl_sign_in < leave_start < att_sign_in:
+                # work interval inside leave.
+                #  planned         ->|██████████████|
+                #  attendance            ->|████████|
+                #  leaves            ->|█|
+                intervals.append((pl_sign_in, leave_start))
+                interval_start = leave_end
+            if pl_sign_in <= leave_end:
+                # Normal leave.
+                #  planned         ->|██████████████|
+                #  leaves            |███|<-
+                interval_start = leave_end
+        if interval_start and leave_end < att_sign_in:
+            # remove intervals moved outside base interval due to leaves
+            #  planned               |██████████████|
+            #  attendance                ->|████████|
+            #  leaves                |███|<-
+            intervals.append((interval_start, att_sign_in))
+        return intervals
 
     def _get_float_from_time(self, time):
-        time_type=datetime.strftime(time, "%H:%M")
-        signOnP=[int(n) for n in time_type.split(":")]
-        signOnH=signOnP[0] + signOnP[1] / 60.0
+        time_type = datetime.strftime(time, "%H:%M")
+        signOnP = [int(n) for n in time_type.split(":")]
+        signOnH = signOnP[0] + signOnP[1] / 60.0
         return signOnH
+
+    def _handle_late(self, late_in_interval, leaves):
+        # if On time
+        late_in = timedelta(hours=0, minutes=0, seconds=0)
+        if late_in_interval:
+            pl_sign_in = late_in_interval[0]
+            att_sign_in = late_in_interval[1]
+            if att_sign_in > pl_sign_in:
+                if not leaves:
+                    # Late
+                    late_in = att_sign_in - pl_sign_in
+                else:
+                    # Check leaves interval, and get without leaves interval
+                    late_intervals = self.interval_without_leaves(
+                        late_in_interval, leaves)
+                    for late in late_intervals:
+                        late_in += late[1] - late[0]
+        return late_in
+
+    def _handle_diff(self, diff_intervals, leaves):
+        # if normal sign out
+        diff_time = timedelta(hours=00, minutes=00, seconds=00)
+        if diff_intervals:
+            for diff_in in diff_intervals:
+                if leaves:
+                    diff_intervals = self.interval_without_leaves(diff_in, leaves)
+                    for diff in diff_intervals:
+                        diff_time += diff[1] - diff[0]
+                else:
+                    diff_time += diff_in[1] - diff_in[0]
+        return diff_time
+
+    def get_late(self, policy, period):
+        res = period
+        flag = False
+        if policy:
+            if policy.late_rule_id:
+                if policy.late_rule_id.real_time_ok:
+                    flag = True
+                    res = period
+                else:
+                    time_ids = policy.late_rule_id.late_line_ids.sorted(
+                        key=lambda r: r.late_time, reverse=True)
+                    for line in time_ids:
+                        if period >= line.late_time:
+                            flag = True
+                            res = line.deduction_time
+                            break
+
+                if not flag:
+                    res = 0
+        return res
+
+    def prepare_common_date(self, **data):
+        return {
+            'date': data.get('day').strftime('%Y-%m-%d'),
+            'day': data.get('day').strftime('%A'),
+            'plan_sign_in': data.get('plan_sign_in'),
+            'plan_sign_out': data.get('plan_sign_out'),
+            'sheet_id': self.id,
+        }
 
     @api.multi
     def compute_attendances(self):
         for sheet in self:
             sheet.sheet_line_ids.unlink()
-            sheet_line=self.env['hr.attendance.sheet.line']
-
-            date_from=datetime.combine(sheet.date_from, datetime.min.time())
-            date_to=datetime.combine(sheet.date_to, datetime.min.time())
-            employee_id=sheet.employee_id
-
-            timezone=self.get_timezone()
-            calender_id=self.get_resource_calendar_id(employee_id)
-            policy_id=self.get_attendance_policy(sheet, employee_id)
-            # print('timezone.info : ', timezone.tzinfo)
-
-            all_dates=[(date_from + relativedelta(days=x))
+            sheet_line = self.env['hr.attendance.sheet.line']
+            timezone = self.get_timezone()
+            # Get information related to employee_id
+            employee_id = sheet.employee_id
+            calender_id = self.get_resource_calendar_id(employee_id)
+            policy_id = self.get_attendance_policy(sheet, employee_id)
+            # Calculate all numbers between date_from and date_to
+            date_from = datetime.combine(sheet.date_from, datetime.min.time())
+            date_to = datetime.combine(sheet.date_to, datetime.min.time())
+            all_dates = [(date_from + relativedelta(days=x))
                          for x in range((date_to - date_from).days + 1)]
             abs_cnt = 0
             for day in all_dates:
                 day_end = day.replace(hour=23, minute=59,
-                                      second = 59, microsecond = 999999)
-                work_intervals=self.get_work_intervals(
+                                      second=59, microsecond=999999)
+                overtime = timedelta(hours=00, minutes=00, seconds=00)
+                worked_hours = timedelta(hours=00, minutes=00, seconds=00)
+                leaves = self.get_employee_leave_intervals(
+                    employee_id, day, day_end)
+                work_intervals = self.get_work_intervals(
                     calender_id, day, day_end)
+                # TODO : Need to handle exceptions (No Sign out)
                 attendance_intervals = self.get_attendance_intervals(
                     policy_id, day, day_end)
 
                 for i, work_interval in enumerate(work_intervals):
+                    pl_sign_in = work_interval[0]
+                    pl_sign_out = work_interval[1]
+                    plan_sign_in = self._get_float_from_time(
+                        pytz.utc.localize(pl_sign_in).astimezone(timezone))
+                    plan_sign_out = self._get_float_from_time(
+                        pytz.utc.localize(pl_sign_out).astimezone(timezone))
+                    values = self.prepare_common_date(**{
+                        'day': day,
+                        'plan_sign_in': plan_sign_in,
+                        'plan_sign_out': plan_sign_out,
+                    })
                     att_work_intervals = []
+                    diff_intervals = []
+                    late_in_interval = []
                     for j, att_interval in enumerate(attendance_intervals):
-                        print('work[0]', work_interval[0])
-                        print('att[0]', att_interval[0])
-                        print('max:', max(work_interval[0], att_interval[0]))
-                        print('work[1]', work_interval[1])
-                        print('att[1]', att_interval[1])
-                        print('min:', min(work_interval[1], att_interval[1]))
+                        # print('work[0]', work_interval[0])
+                        # print('att[0]', att_interval[0])
+                        # print('max:', max(work_interval[0], att_interval[0]))
+                        # print('work[1]', work_interval[1])
+                        # print('att[1]', att_interval[1])
+                        # print('min:', min(work_interval[1], att_interval[1]))
                         att_work_intervals.append(att_interval)
-
-                    pl_sign_in = self._get_float_from_time(
-                        pytz.utc.localize(work_interval[0]).astimezone(timezone))
-                    pl_sign_out = self._get_float_from_time(
-                        pytz.utc.localize(work_interval[1]).astimezone(timezone))
-                    ac_sign_in = 0
-                    ac_sign_out = 0
+                    actual_sign_in = 0
+                    actual_sign_out = 0
+                    status = ""
                     worked_hours = 0
                     if att_work_intervals:
-                        if len(att_work_intervals) > 1:
-                            ac_sign_in = self._get_float_from_time(
-                                pytz.utc.localize(att_work_intervals[0][0]).astimezone(timezone))
-                            ac_sign_out = self._get_float_from_time(
-                                pytz.utc.localize(att_work_intervals[-1][1]).astimezone(timezone))
-                            worked_hours = ac_sign_out - ac_sign_in
-                        else:
-                            ac_sign_in = self._get_float_from_time(
-                                pytz.utc.localize(att_work_intervals[0][0]).astimezone(timezone))
-                            ac_sign_out = self._get_float_from_time(
-                                pytz.utc.localize(att_work_intervals[0][1]).astimezone(timezone))
-                            worked_hours = ac_sign_out - ac_sign_in
+                        # declare
+                        att_sign_in = att_work_intervals[0][0]
+                        att_sign_out = att_work_intervals[-1][1]
 
-                    values = {
-                        'date': day.strftime('%Y-%m-%d'),
-                        'day': day.strftime('%A'),
-                        'plan_sign_in': pl_sign_in,
-                        'plan_sign_out': pl_sign_out,
-                        'actual_sign_in': ac_sign_in,
-                        'actual_sign_out': ac_sign_out,
-                        # 'late_in': policy_late,
-                        # 'status': status,
+                        # get late and overtime interval
+                        # if late
+                        #  planned                 ->|██████████████|
+                        #  attendance                  ->|██████████|
+                        late_in_interval = (pl_sign_in, att_sign_in)
+
+                        if att_sign_out < pl_sign_out:
+                            # excused
+                            #  planned               |██████████████|<-
+                            #  attendance            |██████████|<-
+                            overtime = timedelta(hours=0, minutes=0, seconds=0)
+                            diff_intervals.append((att_sign_out, pl_sign_out))
+                        else:
+                            # Work Overtime
+                            #  planned               |██████████████|<-
+                            #  attendance            |█████████████████|<-
+                            overtime = att_sign_out - pl_sign_out
+                        if len(att_work_intervals) > 1:
+                            # attendances for multiple sessions per day
+                            #  planned                |██████████████|
+                            #  attendance               |███|    |███|
+                            diff_intervals = []  # recompute diff intervals
+                            first_time_sign_out = attendance_intervals[0][1]
+                            current_sign_out = first_time_sign_out
+                            for att_work_interval in attendance_intervals:
+                                current_time_sign_in = att_work_interval[0]
+                                current_time_sign_out = att_work_interval[1]
+                                if current_time_sign_out <= first_time_sign_out:
+                                    # skip first time sign out (normal attendance).
+                                    #  planned         |██████████████|
+                                    #  attendance        |███|<-  |███|
+                                    continue
+                                if current_time_sign_in >= pl_sign_out:
+                                    # other case, here no consider.
+                                    #  planned         |██████████████|<-
+                                    #  attendance                       ->|███|
+                                    break
+                                if current_sign_out < current_time_sign_in < pl_sign_out:
+                                    # middle section.
+                                    #  planned         |██████████████|<-
+                                    #  attendance       |██|<- ->|███|
+                                    diff_intervals.append((current_sign_out, current_time_sign_in))
+                                    current_sign_out = current_time_sign_out
+                            if current_sign_out and current_sign_out <= pl_sign_out:
+                                # last time attendance diff time.
+                                #  planned             |██████████████|<-
+                                #  attendance             |██|  |███|<-
+                                diff_intervals.append((current_sign_out, pl_sign_out))
+
+                        # TODO : Need to handle exceptions (multi sign in / multi sign out)
+                        actual_sign_in = self._get_float_from_time(
+                            pytz.utc.localize(att_sign_in).astimezone(timezone))
+                        actual_sign_out = self._get_float_from_time(
+                            pytz.utc.localize(att_sign_out).astimezone(timezone))
+                        worked_hours = actual_sign_out - actual_sign_in
+                    else:
+                        # Handle Absence Day
+                        late_in_interval = []
+                        diff_intervals.append((pl_sign_in, pl_sign_out))
+                        status = "absence"
+                    
+                    # Handle Diffance Time
+                    diff_time = self._handle_diff(diff_intervals, leaves)
+                    float_diff = diff_time.total_seconds() / 3600
+
+                    # Handle Late Time
+                    late_in = self._handle_late(late_in_interval, leaves)
+                    float_late = late_in.total_seconds() / 3600
+                    policy_late = self.get_late(policy_id, float_late)
+
+                    # Leave Stutus
+                    if leaves:
+                        status = "leave"
+
+                    # Create Attendance Sheet Data
+                    values.update({
+                        'diff_time': float_diff,
+                        'late_in': policy_late,
+                        'actual_sign_in': actual_sign_in,
+                        'actual_sign_out': actual_sign_out,
                         'worked_hours': worked_hours,
-                        'sheet_id': self.id
-                    }
+                        'status': status,
+                    })
                     sheet_line.create(values)
 
 
@@ -268,13 +468,18 @@ class AttendanceSheetLine(models.Model):
         comodel_name='attendance.sheet',
         readonly=True
     )
-    plan_sign_in = fields.Float("Planned sign in", readonly=True)
-    plan_sign_out = fields.Float("Planned sign out", readonly=True)
-    actual_sign_in = fields.Float("Actual sign in", readonly=True)
-    actual_sign_out = fields.Float("Actual sign out", readonly=True)
+    plan_sign_in = fields.Float(string="Planned sign in", readonly=True)
+    plan_sign_out = fields.Float(string="Planned sign out", readonly=True)
+    actual_sign_in = fields.Float(string="Actual sign in", readonly=True)
+    actual_sign_out = fields.Float(string="Actual sign out", readonly=True)
 
-    late_in = fields.Float("Late In", readonly=True)
-    worked_hours = fields.Float("Worked Hours", readonly=True)
+    late_in = fields.Float(string="Late In", readonly=True)
+    diff_time = fields.Float(
+        string="Diffrence Time",
+        readonly=True,
+        help="Diffrence between the working time and attendance time(s) ",
+    )
+    worked_hours = fields.Float(string="Worked Hours", readonly=True)
     note = fields.Text(string="Note")
     status = fields.Selection(
         string="Status",
