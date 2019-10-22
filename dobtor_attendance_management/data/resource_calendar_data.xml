@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- aswh : attendance sheet worker hours -->
+        <record id="resource_calendar_aswh" model="resource.calendar">
+            <field name="name">The Attendance Sheet Working Hours</field>
+            <field name="company_id" ref="base.main_company" />
+            <field name="attendance_ids" eval="[(6,0,[])]"/>
+        </record>
+
+        <record id="aswh_monday" model="resource.calendar.attendance">
+            <field name="name">Monday</field>
+            <field name="dayofweek" eval="'0'" />
+            <field name="hour_from" eval="9" />
+            <field name="hour_to" eval="18" />
+            <field name="calendar_id" ref="dobtor_attendance_management.resource_calendar_aswh" />
+        </record>
+
+        <record id="aswh_tuesday" model="resource.calendar.attendance">
+            <field name="name">Tuesday</field>
+            <field name="dayofweek" eval="'1'" />
+            <field name="hour_from" eval="9" />
+            <field name="hour_to" eval="18" />
+            <field name="calendar_id" ref="dobtor_attendance_management.resource_calendar_aswh" />
+        </record>
+
+        <record id="aswh_wednesday" model="resource.calendar.attendance">
+            <field name="name">Wednesday</field>
+            <field name="dayofweek" eval="'2'" />
+            <field name="hour_from" eval="9" />
+            <field name="hour_to" eval="18" />
+            <field name="calendar_id" ref="dobtor_attendance_management.resource_calendar_aswh" />
+        </record>
+
+        <record id="aswh_thursday" model="resource.calendar.attendance">
+            <field name="name">Thursday</field>
+            <field name="dayofweek" eval="'3'" />
+            <field name="hour_from" eval="9" />
+            <field name="hour_to" eval="18" />
+            <field name="calendar_id" ref="dobtor_attendance_management.resource_calendar_aswh"/>
+        </record>
+
+        <record id="aswh_friday" model="resource.calendar.attendance">
+            <field name="name">Friday</field>
+            <field name="dayofweek" eval="'4'" />
+            <field name="hour_from" eval="9" />
+            <field name="hour_to" eval="18" />
+            <field name="calendar_id" ref="dobtor_attendance_management.resource_calendar_aswh"/>
+        </record>
+
+    </data>
+</odoo>
