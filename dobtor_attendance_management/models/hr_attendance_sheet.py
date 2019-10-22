@@ -295,46 +295,6 @@ class HRAttendanceSheet(models.Model):
                     res = 0
         return res
 
-    def get_late(self, policy, period):
-        res = period
-        flag = False
-        if policy:
-            if policy.late_rule_id:
-                if policy.late_rule_id.real_time_ok:
-                    flag = True
-                    res = period
-                else:
-                    time_ids = policy.late_rule_id.line_ids.sorted(
-                        key=lambda r: r.time, reverse=True)
-                    for line in time_ids:
-                        if period >= line.time:
-                            flag = True
-                            res = line.deduction_time
-                            break
-                if not flag:
-                    res = 0
-        return res
-
-    def get_diff(self, policy, period):
-        res = period
-        flag = False
-        if policy:
-            if policy.diff_rule_id:
-                if policy.diff_rule_id.real_time_ok:
-                    flag = True
-                    res = period
-                else:
-                    time_ids = policy.diff_rule_id.line_ids.sorted(
-                        key=lambda r: r.time, reverse=True)
-                for line in time_ids:
-                    if period >= line.time:
-                        flag = True
-                        res = line.deduction_time
-                        break
-                if not flag:
-                    res = 0
-        return res
-
     def prepare_common_date(self, **data):
         return {
             'date': data.get('day').strftime('%Y-%m-%d'),

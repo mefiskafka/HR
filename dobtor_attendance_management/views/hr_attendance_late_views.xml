@@ -5,43 +5,20 @@
         <record id="hr_attendance_late_rule_form_view" model="ir.ui.view">
             <field name="name">hr.attendance.late.rule.form.view</field>
             <field name="model">hr.attendance.late.rule</field>
+            <field name="inherit_id" ref="dobtor_attendance_management.hr_attendance_rule_mixin_form_view"/>
             <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="name" />
-                            </h1>
-                            <div name="options">
-                                <div>
-                                    <field name="real_time_ok" />
-                                    <label for="real_time_ok" />
-                                </div>
-                            </div>
-                        </div>
-                        <notebook attrs="{'invisible': [('real_time_ok', '=', True)]}">
-                            <page string="Late Detail" name="late_line" >
-                                <field name="line_ids">
-                                    <tree editable="top">
-                                        <field name="sequence" widget="handle" />
-                                        <field name="time" widget="float_time" />
-                                        <field name="deduction_time" widget="float_time" />
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
+                <xpath expr="//group" position="inside">  
+                </xpath>
             </field>
         </record>
 
         <record id="hr_attendance_late_rule_tree_view" model="ir.ui.view">
             <field name="name">hr.attendance.late.rule.tree.view</field>
             <field name="model">hr.attendance.late.rule</field>
+            <field name="inherit_id" ref="dobtor_attendance_management.hr_attendance_rule_mixin_tree_view"/>
             <field name="arch" type="xml">
-                <tree>
-                    <field name="name" />
-                </tree>
+                <xpath expr="//tree" position="inside">
+                </xpath>
             </field>
         </record>
 
@@ -50,6 +27,7 @@
             <field name="res_model">hr.attendance.late.rule</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'form_view_ref': 'dobtor_attendance_management.hr_attendance_late_rule_form_view'}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create"> Click here to create a Late in Rule. </p>
             </field>

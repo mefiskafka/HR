@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_attendance_rule_mixin_form_view" model="ir.ui.view">
+            <field name="name">hr.attendance.rule.mixin.form.view</field>
+            <field name="model">hr.attendance.rule.mixin</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                            <div name="options">
+                                <div>
+                                    <field name="real_time_ok" />
+                                    <label for="real_time_ok" />
+                                </div>
+                            </div>
+                        </div>
+                        <group>
+                        </group>
+                        <notebook attrs="{'invisible': [('real_time_ok', '=', True)]}">
+                            <page string="Detail" name="line">
+                                <field name="line_ids">
+                                    <tree editable="top">
+                                        <field name="sequence" widget="handle" />
+                                        <field name="time" widget="float_time" />
+                                        <field name="deduction_time" widget="float_time" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_attendance_rule_mixin_tree_view" model="ir.ui.view">
+            <field name="name">hr.attendance.rule.mixin.tree.view</field>
+            <field name="model">hr.attendance.rule.mixin</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
