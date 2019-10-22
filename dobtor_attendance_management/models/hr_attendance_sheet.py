@@ -94,9 +94,10 @@ class HRAttendanceSheet(models.Model):
             return
         contract_id = self.env['hr.contract'].browse(contract_ids[0])
 
-        if not contract_id.att_policy_id:
-            return
-        self.policy_id = contract_id.policy_id
+        # TODO : The Road map
+        # if not contract_id.policy_id:
+        #     return
+        # self.policy_id = contract_id.policy_id
 
     @api.multi
     def _compute_attendance_info(self):
