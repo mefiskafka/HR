@@ -372,9 +372,73 @@ class HRAttendanceSheet(models.Model):
                 line.write({'state': 'draft'})
         return True
 
+    def get_worked_days_line(self, strategy, contract, sheet, sequence):
+        __num_day = 'num_{}'.format(strategy)
+        __total_hour = 'total_{}'.format(strategy)
+        return {
+            'name': strategy,
+            'code': strategy.upper(),
+            'contract_id': contract,
+            'sequence': sequence,
+            'number_of_days': getattr(sheet, __num_day),
+            'number_of_hours': getattr(sheet, __total_hour),
+        }
+
+    def prepare_payslip(self, sheet, contract_id, slip_data, worked_days_line_ids):
+        return {
+            'employee_id': sheet.employee_id.id,
+            'name': slip_data['value'].get('name'),
+            'struct_id': slip_data['value'].get('struct_id'),
+            'contract_id': contract_id,
+            'input_line_ids': [(0, 0, x) for x in slip_data['value'].get('input_line_ids')],
+            'worked_days_line_ids': [(0, 0, x) for x in worked_days_line_ids],
+            'date_from': sheet.date_from,
+            'date_to': sheet.date_to,
+        }
+
     @api.multi
     def action_create_payslip(self):
-        pass
+        payslips = self.env['hr.payslip']
+        for sheet in self:
+            if sheet.payslip_id:
+                payslip = sheet.payslip_id
+                continue
+            date_from = sheet.date_from
+            date_to = sheet.date_to
+            employee = sheet.employee_id
+            slip_data = payslips.onchange_employee_id(
+                date_from, date_to, employee.id, contract_id=False)
+            contract_id = slip_data['value'].get('contract_id')
+            if not contract_id:
+                raise exceptions.Warning(
+                    'The %s contract does not cover the period for the attendance sheet' % employee.name)
+            else:
+                payslip = payslips.search([
+                    ('date_from', '=', date_from),
+                    ('date_to', '=', date_to),
+                    ('employee_id', '=', employee.id),
+                    ('contract_id', '=', contract_id),
+                ], order='id', limit=1)
+            worked_days_line_ids = slip_data['value'].get('worked_days_line_ids')
+            absence = self.get_worked_days_line('absence', contract_id, sheet, 97)
+            late = self.get_worked_days_line('late', contract_id, sheet, 98)
+            diff = self.get_worked_days_line('diff', contract_id, sheet, 99)
+            worked_days_line_ids += [absence] + [late] + [diff]
+            if payslip:
+                payslip.worked_days_line_ids = [(0, 0, absence), (0, 0, late), (0, 0, diff)]
+            else:
+                payslip_data = self.prepare_payslip(sheet, contract_id, slip_data, worked_days_line_ids)
+                payslip = payslips.sudo().create(payslip_data)
+            sheet.payslip_id = payslip
+
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'hr.payslip',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_id': payslip.id,
+            'views': [(False, 'form')],
+        }
 
     @api.multi
     def compute_attendances(self):
