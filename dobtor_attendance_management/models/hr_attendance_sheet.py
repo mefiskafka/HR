@@ -375,14 +375,14 @@ class HRAttendanceSheet(models.Model):
     def get_worked_days_line(self, strategy, contract, sheet, sequence):
         __num_day = 'num_{}'.format(strategy)
         __total_hour = 'total_{}'.format(strategy)
-        return {
+        return [{
             'name': strategy,
             'code': strategy.upper(),
             'contract_id': contract,
             'sequence': sequence,
             'number_of_days': getattr(sheet, __num_day),
             'number_of_hours': getattr(sheet, __total_hour),
-        }
+        }]
 
     def prepare_payslip(self, sheet, contract_id, slip_data, worked_days_line_ids):
         return {
@@ -410,7 +410,7 @@ class HRAttendanceSheet(models.Model):
                 date_from, date_to, employee.id, contract_id=False)
             contract_id = slip_data['value'].get('contract_id')
             if not contract_id:
-                raise exceptions.Warning(
+                raise UserError(
                     'The %s contract does not cover the period for the attendance sheet' % employee.name)
             else:
                 payslip = payslips.search([
@@ -423,10 +423,11 @@ class HRAttendanceSheet(models.Model):
             absence = self.get_worked_days_line('absence', contract_id, sheet, 97)
             late = self.get_worked_days_line('late', contract_id, sheet, 98)
             diff = self.get_worked_days_line('diff', contract_id, sheet, 99)
-            worked_days_line_ids += [absence] + [late] + [diff]
+            line_ids = absence + late + diff
             if payslip:
-                payslip.worked_days_line_ids = [(0, 0, absence), (0, 0, late), (0, 0, diff)]
+                payslip.worked_days_line_ids = [(0, 0, x) for x in line_ids]
             else:
+                worked_days_line_ids += line_ids
                 payslip_data = self.prepare_payslip(sheet, contract_id, slip_data, worked_days_line_ids)
                 payslip = payslips.sudo().create(payslip_data)
             sheet.payslip_id = payslip

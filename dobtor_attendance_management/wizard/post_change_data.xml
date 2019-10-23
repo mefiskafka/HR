@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="post_change_data_from_view" model="ir.ui.view">
+            <field name="name">post.change.data.from.view</field>
+            <field name="model">post.change.data</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="late_in" widget="float_time"/>
+                                <field name="diff_time" widget="float_time"/>
+                            </group>
+
+                        </group>
+                        <field name="note"/>
+                    </sheet>
+                    <footer>
+                        <button name="action_change_data" string="Post" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_post_change_data" model="ir.actions.act_window">
+            <field name="name">Post change data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">post.change.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

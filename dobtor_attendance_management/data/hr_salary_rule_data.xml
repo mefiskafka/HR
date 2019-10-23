@@ -9,7 +9,7 @@
             <field name="condition_select">python</field>
             <field name="condition_python">result = (worked_days.ABSENCE and worked_days.ABSENCE.number_of_hours > 0) or False</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -(worked_days.ABSENCE.number_of_hours * (contract.wage / (8*30)))</field>
+            <field name="amount_python_compute">result = - round(worked_days.ABSENCE.number_of_hours * (contract.wage / (8*30)))</field>
             <field name="sequence" eval="160"/>
             <field name="note">deduction of absence days</field>
         </record>
@@ -21,7 +21,7 @@
             <field name="condition_select">python</field>
             <field name="condition_python">result = (worked_days.LATE and worked_days.LATE.number_of_hours > 0) or False</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -(worked_days.LATE.number_of_hours * (contract.wage / (8*30)))</field>
+            <field name="amount_python_compute">result = - round(worked_days.LATE.number_of_hours * (contract.wage / (8*30)))</field>
             <field name="sequence" eval="161"/>
             <field name="note">deduction of late hours</field>
         </record>
@@ -33,7 +33,7 @@
             <field name="condition_select">python</field>
             <field name="condition_python">result = (worked_days.DIFF and worked_days.DIFF.number_of_hours > 0) or False</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -(worked_days.DIFF.number_of_hours * (contract.wage / (8*30)))</field>
+            <field name="amount_python_compute">result = - round(worked_days.DIFF.number_of_hours * (contract.wage / (8*30)))</field>
             <field name="sequence" eval="162"/>
             <field name="note">deduction of difference hours</field>
         </record>
