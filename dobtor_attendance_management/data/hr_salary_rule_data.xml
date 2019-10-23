@@ -7,12 +7,36 @@
             <field name="name">Absence</field>
             <field name="category_id" ref="hr_payroll.DED"/>
             <field name="condition_select">python</field>
-            <field name="condition_python">result = (worked_days.ABS and worked_days.ABS.number_of_hours > 0) or False</field>
+            <field name="condition_python">result = (worked_days.ABSENCE and worked_days.ABSENCE.number_of_hours > 0) or False</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = -(worked_days.ABS.number_of_hours * (contract.wage / (8*30)))</field>
+            <field name="amount_python_compute">result = -(worked_days.ABSENCE.number_of_hours * (contract.wage / (8*30)))</field>
             <field name="sequence" eval="300"/>
             <field name="note">deduction of absence days</field>
-        </record>        
+        </record>
+
+        <record id="hr_rule_attendance_late" model="hr.salary.rule">
+            <field name="code">LATE</field>
+            <field name="name">Late</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.LATE and worked_days.LATE.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(worked_days.LATE.number_of_hours * (contract.wage / (8*30)))</field>
+            <field name="sequence" eval="301"/>
+            <field name="note">deduction of late hours</field>
+        </record>
+
+        <record id="hr_rule_attendance_difference" model="hr.salary.rule">
+            <field name="code">DIFFERENCE</field>
+            <field name="name">difference</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.DIFFERENCE and worked_days.DIFFERENCE.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(worked_days.DIFFERENCE.number_of_hours * (contract.wage / (8*30)))</field>
+            <field name="sequence" eval="301"/>
+            <field name="note">deduction of difference hours</field>
+        </record>
 
     </data>
 </odoo>
