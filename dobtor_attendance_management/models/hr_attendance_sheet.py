@@ -53,13 +53,37 @@ class HRAttendanceSheet(models.Model):
 
     total_late = fields.Float(
         string="Total Late In",
-        compute="_compute_attendance_info",
+        compute="settlement_attendance_data",
         readonly=True,
         store=True
     )
     num_late = fields.Integer(
         string="Number of Lates",
-        compute="_compute_attendance_info",
+        compute="settlement_attendance_data",
+        readonly=True,
+        store=True
+    )
+    total_diff = fields.Float(
+        string="Total Difference Time",
+        compute="settlement_attendance_data",
+        readonly=True,
+        store=True
+    )
+    num_diff = fields.Integer(
+        string="Number of Difference",
+        compute="settlement_attendance_data",
+        readonly=True,
+        store=True
+    )
+    total_absence = fields.Float(
+        string="Total Absence Time",
+        compute="settlement_attendance_data",
+        readonly=True,
+        store=True
+    )
+    num_absence = fields.Integer(
+        string="Number of Absence",
+        compute="settlement_attendance_data",
         readonly=True,
         store=True
     )
@@ -99,19 +123,36 @@ class HRAttendanceSheet(models.Model):
         self.policy_id = contract_id.policy_id
 
     @api.multi
-    def _compute_attendance_info(self):
+    def settlement_attendance_data(self):
+        diff = 0
+        num_diff = 0
         late = 0
         num_late = 0
+        absence = 0
+        num_absence = 0
         for sheet in self:
             for line in sheet.sheet_line_ids:
+                #  TODO : overtime
+                if line.diff_time > 0:
+                    if line.status == "absence":
+                        num_absence += 1
+                        absence += line.diff_time
+                    else:
+                        diff += line.diff_time
+                        num_diff += 1
                 if line.late_in > 0:
                     late += line.late_in
                     num_late += 1
             values = {
                 'total_late': late,
-                'num_late': num_late
+                'num_late': num_late,
+                'total_diff': diff,
+                'num_diff': num_diff,
+                'total_absence': absence,
+                'num_absence': num_absence,
             }
             sheet.write(values)
+
 
     def get_timezone(self):
         if not self.env.user.tz:
@@ -276,14 +317,14 @@ class HRAttendanceSheet(models.Model):
         res = period
         flag = False
         if policy:
-            __field__ = '{}_rule_id'.format(strategy)
-            __rule_id__ = getattr(policy, __field__)
-            if __rule_id__:
-                if __rule_id__.real_time_ok:
+            __field = '{}_rule_id'.format(strategy)
+            __rule_id = getattr(policy, __field)
+            if __rule_id:
+                if __rule_id.real_time_ok:
                     flag = True
                     res = period
                 else:
-                    time_ids =__rule_id__.line_ids.sorted(
+                    time_ids =__rule_id.line_ids.sorted(
                         key=lambda r: r.time, reverse=True)
                 for line in time_ids:
                     if period >= line.time:
@@ -303,6 +344,7 @@ class HRAttendanceSheet(models.Model):
             'sheet_id': self.id,
         }
 
+
     # Action
 
     @api.multi
@@ -312,6 +354,27 @@ class HRAttendanceSheet(models.Model):
             for line in records.sheet_line_ids:
                 line.write({'state': 'confirm'})
         return True
+
+    @api.multi
+    def action_approve(self):
+        for records in self:
+            records.settlement_attendance_data()
+            records.write({'state': 'done'})
+            for line in records.sheet_line_ids:
+                line.write({'state': 'done'})
+        return True
+
+    @api.multi
+    def action_draft(self):
+        for records in self:
+            records.write({'state': 'draft'})
+            for line in records.sheet_line_ids:
+                line.write({'state': 'draft'})
+        return True
+
+    @api.multi
+    def action_create_payslip(self):
+        pass
 
     @api.multi
     def compute_attendances(self):
@@ -328,7 +391,6 @@ class HRAttendanceSheet(models.Model):
             date_to = datetime.combine(sheet.date_to, datetime.min.time())
             all_dates = [(date_from + relativedelta(days=x))
                          for x in range((date_to - date_from).days + 1)]
-            abs_cnt = 0
             for day in all_dates:
                 day_end = day.replace(hour=23, minute=59,
                                       second=59, microsecond=999999)
@@ -438,7 +500,7 @@ class HRAttendanceSheet(models.Model):
                     # Handle Diffance Time
                     diff_time = self._handle_diff(diff_intervals, leaves)
                     float_diff = diff_time.total_seconds() / 3600
-                    policy_diff = self.get_policies_time('diff',policy_id, float_diff)
+                    policy_diff = self.get_policies_time('diff', policy_id, float_diff)
 
                     # Handle Late Time
                     late_in = self._handle_late(late_in_interval, leaves)

@@ -21,3 +21,7 @@ class HRAttendancePolicies(models.Model):
         comodel_name="hr.attendance.diff.rule",
         required=True,
     )
+    absence_rule_id = fields.Many2one(
+        string="Absence Rule",
+        comodel_name="hr.attendance.absence.rule",
+    )

@@ -66,3 +66,16 @@ class HRAttendanceDiffRuleLine(models.Model):
     _inherit = 'hr.attendance.rule.line.mixin'
     _description = 'Difference Rule Line'
     _order = 'sequence, id'
+
+
+class HRAttendanceAbsenceRule(models.Model):
+    _name = 'hr.attendance.absence.rule'
+    _inherit = 'hr.attendance.rule.mixin'
+    _description = 'Absence Rule'
+
+
+# class HRAttendanceAbsenceRuleLine(models.Model):
+#     _name = 'hr.attendance.absence.rule.line'
+#     _inherit = 'hr.attendance.rule.line.mixin'
+#     _description = 'Absence Rule Line'
+#     _order = 'sequence, id'

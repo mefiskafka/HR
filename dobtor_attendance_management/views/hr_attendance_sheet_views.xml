@@ -10,7 +10,10 @@
                     <header>
                         <button name="compute_attendances" string="Compute Sheets" class="oe_highlight" states="draft" type="object"/>
                         <button name="action_confirm" states="draft" string="Post to Manager" type="object" class="oe_highlight"/>
-
+                        <button name="settlement_attendance_data" states="confirm" string="Compute Data" class="oe_highlight" type="object"/>
+                        <button name="action_approve" states="confirm" string="Approve" type="object" class="oe_highlight" groups="hr_attendance.group_hr_attendance_manager"/>
+                        <button name="action_draft" states="confirm" string="Set to Draft" type="object" groups="hr_attendance.group_hr_attendance_manager"/>
+                        <!-- <button name="action_create_payslip" string="Create Payslip" class="oe_highlight" states="done" type="object" groups="hr_attendance.group_hr_attendance_manager"/> -->
                         <field name="state" widget="statusbar" statusbar_visible="new,confirm,done"/>
                     </header>
                     <sheet>
@@ -59,6 +62,14 @@
                                     <group string="Late In">
                                         <field name="num_late"/>
                                         <field name="total_late" widget="float_time"/>
+                                    </group>
+                                    <group string="Absence">
+                                        <field name="num_absence"/>
+                                        <field name="total_absence" widget="float_time"/>
+                                    </group>
+                                    <group string="Diffrence Time" class="att_sheet_date_diff">
+                                        <field name="num_diff"/>
+                                        <field name="total_diff" widget="float_time"/>
                                     </group>
                                 </group>
                             </page>
