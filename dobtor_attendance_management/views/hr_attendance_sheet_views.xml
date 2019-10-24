@@ -73,6 +73,10 @@
                                         <field name="num_diff"/>
                                         <field name="total_diff" widget="float_time"/>
                                     </group>
+                                    <group string="Work Overtime">
+                                        <field name="num_overtime"/>
+                                        <field name="total_overtime" widget="float_time"/>
+                                    </group>
                                 </group>
                             </page>
                         </notebook>

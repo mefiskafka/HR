@@ -2,9 +2,9 @@
 <odoo>
     <data>
 
-        <record id="hr_attendance_rule_mixin_form_view" model="ir.ui.view">
-            <field name="name">hr.attendance.rule.mixin.form.view</field>
-            <field name="model">hr.attendance.rule.mixin</field>
+        <record id="hr_attendance_overtime_rule_form_view" model="ir.ui.view">
+            <field name="name">hr.attendance.overtime.rule.form.view</field>
+            <field name="model">hr.attendance.overtime.rule</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -14,23 +14,14 @@
                             </h1>
                             <div name="options">
                                 <div>
-                                    <field name="real_time_ok" />
-                                    <label for="real_time_ok" />
+                                    <label for="type" />
+                                    <field name="type" />
                                 </div>
                             </div>
                         </div>
                         <group>
-                            <!-- TODO : flexible working hours  -->
-                            <group>
-                                <field name="flexible_ok" invisible="1" />
-                                <field name="work_time" invisible="1" />
-                            </group>
-                            <group>
-                                <field name="flexible_allow_diff" invisible="1" />
-                                <field name="allow_time" invisible="1" />
-                            </group>
                         </group>
-                        <notebook attrs="{'invisible': [('real_time_ok', '=', True)]}">
+                        <!-- <notebook>
                             <page string="Detail" name="line">
                                 <field name="line_ids">
                                     <tree editable="top">
@@ -40,19 +31,29 @@
                                     </tree>
                                 </field>
                             </page>
-                        </notebook>
+                        </notebook> -->
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <record id="hr_attendance_rule_mixin_tree_view" model="ir.ui.view">
-            <field name="name">hr.attendance.rule.mixin.tree.view</field>
-            <field name="model">hr.attendance.rule.mixin</field>
+        <record id="hr_attendance_overtime_rule_tree_view" model="ir.ui.view">
+            <field name="name">hr.attendance.overtime.rule.tree.view</field>
+            <field name="model">hr.attendance.overtime.rule</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" />
                 </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_attendance_overtime" model="ir.actions.act_window">
+            <field name="name">Overtime Rules</field>
+            <field name="res_model">hr.attendance.overtime.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> Click here to create a Overtime Rule. </p>
             </field>
         </record>
 

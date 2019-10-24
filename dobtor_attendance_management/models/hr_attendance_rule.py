@@ -18,10 +18,22 @@ class HRAttendanceRule(models.AbstractModel):
     )
     line_ids = fields.One2many(
         string='Late Section',
-        comodel_name='hr.attendance.late.rule.line',
+        comodel_name='hr.attendance.rule.line.mixin',
         inverse_name='rule_id',
     )
-
+    # TODO : flexible working hours
+    flexible_ok = fields.Boolean(
+        string='Flexible working hours',
+    )
+    work_time = fields.Float(
+        string='Work hour',
+    )
+    flexible_allow_diff = fields.Boolean(
+        string='Flexible all diff',
+    )
+    allow_time = fields.Float(
+        string='allow hour',
+    )
 
 class HRAttendanceRuleLine(models.AbstractModel):
     _name = 'hr.attendance.rule.line.mixin'
@@ -32,12 +44,12 @@ class HRAttendanceRuleLine(models.AbstractModel):
         default=10
     )
     rule_id = fields.Many2one(
-        string='Late Rule',
-        comodel_name='hr.attendance.late.rule',
+        string='Rule',
+        comodel_name='hr.attendance.rule.mixin',
         ondelete='cascade',
     )
     time = fields.Float(
-        string='Late Time',
+        string='Time',
     )
     deduction_time = fields.Float(string='Deduction time')
 
@@ -47,6 +59,9 @@ class HRAttendanceLateRule(models.Model):
     _inherit = 'hr.attendance.rule.mixin'
     _description = 'Late Rule'
 
+    line_ids = fields.One2many(
+        comodel_name='hr.attendance.late.rule.line',
+    )
 
 class HRAttendanceLateRuleLine(models.Model):
     _name = 'hr.attendance.late.rule.line'
@@ -54,12 +69,18 @@ class HRAttendanceLateRuleLine(models.Model):
     _description = 'Late Rule Line'
     _order = 'sequence, id'
 
+    rule_id = fields.Many2one(
+        comodel_name='hr.attendance.late.rule',
+    )
 
 class HRAttendanceDiffRule(models.Model):
     _name = 'hr.attendance.diff.rule'
     _inherit = 'hr.attendance.rule.mixin'
     _description = 'Difference Rule'
 
+    line_ids = fields.One2many(
+        comodel_name='hr.attendance.diff.rule.line',
+    )
 
 class HRAttendanceDiffRuleLine(models.Model):
     _name = 'hr.attendance.diff.rule.line'
@@ -67,6 +88,9 @@ class HRAttendanceDiffRuleLine(models.Model):
     _description = 'Difference Rule Line'
     _order = 'sequence, id'
 
+    rule_id = fields.Many2one(
+        comodel_name='hr.attendance.diff.rule',
+    )
 
 class HRAttendanceAbsenceRule(models.Model):
     _name = 'hr.attendance.absence.rule'
@@ -79,3 +103,32 @@ class HRAttendanceAbsenceRule(models.Model):
 #     _inherit = 'hr.attendance.rule.line.mixin'
 #     _description = 'Absence Rule Line'
 #     _order = 'sequence, id'
+
+
+class HRAttendanceOvertimeRule(models.Model):
+    _name = 'hr.attendance.overtime.rule'
+    _description = 'Overtime Rule'
+
+    name = fields.Char(string="name")
+    type = fields.Selection(selection=[
+        ('official', 'Weekly Official Holidays'),
+        ('vacation', 'Vacation day'),
+        ('workday', 'Working Day'),
+        ('public', 'Public Holiday')
+    ], string="Type", default='workday')
+
+
+# class HRAttendanceOvertimeLine(models.Model):
+#     _name = 'hr.attendance.overtime.rule.line'
+#     _inherit = 'hr.attendance.rule.mixin'
+#     _description = 'Overtime Rule Line'
+#     _order = 'sequence, id'
+
+#     rule_id = fields.Many2one(
+#         comodel_name='hr.attendance.overtime.rule',
+#     )
+#     type = fields.Selection(
+#         related='rule_id.type',
+#         readonly=True,
+#         store=True
+#     )

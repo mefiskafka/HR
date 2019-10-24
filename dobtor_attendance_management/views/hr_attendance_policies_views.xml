@@ -13,13 +13,16 @@
                             <field name="name" />
                         </h1>
                         <group string="Difference Time Rule">
-                            <field name="diff_rule_id" nolabel="1"/>
+                            <field name="diff_rule_id" nolabel="1" context="{'form_view_ref': 'dobtor_attendance_management.hr_attendance_diff_rule_form_view'}" />
                         </group>
                         <group string="Late In Rule">
-                            <field name="late_rule_id" nolabel="1" />
+                            <field name="late_rule_id" nolabel="1" context="{'form_view_ref': 'dobtor_attendance_management.hr_attendance_late_rule_form_view'}" />
                         </group>
                         <group string="Absence Rule">
-                            <field name="absence_rule_id" nolabel="1"/>
+                            <field name="absence_rule_id" nolabel="1" context="{'form_view_ref': 'dobtor_attendance_management.hr_attendance_absence_rule_form_view'}" />
+                        </group>
+                        <group string="Overtime Rules">
+                            <field name="overtime_rule_id" widget="many2many_tags" nolabel="1"/>
                         </group>
                     </sheet>
                 </form>

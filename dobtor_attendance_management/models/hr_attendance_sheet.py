@@ -88,6 +88,18 @@ class HRAttendanceSheet(models.Model):
         readonly=True,
         store=True
     )
+    total_overtime = fields.Float(
+        string="Total Overtim Time",
+        compute="settlement_attendance_data",
+        readonly=True,
+        store=True
+    )
+    num_overtime = fields.Integer(
+        string="Number of Overtim",
+        compute="settlement_attendance_data",
+        readonly=True,
+        store=True
+    )
     policy_id = fields.Many2one(
         string="Attendance Policy ",
         comodel_name='hr.attendance.policies',
@@ -148,6 +160,8 @@ class HRAttendanceSheet(models.Model):
 
     @api.multi
     def settlement_attendance_data(self):
+        overtime = 0
+        num_overtime = 0
         diff = 0
         num_diff = 0
         late = 0
@@ -156,7 +170,9 @@ class HRAttendanceSheet(models.Model):
         num_absence = 0
         for sheet in self:
             for line in sheet.sheet_line_ids:
-                #  TODO : overtime
+                if line.overtime > 0:
+                    num_overtime += 1
+                    overtime += line.overtime
                 if line.diff_time > 0:
                     if line.status == "absence":
                         num_absence += 1
@@ -168,6 +184,8 @@ class HRAttendanceSheet(models.Model):
                     late += line.late_in
                     num_late += 1
             values = {
+                'total_overtime': overtime,
+                'num_overtime': num_overtime,
                 'total_late': late,
                 'num_late': num_late,
                 'total_diff': diff,
@@ -538,6 +556,7 @@ class HRAttendanceSheet(models.Model):
                         #  attendance                  ->|██████████|
                         late_in_interval = (pl_sign_in, att_sign_in)
 
+                        # Overtime
                         if att_sign_out < pl_sign_out:
                             # excused
                             #  planned               |██████████████|<-
@@ -603,6 +622,9 @@ class HRAttendanceSheet(models.Model):
                     float_late = late_in.total_seconds() / 3600
                     policy_late = self.get_policies_time('late', policy_id, float_late)
 
+                    # TODO : Overtime policies
+                    float_overtime = overtime.total_seconds() / 3600
+
                     # Leave Stutus
                     if leaves:
                         status = "leave"
@@ -611,6 +633,7 @@ class HRAttendanceSheet(models.Model):
                     values.update({
                         'diff_time': policy_diff,
                         'late_in': policy_late,
+                        'overtime': float_overtime,
                         'actual_sign_in': actual_sign_in,
                         'actual_sign_out': actual_sign_out,
                         'worked_hours': worked_hours,
@@ -644,6 +667,7 @@ class AttendanceSheetLine(models.Model):
     actual_sign_in = fields.Float(string="Actual sign in", readonly=True)
     actual_sign_out = fields.Float(string="Actual sign out", readonly=True)
 
+    overtime = fields.Float(string="Overtime", readonly=True)
     late_in = fields.Float(string="Late In", readonly=True)
     diff_time = fields.Float(
         string="Diffrence Time",
@@ -653,6 +677,8 @@ class AttendanceSheetLine(models.Model):
     # TODO : user post change to manager, and manager need viled (add feature)
     change_late_in = fields.Float()
     change_diff_time = fields.Float()
+    change_overtime = fields.Float()
+
     worked_hours = fields.Float(string="Worked Hours", readonly=True)
     note = fields.Text(string="Note")
     status = fields.Selection(

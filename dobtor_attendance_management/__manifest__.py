@@ -38,6 +38,7 @@
         'views/hr_attendance_late_views.xml',
         'views/hr_attendance_diff_views.xml',
         'views/hr_attendance_absence_views.xml',
+        'views/hr_attendance_overtime_views.xml',
         'views/hr_attendance_policies_views.xml',
         'views/hr_attendance_sheet_views.xml',
         'views/hr_attendance_menuitem.xml',

@@ -25,3 +25,10 @@ class HRAttendancePolicies(models.Model):
         string="Absence Rule",
         comodel_name="hr.attendance.absence.rule",
     )
+    overtime_rule_id = fields.Many2many(
+        string="Overtime Rules",
+        comodel_name="hr.attendance.overtime.rule",
+        relation="hr_attendance_overtime_rule_policy_rel",
+        column1="policy_id",
+        column2="rule_id"
+    )
