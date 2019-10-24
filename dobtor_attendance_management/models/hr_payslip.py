@@ -14,11 +14,6 @@ class HrContract(models.Model):
 class HrPayslip(models.Model):
     _inherit = 'hr.payslip'
 
-    policy_id = fields.Many2one(
-        string='Attendance Policy',
-        comodel_name='hr.attendance.policies'
-    )
-
     @api.model
     def get_worked_day_lines(self, contracts, date_from, date_to):
         res = super().get_worked_day_lines(contracts, date_from, date_to)

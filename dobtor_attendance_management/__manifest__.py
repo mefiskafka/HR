@@ -32,6 +32,7 @@
         'data/hr_attendance_diff_data.xml',
         'data/hr_attendance_absence_data.xml',
         'data/hr_attendance_policies_data.xml',
+        'data/hr_leave_type_data.xml',
         'data/hr_salary_rule_data.xml',
         'views/hr_attendance_rule_views.xml',
         'views/hr_attendance_late_views.xml',
