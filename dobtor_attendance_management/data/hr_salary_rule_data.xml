@@ -38,9 +38,9 @@
             <field name="note">deduction of difference hours</field>
         </record>
 
-        <record id="hr_rule_attendance_diff" model="hr.salary.rule">
+        <record id="hr_rule_leave_sick" model="hr.salary.rule">
             <field name="code">SICK</field>
-            <field name="name">sick leave</field>
+            <field name="name">Sick Leave</field>
             <field name="category_id" ref="hr_payroll.DED"/>
             <field name="condition_select">python</field>
             <field name="condition_python">result = (worked_days.SICK and worked_days.SICK.number_of_hours > 0) or False</field>
@@ -48,6 +48,18 @@
             <field name="amount_python_compute">result = - round(worked_days.SICK.number_of_hours * (contract.wage / (8*30*2)))</field>
             <field name="sequence" eval="163"/>
             <field name="note">deduction of sick leave</field>
+        </record>
+
+        <record id="hr_rule_leave_personal" model="hr.salary.rule">
+            <field name="code">PERSONAL</field>
+            <field name="name">Personal Leave</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.PERSONAL and worked_days.PERSONAL.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = - round(worked_days.PERSONAL.number_of_hours * (contract.wage / (8*30)))</field>
+            <field name="sequence" eval="164"/>
+            <field name="note">deduction of personal leave</field>
         </record>
 
     </data>

@@ -12,5 +12,15 @@
             <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
         </record>
 
+        <!-- Personal Leave -->
+        <record id="hr_leave_type_sl" model="hr.leave.type">
+            <field name="name">Personal Leave</field>
+            <field name="request_unit">hour</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">red</field>
+            <field name="code">PERSONAL</field>
+            <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
+        </record>
+
     </data>
 </odoo>
