@@ -11,6 +11,9 @@
                 <xpath expr="//field[@name='company_id']" position="after">
                     <field name="gov_ok" invisible="1" />
                 </xpath>
+                <xpath expr="//field[@name='rule_ids']" position="attributes">
+                    <attribute name="domain">[('parent_rule_id', '=', False), ('gov_ok', '=', gov_ok)]</attribute>
+                </xpath>
             </field>
         </record>
 
