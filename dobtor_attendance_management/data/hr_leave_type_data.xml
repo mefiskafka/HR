@@ -13,7 +13,7 @@
         </record>
 
         <!-- Personal Leave -->
-        <record id="hr_leave_type_sl" model="hr.leave.type">
+        <record id="hr_leave_type_pl" model="hr.leave.type">
             <field name="name">Personal Leave</field>
             <field name="request_unit">hour</field>
             <field name="allocation_type">no</field>
@@ -22,5 +22,41 @@
             <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
         </record>
 
+        <!-- Menstruation Leave -->
+        <record id="hr_leave_type_mel" model="hr.leave.type">
+            <field name="name">Menstruation Leave</field>
+            <field name="request_unit">hour</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">red</field>
+            <field name="code">MENSTRUATION</field>
+            <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
+        </record>
+
+        <!-- Bereavement Leave -->
+        <record id="hr_leave_type_bl" model="hr.leave.type">
+            <field name="name">Bereavement Leave</field>
+            <field name="request_unit">hour</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">red</field>
+            <field name="code">BEREAVEMENT</field>
+        </record>
+
+        <!-- Marriage Leave -->
+        <record id="hr_leave_type_marl" model="hr.leave.type">
+            <field name="name">Marriage Leave</field>
+            <field name="request_unit">hour</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">red</field>
+            <field name="code">MARRIAGE</field>
+        </record>
+
+        <!-- Maternity Leave -->
+        <record id="hr_leave_type_matl" model="hr.leave.type">
+            <field name="name">Maternity Leave</field>
+            <field name="request_unit">hour</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">red</field>
+            <field name="code">MATERNITY</field>
+        </record>
     </data>
 </odoo>

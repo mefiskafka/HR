@@ -350,11 +350,11 @@ class HRAttendanceSheet(models.Model):
                 else:
                     time_ids =__rule_id.line_ids.sorted(
                         key=lambda r: r.time, reverse=True)
-                for line in time_ids:
-                    if period >= line.time:
-                        flag = True
-                        res = line.deduction_time
-                        break
+                    for line in time_ids:
+                        if period >= line.time:
+                            flag = True
+                            res = line.deduction_time
+                            break
                 if not flag:
                     res = 0
         return res
