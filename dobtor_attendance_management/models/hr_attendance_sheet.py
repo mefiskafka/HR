@@ -104,6 +104,29 @@ class HRAttendanceSheet(models.Model):
         employee = self.employee_id
         date_from = self.date_from
         date_to = self.date_to
+        attendance = self.search([
+            ('employee_id', '=', employee.id),
+            '|', '|', '|',
+            '&','&', ('date_from', '<=', date_from), ('date_to', '>=', date_from), ('date_to', '<=', date_to),
+            '&','&', ('date_from', '<=', date_to), ('date_to', '>=', date_to), ('date_from', '>=', date_from),
+            '&', ('date_from', '<=', date_from), ('date_to', '>=', date_to),
+            '&', ('date_from', '>=', date_from), ('date_to', '<=', date_to),
+        ], limit=1)
+        if attendance:
+            # other case (singularity)
+            #  already date :         10/1|██████████████|10/31
+            #  search date :             10/10|██████████████|11/10
+            # or 
+            #  already date :         10/1|██████████████|10/31
+            #  search date :      9/20|██████████████|10/20
+            # or 
+            #  already date :         10/1|██████████████|10/31
+            #  search date :            10/10|███████|10/20
+            # or 
+            #  already date :         10/1|██████████████|10/31
+            #  search date :      9/20|███████████████████████|10/20
+            raise ValidationError(_('in this case are already attendance sheet existing or singularity.\n employee : {}\n from : {}\n to : {}'.format(
+            employee.name, attendance.date_from, attendance.date_to)))
 
         ttyme = datetime.combine(fields.Date.from_string(date_from), time.min)
         locale = self.env.context.get('lang', 'en_US')

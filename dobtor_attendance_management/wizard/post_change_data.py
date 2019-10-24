@@ -19,7 +19,7 @@ class PostChangeData(models.TransientModel):
         line_id = self.env['hr.attendance.sheet.line'].browse(self._context['active_id'])
         res['late_in'] = line_id.late_in
         res['diff_time'] = line_id.diff_time
-        res['att_line_id'] = line_id.id
+        res['line_id'] = line_id.id
         return res
 
     @api.multi
