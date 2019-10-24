@@ -567,7 +567,8 @@ class HRAttendanceSheet(models.Model):
                             # Work Overtime
                             #  planned               |██████████████|<-
                             #  attendance            |█████████████████|<-
-                            overtime = att_sign_out - pl_sign_out
+                            if att_sign_in <= pl_sign_in:
+                                overtime = att_sign_out - pl_sign_out
                         if len(att_work_intervals) > 1:
                             # attendances for multiple sessions per day
                             #  planned                |██████████████|
@@ -667,7 +668,7 @@ class AttendanceSheetLine(models.Model):
     actual_sign_in = fields.Float(string="Actual sign in", readonly=True)
     actual_sign_out = fields.Float(string="Actual sign out", readonly=True)
 
-    overtime = fields.Float(string="Overtime", readonly=True)
+    overtime = fields.Float(string="Work OverTime", readonly=True)
     late_in = fields.Float(string="Late In", readonly=True)
     diff_time = fields.Float(
         string="Diffrence Time",
