@@ -650,6 +650,9 @@ class AttendanceSheetLine(models.Model):
         readonly=True,
         help="Diffrence between the working time and attendance time(s) ",
     )
+    # TODO : user post change to manager, and manager need viled (add feature)
+    change_late_in = fields.Float()
+    change_diff_time = fields.Float()
     worked_hours = fields.Float(string="Worked Hours", readonly=True)
     note = fields.Text(string="Note")
     status = fields.Selection(
