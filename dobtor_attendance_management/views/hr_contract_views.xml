@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+    
         <record id="hr_contract_form_attendance_sheet_inherit" model="ir.ui.view">
             <field name="name">hr.contract.attendance.sheet.insurance.form</field>
             <field name="model">hr.contract</field>

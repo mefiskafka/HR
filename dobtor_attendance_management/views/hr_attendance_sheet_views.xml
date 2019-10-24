@@ -9,7 +9,8 @@
                 <form string="">
                     <header>
                         <button name="compute_attendances" string="Compute Sheets" class="oe_highlight" states="draft" type="object"/>
-                        <button name="action_confirm" states="draft" string="Post to Manager" type="object" class="oe_highlight"/>
+                        <button name="action_open" states="draft" string="Valid" type="object" class="oe_highlight"/>
+                        <button name="action_confirm" states="open" string="Post to Manager" type="object" class="oe_highlight"/>
                         <button name="settlement_attendance_data" states="confirm" string="Compute Data" class="oe_highlight" type="object"/>
                         <button name="action_approve" states="confirm" string="Approve" type="object" class="oe_highlight" groups="hr_attendance.group_hr_attendance_manager"/>
                         <button name="action_draft" states="confirm" string="Set to Draft" type="object" groups="hr_attendance.group_hr_attendance_manager"/>
@@ -54,7 +55,7 @@
                                         <field name="diff_time" widget="float_time" sum="Quantity"/>
                                         <field name="status"/>
                                         <field name="note"/>
-                                        <button name="%(action_post_change_data)d" class="oe_stat_button" icon="fa-edit" type="action" attrs="{'invisible': [('state', '!=', 'draft')]}" />
+                                        <button name="%(action_post_change_data)d" class="oe_stat_button" icon="fa-edit" type="action" attrs="{'invisible': [('state', '!=', 'open')]}" />
                                     </tree>
                                 </field>
                             </page>

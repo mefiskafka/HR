@@ -39,6 +39,7 @@ class HRAttendanceSheet(models.Model):
         string='Status',
         selection=[
             ('draft', 'Draft'),
+            ('open', 'Open'),
             ('confirm', 'Confirmed'),
             ('done', 'Approved')
         ],
@@ -369,6 +370,13 @@ class HRAttendanceSheet(models.Model):
 
 
     # Action
+    @api.multi
+    def action_open(self):
+        for records in self:
+            records.write({'state': 'open'})
+            for line in records.sheet_line_ids:
+                line.write({'state': 'open'})
+        return True
 
     @api.multi
     def action_confirm(self):
@@ -617,6 +625,7 @@ class AttendanceSheetLine(models.Model):
     state = fields.Selection(
         selection=[
             ('draft', 'Draft'),
+            ('open', 'Open'),
             ('confirm', 'Confirmed'),
             ('done', 'Approved')
         ],
