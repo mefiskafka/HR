@@ -111,24 +111,41 @@ class HRAttendanceOvertimeRule(models.Model):
 
     name = fields.Char(string="name")
     type = fields.Selection(selection=[
+        ('workday', 'Working Day'),
         ('official', 'Weekly Official Holidays'),
         ('vacation', 'Vacation day'),
-        ('workday', 'Working Day'),
         ('public', 'Public Holiday')
     ], string="Type", default='workday')
+    line_ids = fields.One2many(
+        string='Overtime Section',
+        comodel_name='hr.attendance.overtime.rule.line',
+        inverse_name='rule_id',
+    )
 
+class HRAttendanceOvertimeLine(models.Model):
+    _name = 'hr.attendance.overtime.rule.line'
+    _description = 'Overtime Rule Line'
+    _order = 'sequence, id'
 
-# class HRAttendanceOvertimeLine(models.Model):
-#     _name = 'hr.attendance.overtime.rule.line'
-#     _inherit = 'hr.attendance.rule.mixin'
-#     _description = 'Overtime Rule Line'
-#     _order = 'sequence, id'
-
-#     rule_id = fields.Many2one(
-#         comodel_name='hr.attendance.overtime.rule',
-#     )
-#     type = fields.Selection(
-#         related='rule_id.type',
-#         readonly=True,
-#         store=True
-#     )
+    sequence = fields.Integer(
+        string='Sequence',
+        default=10
+    )
+    time = fields.Float(
+        string='Time',
+    )
+    rule_id = fields.Many2one(
+        comodel_name='hr.attendance.overtime.rule',
+    )
+    type = fields.Selection(
+        related='rule_id.type',
+        readonly=True,
+        store=True
+    )
+    pattern = fields.Selection(selection=[
+        ('1', '1'),
+        ('2', '1.34'),
+        ('3', '1.67'),
+        ('4', '2'),
+        ('5', '2.67'),
+    ], string="pattern")

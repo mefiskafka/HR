@@ -22,7 +22,7 @@
                             <field name="absence_rule_id" nolabel="1" context="{'form_view_ref': 'dobtor_attendance_management.hr_attendance_absence_rule_form_view'}" />
                         </group>
                         <group string="Overtime Rules">
-                            <field name="overtime_rule_id" widget="many2many_tags" nolabel="1"/>
+                            <field name="overtime_rule_ids" widget="many2many_tags" nolabel="1"/>
                         </group>
                     </sheet>
                 </form>

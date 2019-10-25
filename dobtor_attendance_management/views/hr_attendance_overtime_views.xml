@@ -21,17 +21,17 @@
                         </div>
                         <group>
                         </group>
-                        <!-- <notebook>
+                        <notebook>
                             <page string="Detail" name="line">
                                 <field name="line_ids">
                                     <tree editable="top">
                                         <field name="sequence" widget="handle" />
                                         <field name="time" widget="float_time" />
-                                        <field name="deduction_time" widget="float_time" />
+                                        <field name="pattern" />
                                     </tree>
                                 </field>
                             </page>
-                        </notebook> -->
+                        </notebook>
                     </sheet>
                 </form>
             </field>

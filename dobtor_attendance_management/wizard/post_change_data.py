@@ -10,6 +10,7 @@ class PostChangeData(models.TransientModel):
 
     late_in = fields.Float(string="Late In")
     diff_time = fields.Float(string="Diff Time")
+    overtime = fields.Float(string="Work Overtime")
     note = fields.Text(string="Note", required=True)
     line_id = fields.Many2one(comodel_name="attendance.sheet.line")
 
@@ -19,6 +20,7 @@ class PostChangeData(models.TransientModel):
         line_id = self.env['hr.attendance.sheet.line'].browse(self._context['active_id'])
         res['late_in'] = line_id.late_in
         res['diff_time'] = line_id.diff_time
+        res['overtime'] = line.overtime
         res['line_id'] = line_id.id
         return res
 
@@ -30,6 +32,7 @@ class PostChangeData(models.TransientModel):
         res = {
             'late_in': data['late_in'],
             'diff_time': data['diff_time'],
+            'overtime': data['overtime'],
             'note': data['note'],
         }
         line_id.write(res)

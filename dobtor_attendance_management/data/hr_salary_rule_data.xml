@@ -38,6 +38,30 @@
             <field name="note">deduction of difference hours</field>
         </record>
 
+        <record id="hr_rule_attendance_over_workday_1" model="hr.salary.rule">
+            <field name="code">OTWORKDAY1</field>
+            <field name="name">overtime workday (1/3)</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.OWORKDAY1 and worked_days.OWORKDAY1.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = round(worked_days.OWORKDAY1.number_of_hours * 1.34 * (contract.wage / (8*30)))</field>
+            <field name="sequence" eval="162"/>
+            <field name="note">deduction of overtime hours times 1.34</field>
+        </record>
+
+        <record id="hr_rule_attendance_over_workday_2" model="hr.salary.rule">
+            <field name="code">OTWORKDAY2</field>
+            <field name="name">overtime workday (2/3)</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.OWORKDAY2 and worked_days.OWORKDAY2.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = round(worked_days.OWORKDAY2.number_of_hours * 1.67 * (contract.wage / (8*30)))</field>
+            <field name="sequence" eval="162"/>
+            <field name="note">deduction of overtime hours times 1.67</field>
+        </record>
+
         <record id="hr_rule_leave_sick" model="hr.salary.rule">
             <field name="code">SICK</field>
             <field name="name">Sick Leave</field>
@@ -46,7 +70,7 @@
             <field name="condition_python">result = (worked_days.SICK and worked_days.SICK.number_of_hours > 0) or False</field>
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = - round(worked_days.SICK.number_of_hours * (contract.wage / (8*30*2)))</field>
-            <field name="sequence" eval="163"/>
+            <field name="sequence" eval="170"/>
             <field name="note">deduction of sick leave</field>
         </record>
 
@@ -58,7 +82,7 @@
             <field name="condition_python">result = (worked_days.PERSONAL and worked_days.PERSONAL.number_of_hours > 0) or False</field>
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = - round(worked_days.PERSONAL.number_of_hours * (contract.wage / (8*30)))</field>
-            <field name="sequence" eval="164"/>
+            <field name="sequence" eval="171"/>
             <field name="note">deduction of personal leave</field>
         </record>
 
@@ -70,7 +94,7 @@
             <field name="condition_python">result = (worked_days.MENSTRUATION and worked_days.MENSTRUATION.number_of_hours > 0) or False</field>
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = - round(worked_days.MENSTRUATION.number_of_hours * (contract.wage / (8*30*2)))</field>
-            <field name="sequence" eval="163"/>
+            <field name="sequence" eval="172"/>
             <field name="note">deduction of menstruation leave</field>
         </record>
 

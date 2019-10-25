@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytz
 import babel
+from itertools import groupby
 from datetime import date, datetime, time, timedelta
 from dateutil.relativedelta import relativedelta
 from odoo import models, tools, fields, api, _
@@ -89,16 +90,21 @@ class HRAttendanceSheet(models.Model):
         store=True
     )
     total_overtime = fields.Float(
-        string="Total Overtim Time",
+        string="Total Workday Overtime",
         compute="settlement_attendance_data",
         readonly=True,
         store=True
     )
     num_overtime = fields.Integer(
-        string="Number of Overtim",
+        string="Number of Workday Overtime",
         compute="settlement_attendance_data",
         readonly=True,
         store=True
+    )
+    overtime_ids = fields.One2many(
+        string='Overtime Sheet',
+        comodel_name='hr.attendance.sheet.overtime',
+        inverse_name='sheet_id',
     )
     policy_id = fields.Many2one(
         string="Attendance Policy ",
@@ -157,7 +163,7 @@ class HRAttendanceSheet(models.Model):
         if not contract_id.policy_id:
             return
         self.policy_id = contract_id.policy_id
-
+    
     @api.multi
     def settlement_attendance_data(self):
         overtime = 0
@@ -171,7 +177,7 @@ class HRAttendanceSheet(models.Model):
         for sheet in self:
             for line in sheet.sheet_line_ids:
                 if line.overtime > 0:
-                    num_overtime += 1
+                    num_overtime += 1 
                     overtime += line.overtime
                 if line.diff_time > 0:
                     if line.status == "absence":
@@ -193,7 +199,11 @@ class HRAttendanceSheet(models.Model):
                 'total_absence': absence,
                 'num_absence': num_absence,
             }
+            
             sheet.write(values)
+            # TODO : Need to outside this function
+            sheet.overtime_ids.unlink()
+            sheet.settlement_overtime()
 
 
     def get_timezone(self):
@@ -386,6 +396,63 @@ class HRAttendanceSheet(models.Model):
             'sheet_id': self.id,
         }
 
+    def get_overtime_workday(self, policy, period):
+        res = []
+        val = period
+        reduces = 0
+        if policy:
+            overtime_ids = policy.overtime_rule_ids
+            wd_ot_id = policy.overtime_rule_ids.search([('type', '=', 'workday'),('id', 'in', overtime_ids.ids)], order='id', limit=1)
+            time_ids = wd_ot_id.line_ids.sorted(key=lambda r: r.time, reverse=True)
+            for line in time_ids:
+                if period >= line.time:
+                    if reduces > round(line.time):
+                        val = reduces
+                    else:
+                        val = val - round(line.time)
+                        reduces = round(line.time)
+                    res.append((line.pattern, val))         
+        return res
+
+    @api.multi
+    def settlement_overtime(self):
+        overtime_ids = []
+        ot_workday_ids = []
+        ot_workday_data = []
+
+        for sheet in self:
+            if sheet.total_overtime > 0:
+                for line in sheet.sheet_line_ids:
+                    if line.overtime_type == 'workday':
+                        ot_wd_id = self.get_overtime_workday(sheet.policy_id, 
+                            line.overtime)
+                        if ot_wd_id:
+                            ot_workday_ids += ot_wd_id
+                    # elif line.overtime_type == 'official':
+                    #     TODO : official overtime 
+                    # elif line.overtime_type == 'vacation':
+                    #     TODO : vacation overtime 
+                    # elif line.overtime_type == 'public':
+                    #     TODO : public overtime 
+
+            if len(ot_workday_ids) > 0:
+                ot_workday_ids = sorted(ot_workday_ids, key=itemgetter(0))
+                ot_wd_groups=groupby(ot_workday_ids, key=itemgetter(0))
+                ot_wd_data = [{'pattern': k, 'overtime': [x[1] for x in v]}
+                        for k, v in ot_wd_groups]
+                for ot_wd in ot_wd_data:
+                    ot_workday_data.append((0,0, {
+                        'pattern': ot_wd['pattern'],
+                        'num_overtime': len(ot_wd['overtime']),
+                        'total_overtime': sum(ot_wd['overtime']),
+                        'type': 'workday',
+                        'sheet_id': sheet.id
+                    }))
+            overtime_ids += ot_workday_data
+            sheet.write({
+                'overtime_ids': overtime_ids,
+            })
+
 
     # Action
     @api.multi
@@ -408,6 +475,7 @@ class HRAttendanceSheet(models.Model):
     def action_approve(self):
         for records in self:
             records.settlement_attendance_data()
+            
             records.write({'state': 'done'})
             for line in records.sheet_line_ids:
                 line.write({'state': 'done'})
@@ -638,6 +706,7 @@ class HRAttendanceSheet(models.Model):
                         'actual_sign_in': actual_sign_in,
                         'actual_sign_out': actual_sign_out,
                         'worked_hours': worked_hours,
+                        'overtime_type': 'workday', # TODO : need to change
                         'status': status,
                     })
                     sheet_line.create(values)
@@ -667,6 +736,12 @@ class AttendanceSheetLine(models.Model):
     plan_sign_out = fields.Float(string="Planned sign out", readonly=True)
     actual_sign_in = fields.Float(string="Actual sign in", readonly=True)
     actual_sign_out = fields.Float(string="Actual sign out", readonly=True)
+    overtime_type = fields.Selection(selection=[
+        ('workday', 'Working Day'),
+        ('official', 'Weekly Official Holidays'),
+        ('vacation', 'Vacation day'),
+        ('public', 'Public Holiday')
+    ], string="Type")
 
     overtime = fields.Float(string="Work OverTime", readonly=True)
     late_in = fields.Float(string="Late In", readonly=True)
@@ -679,7 +754,7 @@ class AttendanceSheetLine(models.Model):
     change_late_in = fields.Float()
     change_diff_time = fields.Float()
     change_overtime = fields.Float()
-
+    
     worked_hours = fields.Float(string="Worked Hours", readonly=True)
     note = fields.Text(string="Note")
     status = fields.Selection(
@@ -692,3 +767,39 @@ class AttendanceSheetLine(models.Model):
         required=False,
         readonly=True
     )
+
+
+class AttendanceSheetOvertime(models.Model):
+    _name = 'hr.attendance.sheet.overtime'
+
+    name = fields.Char()
+    sheet_id = fields.Many2one(
+        string='Attendance Sheet',
+        comodel_name='hr.attendance.sheet',
+        readonly=True
+    )
+    total_overtime = fields.Float(
+        string="Total Overtime",
+        compute="settlement_attendance_data",
+        readonly=True,
+        store=True
+    )
+    num_overtime = fields.Integer(
+        string="Number of Overtime",
+        compute="settlement_attendance_data",
+        readonly=True,
+        store=True
+    )
+    type = fields.Selection(selection=[
+        ('workday', 'Working Day'),
+        ('official', 'Weekly Official Holidays'),
+        ('vacation', 'Vacation day'),
+        ('public', 'Public Holiday')
+    ], string="Type")
+    pattern = fields.Selection(selection=[
+        ('1', '1'),
+        ('2', '1.34'),
+        ('3', '1.67'),
+        ('4', '2'),
+        ('5', '2.67'),
+    ], string="pattern")

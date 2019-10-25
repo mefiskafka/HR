@@ -31,6 +31,7 @@
         'data/hr_attendance_late_data.xml',
         'data/hr_attendance_diff_data.xml',
         'data/hr_attendance_absence_data.xml',
+        'data/hr_attendance_overtime_data.xml',
         'data/hr_attendance_policies_data.xml',
         'data/hr_leave_type_data.xml',
         'data/hr_salary_rule_data.xml',
@@ -44,6 +45,7 @@
         'views/hr_attendance_menuitem.xml',
         'views/hr_leave_views.xml',
         'views/hr_contract_views.xml',
+        'views/resource_calendar_views.xml',
     ],
     # 'demo': [
     #     'demo/demo.xml',
