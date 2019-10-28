@@ -17,6 +17,10 @@
                                     <label for="type" />
                                     <field name="type" />
                                 </div>
+                                <div>
+                                    <label for="need_post" />
+                                    <field name="need_post" />
+                                </div>
                             </div>
                         </div>
                         <group>

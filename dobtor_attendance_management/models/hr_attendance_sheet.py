@@ -365,9 +365,10 @@ class HRAttendanceSheet(models.Model):
                     diff_time += diff_in[1] - diff_in[0]
         return diff_time
 
-    def get_policies_time(self, strategy, policy, period):
+    def get_policies_time(self, strategy, policy, period, worked_hours):
         res = period
         flag = False
+        msg = ''
         if policy:
             __field = '{}_rule_id'.format(strategy)
             __rule_id = getattr(policy, __field)
@@ -385,7 +386,12 @@ class HRAttendanceSheet(models.Model):
                             break
                 if not flag:
                     res = 0
-        return res
+                # TODO : flexible worktime hours
+                if __rule_id.flexible_ok:
+                    if res > 0 and worked_hours >= __rule_id.work_time and res <= __rule_id.allow_time:
+                        res = 0
+                        msg = _('flexible worktime hours')
+        return (res, msg)
 
     def prepare_common_date(self, **data):
         return {
@@ -558,6 +564,18 @@ class HRAttendanceSheet(models.Model):
             'views': [(False, 'form')],
         }
 
+    def get_dayofweek_type(self, day, calender_id):
+        overtime_type = 'workday'
+        day_weekday = day.weekday()
+        rest_day = calender_id.rest_day
+        mandatory_day = calender_id.mandatory_day
+        if calender_id.two_days_off:
+            if day_weekday== rest_day:
+                overtime_type = 'vacation'
+            elif day_weekday == mandatory_day:
+                overtime_type = 'official'
+        return overtime_type
+
     @api.multi
     def compute_attendances(self):
         for sheet in self:
@@ -574,6 +592,7 @@ class HRAttendanceSheet(models.Model):
             all_dates = [(date_from + relativedelta(days=x))
                          for x in range((date_to - date_from).days + 1)]
             for day in all_dates:
+                overtime_type = self.get_dayofweek_type(day, calender_id)
                 day_end = day.replace(hour=23, minute=59,
                                       second=59, microsecond=999999)
                 overtime = timedelta(hours=00, minutes=00, seconds=00)
@@ -585,6 +604,7 @@ class HRAttendanceSheet(models.Model):
                 # TODO : Need to handle exceptions (No Sign out)
                 attendance_intervals = self.get_attendance_intervals(
                     policy_id, day, day_end)
+                note = ''
 
                 for i, work_interval in enumerate(work_intervals):
                     pl_sign_in = work_interval[0]
@@ -636,7 +656,21 @@ class HRAttendanceSheet(models.Model):
                             #  planned               |██████████████|<-
                             #  attendance            |█████████████████|<-
                             if att_sign_in <= pl_sign_in:
-                                overtime = att_sign_out - pl_sign_out
+                                # TODO : need to change this way (to ugly)
+                                if policy_id:
+                                    overtime_ids = policy_id.overtime_rule_ids
+                                    wd_ot_id = policy_id.overtime_rule_ids.search([('type', '=', overtime_type),('id', 'in', overtime_ids.ids)], order='id', limit=1)
+                                    if wd_ot_id.need_post:
+                                        overtime = timedelta(hours=0, minutes=0, seconds=0)
+                                    else:
+                                        overtime = att_sign_out - pl_sign_out
+                        # TODO : Need to check (multi sign in / multi sign out)
+                        actual_sign_in = self._get_float_from_time(
+                            pytz.utc.localize(att_sign_in).astimezone(timezone))
+                        actual_sign_out = self._get_float_from_time(
+                            pytz.utc.localize(att_sign_out).astimezone(timezone))
+                        worked_hours = actual_sign_out - actual_sign_in
+                        
                         if len(att_work_intervals) > 1:
                             # attendances for multiple sessions per day
                             #  planned                |██████████████|
@@ -662,19 +696,19 @@ class HRAttendanceSheet(models.Model):
                                     #  planned         |██████████████|<-
                                     #  attendance       |██|<- ->|███|
                                     diff_intervals.append((current_sign_out, current_time_sign_in))
+                                    float_sign_in = self._get_float_from_time(
+                                        pytz.utc.localize(current_time_sign_in).astimezone(timezone))
+                                    float_sign_out = self._get_float_from_time(
+                                        pytz.utc.localize(current_sign_out).astimezone(timezone))
+                                    worked_hours -= (float_sign_in - float_sign_out)
+                                    note = _('Leave midway')
                                     current_sign_out = current_time_sign_out
+                                    
                             if current_sign_out and current_sign_out <= pl_sign_out:
                                 # last time attendance diff time.
                                 #  planned             |██████████████|<-
                                 #  attendance             |██|  |███|<-
                                 diff_intervals.append((current_sign_out, pl_sign_out))
-
-                        # TODO : Need to handle exceptions (multi sign in / multi sign out)
-                        actual_sign_in = self._get_float_from_time(
-                            pytz.utc.localize(att_sign_in).astimezone(timezone))
-                        actual_sign_out = self._get_float_from_time(
-                            pytz.utc.localize(att_sign_out).astimezone(timezone))
-                        worked_hours = actual_sign_out - actual_sign_in
                     else:
                         # Handle Absence Day
                         late_in_interval = []
@@ -684,12 +718,14 @@ class HRAttendanceSheet(models.Model):
                     # Handle Diffance Time
                     diff_time = self._handle_diff(diff_intervals, leaves)
                     float_diff = diff_time.total_seconds() / 3600
-                    policy_diff = self.get_policies_time('diff', policy_id, float_diff)
+                    policy_diff = self.get_policies_time('diff', policy_id, float_diff, worked_hours)
+                    note += '\n' + policy_diff[1] if note else policy_diff[1]
 
                     # Handle Late Time
                     late_in = self._handle_late(late_in_interval, leaves)
                     float_late = late_in.total_seconds() / 3600
-                    policy_late = self.get_policies_time('late', policy_id, float_late)
+                    policy_late = self.get_policies_time('late', policy_id, float_late, worked_hours)
+                    note += '\n' + policy_late[1] if note else policy_late[1]
 
                     # TODO : Overtime policies
                     float_overtime = overtime.total_seconds() / 3600
@@ -700,14 +736,15 @@ class HRAttendanceSheet(models.Model):
 
                     # Create Attendance Sheet Data
                     values.update({
-                        'diff_time': policy_diff,
-                        'late_in': policy_late,
+                        'diff_time': policy_diff[0],
+                        'late_in': policy_late[0],
                         'overtime': float_overtime,
                         'actual_sign_in': actual_sign_in,
                         'actual_sign_out': actual_sign_out,
                         'worked_hours': worked_hours,
-                        'overtime_type': 'workday', # TODO : need to change
+                        'overtime_type': overtime_type,
                         'status': status,
+                        'note': note
                     })
                     sheet_line.create(values)
 

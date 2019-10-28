@@ -17,17 +17,19 @@
                                     <field name="real_time_ok" />
                                     <label for="real_time_ok" />
                                 </div>
+                                <div>
+                                    <field name="flexible_ok" />
+                                    <label for="flexible_ok" />
+                                </div>
                             </div>
                         </div>
                         <group>
                             <!-- TODO : flexible working hours  -->
                             <group>
-                                <field name="flexible_ok" invisible="1" />
-                                <field name="work_time" invisible="1" />
+                                <field name="work_time" attrs="{'invisible': [('flexible_ok','=', False)]}" />
                             </group>
                             <group>
-                                <field name="flexible_allow_diff" invisible="1" />
-                                <field name="allow_time" invisible="1" />
+                                <field name="allow_time" attrs="{'invisible': [('flexible_ok','=', False)]}" />
                             </group>
                         </group>
                         <notebook attrs="{'invisible': [('real_time_ok', '=', True)]}">

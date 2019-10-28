@@ -2,8 +2,10 @@
 <odoo>
     <data noupdate="0">
 
+        <!-- Workday -->
         <record id="overtime_rule_workday" model="hr.attendance.overtime.rule">
             <field name="name">Workday Overtime Rule</field>
+            <field name="need_post" eval="True" />
         </record>
 
         <record id="overtime_rule_workday_line_01" model="hr.attendance.overtime.rule.line">
@@ -20,6 +22,33 @@
             <field name="pattern">3</field>
         </record>
 
-        
+        <!-- Rest Day -->
+        <record id="overtime_rule_vacation" model="hr.attendance.overtime.rule">
+            <field name="name">Vacation Overtime Rule</field>
+            <field name="need_post" eval="True" />
+        </record>
+
+        <record id="overtime_rule_vacation_line_01" model="hr.attendance.overtime.rule.line">
+            <field name="sequence">1</field>
+            <field name="rule_id" ref="dobtor_attendance_management.overtime_rule_vacation" />
+            <field name="time" eval="1.0/60.0" />
+            <field name="pattern">2</field>
+        </record>
+
+        <record id="overtime_rule_vacation_line_02" model="hr.attendance.overtime.rule.line">
+            <field name="sequence">2</field>
+            <field name="rule_id" ref="dobtor_attendance_management.overtime_rule_vacation" />
+            <field name="time" eval="2+1.0/60.0" />
+            <field name="pattern">3</field>
+        </record>
+
+        <record id="overtime_rule_vacation_line_03" model="hr.attendance.overtime.rule.line">
+            <field name="sequence">2</field>
+            <field name="rule_id" ref="dobtor_attendance_management.overtime_rule_vacation" />
+            <field name="time" eval="8+1.0/60.0" />
+            <field name="pattern">5</field>
+        </record>
+
+        <!-- Official -->
     </data>
 </odoo>

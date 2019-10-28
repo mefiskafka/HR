@@ -8,9 +8,9 @@
             <field name="inherit_id" ref="resource.resource_calendar_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//group" position="inside">
-                    <!-- <field name="two_days_off" />
+                    <field name="two_days_off" />
                     <field name="mandatory_day" attrs="{'invisible': [('two_days_off', '=', False)]}" />
-                    <field name="rest_day" attrs="{'invisible': [('two_days_off', '=', False)]}"/> -->
+                    <field name="rest_day" attrs="{'invisible': [('two_days_off', '=', False)]}"/>
                 </xpath>
             </field>
         </record>

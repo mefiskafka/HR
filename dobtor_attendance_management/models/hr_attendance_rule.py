@@ -28,9 +28,6 @@ class HRAttendanceRule(models.AbstractModel):
     work_time = fields.Float(
         string='Work hour',
     )
-    flexible_allow_diff = fields.Boolean(
-        string='Flexible all diff',
-    )
     allow_time = fields.Float(
         string='allow hour',
     )
@@ -120,6 +117,10 @@ class HRAttendanceOvertimeRule(models.Model):
         string='Overtime Section',
         comodel_name='hr.attendance.overtime.rule.line',
         inverse_name='rule_id',
+    )
+    need_post = fields.Boolean(
+        string='need Post',
+        default=False
     )
 
 class HRAttendanceOvertimeLine(models.Model):

@@ -56,7 +56,7 @@
                                         <field name="worked_hours" widget="float_time" sum="Quantity"/>
                                         <field name="status"/>
                                         <field name="note"/>
-                                        <button name="%(action_post_change_data)d" class="oe_stat_button" icon="fa-edit" type="action" attrs="{'invisible': [('state', '!=', 'open')]}" />
+                                        <button name="%(action_post_change_data)d" class="oe_stat_button" icon="fa-edit" type="action" attrs="{'invisible': [('state', 'not in', ('open', 'confirm'))]}" />
                                     </tree>
                                 </field>
                             </page>

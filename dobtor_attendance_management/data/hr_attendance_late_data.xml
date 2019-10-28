@@ -5,6 +5,9 @@
         <record id="late_rule" model="hr.attendance.late.rule">
             <field name="name">Late Rule</field>
             <field name="real_time_ok" eval="False" />
+            <field name="flexible_ok" eval="True" />
+            <field name="work_time" eval="8" />
+            <field name="allow_time" eval="1" />
         </record>
         
         <record id="late_rule_line_01" model="hr.attendance.late.rule.line">
