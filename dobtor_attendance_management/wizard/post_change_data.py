@@ -22,6 +22,7 @@ class PostChangeData(models.TransientModel):
         res['diff_time'] = line_id.diff_time
         res['overtime'] = line_id.overtime
         res['line_id'] = line_id.id
+        res['note'] = line_id.note
         return res
 
     @api.multi

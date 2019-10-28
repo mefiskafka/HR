@@ -443,7 +443,7 @@ class HRAttendanceSheet(models.Model):
 
             if len(ot_workday_ids) > 0:
                 ot_workday_ids = sorted(ot_workday_ids, key=itemgetter(0))
-                ot_wd_groups=groupby(ot_workday_ids, key=itemgetter(0))
+                ot_wd_groups = groupby(ot_workday_ids, key=itemgetter(0))
                 ot_wd_data = [{'pattern': k, 'overtime': [x[1] for x in v]}
                         for k, v in ot_wd_groups]
                 for ot_wd in ot_wd_data:
