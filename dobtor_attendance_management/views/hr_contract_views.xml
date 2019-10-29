@@ -13,5 +13,32 @@
             </field>
         </record>
 
+        <record id="hr_employee_view_tree_seniority_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.tree.seniority.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_phone']" position="before">
+                    <field name="year_of_service"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_employee_view_form_seniority_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form.seniority.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='active_group']" position="after">
+                    <group string="Duration of Service">
+                        <field name="returning_hr" groups="hr.group_hr_manager" />
+                        <field name="init_employment_date" attrs="{'invisible': [('returning_hr','=',False)]}" groups="hr.group_hr_manager"/>
+                        <field name="month_of_service" />
+                        <field name="year_of_service" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </odoo>

@@ -328,7 +328,8 @@ class HRAttendanceSheet(models.Model):
             intervals.append((interval_start, att_sign_in))
         return intervals
 
-    def _get_float_from_time(self, time):
+    @staticmethod
+    def _get_float_from_time(time):
         time_type = datetime.strftime(time, "%H:%M")
         signOnP = [int(n) for n in time_type.split(":")]
         signOnH = signOnP[0] + signOnP[1] / 60.0
