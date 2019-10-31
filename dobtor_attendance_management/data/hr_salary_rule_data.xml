@@ -38,28 +38,40 @@
             <field name="note">deduction of difference hours</field>
         </record>
 
-        <record id="hr_rule_attendance_over_workday_1" model="hr.salary.rule">
-            <field name="code">OTWORKDAY1</field>
-            <field name="name">overtime workday (1/3)</field>
-            <field name="category_id" ref="hr_payroll.ALW"/>
-            <field name="condition_select">python</field>
-            <field name="condition_python">result = (worked_days.OWORKDAY1 and worked_days.OWORKDAY1.number_of_hours > 0) or False</field>
-            <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = round(worked_days.OWORKDAY1.number_of_hours * 1.34 * (contract.wage / (8*30)))</field>
-            <field name="sequence" eval="162"/>
-            <field name="note">deduction of overtime hours times 1.34</field>
-        </record>
-
         <record id="hr_rule_attendance_over_workday_2" model="hr.salary.rule">
             <field name="code">OTWORKDAY2</field>
-            <field name="name">overtime workday (2/3)</field>
+            <field name="name">overtime workday (1/3)</field>
             <field name="category_id" ref="hr_payroll.ALW"/>
             <field name="condition_select">python</field>
             <field name="condition_python">result = (worked_days.OWORKDAY2 and worked_days.OWORKDAY2.number_of_hours > 0) or False</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = round(worked_days.OWORKDAY2.number_of_hours * 1.67 * (contract.wage / (8*30)))</field>
-            <field name="sequence" eval="162"/>
+            <field name="amount_python_compute">result = round(worked_days.OWORKDAY2.number_of_hours * 1.34 * (contract.wage / (8*30)))</field>
+            <field name="sequence" eval="163"/>
+            <field name="note">deduction of overtime hours times 1.34</field>
+        </record>
+
+        <record id="hr_rule_attendance_over_workday_3" model="hr.salary.rule">
+            <field name="code">OTWORKDAY3</field>
+            <field name="name">overtime workday (2/3)</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.OWORKDAY3 and worked_days.OWORKDAY3.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = round(worked_days.OWORKDAY3.number_of_hours * 1.67 * (contract.wage / (8*30)))</field>
+            <field name="sequence" eval="163"/>
             <field name="note">deduction of overtime hours times 1.67</field>
+        </record>
+
+        <record id="hr_rule_leave_unfinished_annual" model="hr.salary.rule">
+            <field name="code">UANNUAL</field>
+            <field name="name">Unfinished Annual Leave</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.UANNUAL and worked_days.UANNUAL.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = round(worked_days.UANNUAL.number_of_hours * (contract.wage / (8*30)))</field>
+            <field name="sequence" eval="165"/>
+            <field name="note">deduction of unfinished annual leave</field>
         </record>
 
         <record id="hr_rule_leave_sick" model="hr.salary.rule">
@@ -98,5 +110,53 @@
             <field name="note">deduction of menstruation leave</field>
         </record>
 
+        <record id="hr_rule_leave_bereavement" model="hr.salary.rule">
+            <field name="code">BEREAVEMENT</field>
+            <field name="name">Bereavement Leave</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.BEREAVEMENT and worked_days.BEREAVEMENT.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = - round(0.00)</field>
+            <field name="sequence" eval="173"/>
+            <field name="note">deduction of bereavement leave</field>
+        </record>
+
+        <record id="hr_rule_leave_marriage" model="hr.salary.rule">
+            <field name="code">MARRIAGE</field>
+            <field name="name">Marriage Leave</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.MARRIAGE and worked_days.MARRIAGE.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = - round(0.00)</field>
+            <field name="sequence" eval="174"/>
+            <field name="note">deduction of marriage leave</field>
+        </record>
+
+        <record id="hr_rule_leave_maternity" model="hr.salary.rule">
+            <field name="code">MATERNITY</field>
+            <field name="name">Maternity Leave</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.MATERNITY and worked_days.MATERNITY.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = - round(0.00)</field>
+            <field name="sequence" eval="175"/>
+            <field name="note">deduction of maternity leave</field>
+        </record>
+
+        <record id="hr_rule_leave_annual" model="hr.salary.rule">
+            <field name="code">ANNUAL</field>
+            <field name="name">Annual Leave</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.ANNUAL and worked_days.ANNUAL.number_of_hours > 0) or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = - round(0.00)</field>
+            <field name="sequence" eval="176"/>
+            <field name="note">deduction of annual leave</field>
+        </record>
+        
     </data>
 </odoo>

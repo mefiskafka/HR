@@ -27,6 +27,7 @@
     'data': [
         'security/ir.model.access.csv',
         'wizard/post_change_data.xml',
+        'data/ir_cron.xml',
         'data/resource_calendar_data.xml',
         'data/hr_attendance_late_data.xml',
         'data/hr_attendance_diff_data.xml',

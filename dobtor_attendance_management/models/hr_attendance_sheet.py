@@ -508,6 +508,16 @@ class HRAttendanceSheet(models.Model):
             'number_of_hours': getattr(sheet, __total_hour),
         }]
 
+    def get_overtime_line(self, name, strategy, contract, overtime_id, sequence):
+        return [{
+            'name': name,
+            'code': strategy.upper(),
+            'contract_id': contract,
+            'sequence': sequence,
+            'number_of_days': overtime_id.num_overtime,
+            'number_of_hours': overtime_id.total_overtime,
+        }]
+
     def prepare_payslip(self, sheet, contract_id, slip_data, worked_days_line_ids):
         return {
             'employee_id': sheet.employee_id.id,
@@ -544,10 +554,17 @@ class HRAttendanceSheet(models.Model):
                     ('contract_id', '=', contract_id),
                 ], order='id', limit=1)
             worked_days_line_ids = slip_data['value'].get('worked_days_line_ids')
-            absence = self.get_worked_days_line('absence', contract_id, sheet, 97)
-            late = self.get_worked_days_line('late', contract_id, sheet, 98)
-            diff = self.get_worked_days_line('diff', contract_id, sheet, 99)
-            line_ids = absence + late + diff
+            absence = self.get_worked_days_line('absence', contract_id, sheet, 90)
+            late = self.get_worked_days_line('late', contract_id, sheet, 91)
+            diff = self.get_worked_days_line('diff', contract_id, sheet, 92)
+            overtime_sheet = []
+            for overtime_id in sheet.overtime_ids:
+                name = overtime_id.type + ' overtime ' + overtime_id.pattern
+                code = 'ot' + overtime_id.type + overtime_id.pattern
+                overtime_sheet += self.get_overtime_line(
+                    name, code, contract_id, overtime_id, 93)
+                
+            line_ids = absence + late + diff + overtime_sheet
             if payslip:
                 payslip.worked_days_line_ids = [(0, 0, x) for x in line_ids]
             else:
