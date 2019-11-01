@@ -172,5 +172,16 @@
             <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_wtax" />
         </record>
 
+        <record id="hr_rule_tax" model="hr.salary.rule">
+            <field name="name">Tax</field>
+            <field name="sequence" eval="188"/>
+            <field name="base_on">tax</field>
+            <field name="code">TAX</field>
+            <field name="category_id" ref="dobtor_hr_labor_insurance.INSURE"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">formula</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary" />
+            <field name="formula_select" ref="dobtor_account_gov_tw.hr_rule_formula_select_tax" />
+        </record>
     </data>
 </odoo>

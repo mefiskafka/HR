@@ -93,5 +93,12 @@
             <field name="type_id" ref="dobtor_account_gov_tw.hr_rule_formula_withholding"/>
         </record>
 
+        <record id="hr_rule_formula_select_tax" model="hr.salary.rule.formula.select">
+            <field name="name">Tax</field>
+            <field name="sequence" eval="28"/>
+            <field name="code">tax</field>
+            <field name="type_id" ref="dobtor_hr_labor_insurance.hr_rule_formula_salary"/>
+        </record>
+
     </data>
 </odoo>

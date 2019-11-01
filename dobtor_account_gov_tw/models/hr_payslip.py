@@ -66,6 +66,10 @@ class Contract(models.Model):
         ).get_param("insurance.pension.premium"),
         store=True,
     )
+    journal_id = fields.Many2one(
+        'account.journal', 'Salary Journal',
+        default=lambda self: self.env.user.company_id.hr_salary_journal.id
+    )
 
     @api.multi
     def action_update_premium(self):
@@ -92,3 +96,4 @@ class HrPayslip(models.Model):
                 if rule.superposition:
                     line['superposition'] = rule.superposition
         return result
+

@@ -50,6 +50,8 @@ class HrSalaryRule(models.Model):
     @api.onchange('amount_select')
     def onchange_amount_select(self):
         self.onchange_type_id()
+        if self.gov_ok:
+            return {'domain': {'type_id': [('code', 'in', ('company', 'withholding'))]}}
         return super().onchange_amount_select()
 
     @api.depends('gov_ok', 'base_on', 'type_id')
@@ -60,7 +62,7 @@ class HrSalaryRule(models.Model):
             if self.base_on in ('bli', 'nhi'):
                 return {'domain': {'type_id': [('code', 'in', ('company', 'withholding'))]}}
             elif self.base_on == 'tax':
-                return {'domain': {'type_id': [('code', '=', 'company')]}}
+                return {'domain': {'type_id': [('code', '=', 'withholding')]}}
             else:
                 return {'domain': {'type_id': [('code', '=', 'other')]}}
         return {'domain': {'type_id': [('code', '=', 'salary')]}}
@@ -110,4 +112,8 @@ class HrSalaryRule(models.Model):
         return self._formula_salary_nhi2nd()
 
     def _formula_withholding_wtax(self):
+        return """result = -round( contract.wage * (contract.tax_premium/100.00) ) if round( contract.wage * (contract.tax_premium/100.00) ) > round( contract.withholding_tax_limit * (contract.tax_premium/100.00) ) else 0.00"""
+
+    # Salary 
+    def _formula_salary_tax(self):
         return """result = -round( contract.wage * (contract.tax_premium/100.00) ) if round( contract.wage * (contract.tax_premium/100.00) ) > round( contract.withholding_tax_limit * (contract.tax_premium/100.00) ) else 0.00"""
