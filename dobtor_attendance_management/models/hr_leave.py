@@ -140,13 +140,10 @@ class HrLeaveAllocation(models.Model):
     def _onchange_maternity_type(self):
         if self.gov_ok and self.employee_id:
             if self.gov_leave_type == 'maternity' and self.maternity_type:
-                print('inside')
                 if self.employee_id.gender == 'male':
                     if self.maternity_type == '8week':
-                        print('number_of_days 5')
                         self.number_of_days = 5
                     else:
-                        print('number_of_days 0')
                         self.number_of_days = 0
                 elif self.employee_id.gender == 'female':
                     if self.maternity_type == '5day':
@@ -161,7 +158,7 @@ class HrLeaveAllocation(models.Model):
                     self.number_of_days = 0
 
     @api.onchange('annual_year')
-    def _onchange_maternity_type(self):
+    def _onchange_annual_year(self):
         if self.gov_ok and self.employee_id:
             if self.gov_leave_type == 'annual' and self.annual_year:
                 annual_split = self.annual_year.split("_")
