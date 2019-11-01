@@ -1,0 +1,1116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dobtor_attendance_management
+#
+#
+# Translators:
+# Ejan Chou <ejan.chou@dobtor.com>, 2019
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-30 13:44+0000\n"
+"PO-Revision-Date: 2019-10-30 22:52+0800\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: zh_TW\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,help:dobtor_attendance_management.field_hr_attendance_sheet__state
+msgid ""
+" * The 'Draft' status is used when a HR user is creating a new  attendance sheet. \n"
+"* The 'Confirmed' status is used when  attendance sheet is confirmed by HR user.\n"
+"* The 'Approved' status is used when  attendance sheet is accepted by the HR Manager."
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.overtime.rule.line,pattern:0
+#: selection:hr.attendance.sheet.overtime,pattern:0
+msgid "1.34"
+msgstr "1.34"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.overtime.rule.line,pattern:0
+#: selection:hr.attendance.sheet.overtime,pattern:0
+msgid "1.67"
+msgstr "1.67"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.overtime.rule.line,pattern:0
+#: selection:hr.attendance.sheet.overtime,pattern:0
+msgid "2.67"
+msgstr "2.67"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.sheet.line,status:0
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_attendance_absence
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Absence"
+msgstr "缺勤"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_absence_rule
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__absence_rule_id
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_policies_form_view
+msgid "Absence Rule"
+msgstr "缺勤規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.actions.act_window,name:dobtor_attendance_management.action_hr_attendance_absence
+#: model:ir.ui.menu,name:dobtor_attendance_management.menu_hr_attendance_absence_action
+msgid "Absence Rules"
+msgstr "缺勤規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__actual_sign_in
+msgid "Actual sign in"
+msgstr "實際上班"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__actual_sign_out
+msgid "Actual sign out"
+msgstr "實際下班"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.type,gov_leave_type:0
+#: model:hr.leave.type,name:dobtor_attendance_management.hr_leave_type_al
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_leave_annual
+msgid "Annual Leave"
+msgstr "年假"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Approve"
+msgstr "批准"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.sheet,state:0
+#: selection:hr.attendance.sheet.line,state:0
+msgid "Approved"
+msgstr "批准"
+
+#. module: dobtor_attendance_management
+#: model:ir.actions.act_window,name:dobtor_attendance_management.action_hr_attendance_policies
+msgid "Attendance Policies"
+msgstr "考勤政策"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_contract__policy_id
+msgid "Attendance Policy"
+msgstr "考勤政策"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__policy_id
+msgid "Attendance Policy "
+msgstr "考勤政策 "
+
+#. module: dobtor_attendance_management
+#: model:ir.ui.menu,name:dobtor_attendance_management.menu_hr_attendance_settings
+msgid "Attendance Settings"
+msgstr "考勤設定"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__sheet_id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__sheet_id
+msgid "Attendance Sheet"
+msgstr "考勤表"
+
+#. module: dobtor_attendance_management
+#: model:ir.actions.act_window,name:dobtor_attendance_management.action_attendance_sheet
+msgid "Attendance Sheets"
+msgstr "考勤表"
+
+#. module: dobtor_attendance_management
+#: model:ir.ui.menu,name:dobtor_attendance_management.menu_hr_attendance_sheet
+msgid "Attendance sheets"
+msgstr "考勤表"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__sheet_line_ids
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Attendances"
+msgstr "考勤"
+
+#. module: dobtor_attendance_management
+#: model:ir.ui.menu,name:dobtor_attendance_management.menu_hr_attendance_policies_action
+msgid "Attendances Policies"
+msgstr "考勤政策"
+
+#. module: dobtor_attendance_management
+#: model:ir.ui.menu,name:dobtor_attendance_management.menu_hr_attendance_rules
+msgid "Attendances Rules"
+msgstr "考勤規則"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.type,gov_leave_type:0
+#: model:hr.leave.type,name:dobtor_attendance_management.hr_leave_type_bl
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_leave_bereavement
+msgid "Bereavement Leave"
+msgstr "喪假"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_leave_allocation__bereavement_type
+msgid "Bereavement leave"
+msgstr "喪假"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.post_change_data_from_view
+msgid "Cancel"
+msgstr "取消"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_post_change_data
+msgid "Change Attendance data"
+msgstr "修改考勤時間"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__change_diff_time
+msgid "Change Diff Time"
+msgstr "修改異常時間"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__change_late_in
+msgid "Change Late In"
+msgstr "修改遲到時間"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__change_overtime
+msgid "Change Overtime"
+msgstr "修改超時時間"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_absence
+msgid "Click here to create a Absence Rule."
+msgstr "點擊此處創建缺勤規則."
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_attendance_sheet
+msgid "Click here to create a Attendance Sheet."
+msgstr "點擊此處創建差勤表."
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_diff
+msgid "Click here to create a Difference Rule."
+msgstr "點擊此處創建異常打卡規則."
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_late
+msgid "Click here to create a Late in Rule."
+msgstr "點擊此處創建遲到規則."
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_overtime
+msgid "Click here to create a Overtime Rule."
+msgstr "點擊此處創建加班規則."
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_policies
+msgid "Click here to create a Policy."
+msgstr "點擊此處創建考勤政策."
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_leave_type__code
+msgid "Code"
+msgstr "代號"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Compute Data"
+msgstr "計算扣除時間"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Compute Sheets"
+msgstr "計算考勤表"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.sheet,state:0
+#: selection:hr.attendance.sheet.line,state:0
+msgid "Confirmed"
+msgstr "確認"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__create_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__create_uid
+msgid "Created by"
+msgstr "創建者"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__create_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__create_date
+msgid "Created on"
+msgstr "創建時間"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__date
+msgid "Date"
+msgstr "日期"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__day
+msgid "Day"
+msgstr "星期"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__deduction_time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__deduction_time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_line_mixin__deduction_time
+msgid "Deduction time"
+msgstr "扣除時間"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_overtime_rule_form_view
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_rule_mixin_form_view
+msgid "Detail"
+msgstr "明細"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__diff_time
+msgid "Diff Time"
+msgstr "異常打卡"
+
+#. module: dobtor_attendance_management
+#: model:hr.attendance.diff.rule,name:dobtor_attendance_management.diff_rule
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_diff_rule
+msgid "Difference Rule"
+msgstr "異常打卡規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_diff_rule_line
+msgid "Difference Rule Line"
+msgstr "異常打卡規則表"
+
+#. module: dobtor_attendance_management
+#: model:ir.actions.act_window,name:dobtor_attendance_management.action_hr_attendance_diff
+#: model:ir.ui.menu,name:dobtor_attendance_management.menu_hr_attendance_diff_action
+msgid "Difference Rules"
+msgstr "異常打卡"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__diff_rule_id
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_policies_form_view
+msgid "Difference Time Rule"
+msgstr "異常打卡規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__diff_time
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Diffrence Time"
+msgstr "異常時間"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,help:dobtor_attendance_management.field_hr_attendance_sheet_line__diff_time
+msgid "Diffrence between the working time and attendance time(s) "
+msgstr "工作時間與出勤時間之間的差值 "
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_line_mixin__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__display_name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.sheet,state:0
+#: selection:hr.attendance.sheet.line,state:0
+msgid "Draft"
+msgstr "草案"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_employee_view_form_seniority_inherit
+msgid "Duration of Service"
+msgstr "服務年限"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_employee
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__employee_id
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Employee"
+msgstr "員工"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_contract
+msgid "Employee Contract"
+msgstr "員工合同"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__flexible_ok
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__flexible_ok
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__flexible_ok
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__flexible_ok
+msgid "Flexible working hours"
+msgstr "彈性工時"
+
+#. module: dobtor_attendance_management
+#: selection:resource.calendar,mandatory_day:0
+#: selection:resource.calendar,rest_day:0
+msgid "Friday"
+msgstr "星期五"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__date_from
+msgid "From"
+msgstr "從"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Get Payslip"
+msgstr "取得薪資表"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_leave_allocation__gov_leave_type
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_leave_type__gov_leave_type
+msgid "Gov Leave type"
+msgstr "政府假別"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_leave_allocation__gov_ok
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_leave_type__gov_ok
+msgid "Government leave"
+msgstr "勞基法的假"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_policies
+msgid "HR Attendance Policies"
+msgstr "考勤政策"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_line_mixin__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__id
+msgid "ID"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Increase"
+msgstr "增加"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_employee__init_employment_date
+msgid "Initial Date of Employment"
+msgstr "報到日"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_line_mixin____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime____last_update
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data____last_update
+msgid "Last Modified on"
+msgstr "最後修改時間"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__write_uid
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__write_uid
+msgid "Last Updated by"
+msgstr "最後更新人"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__write_date
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__write_date
+msgid "Last Updated on"
+msgstr "最後更新時間"
+
+#. module: dobtor_attendance_management
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_attendance_late
+msgid "Late"
+msgstr "遲到"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__late_in
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__late_in
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Late In"
+msgstr "遲到"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__late_rule_id
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_policies_form_view
+msgid "Late In Rule"
+msgstr "遲到規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.actions.act_window,name:dobtor_attendance_management.action_hr_attendance_late
+msgid "Late In Rules"
+msgstr "遲到"
+
+#. module: dobtor_attendance_management
+#: model:hr.attendance.late.rule,name:dobtor_attendance_management.late_rule
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_late_rule
+msgid "Late Rule"
+msgstr "遲到規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_late_rule_line
+msgid "Late Rule Line"
+msgstr "遲到規則表"
+
+#. module: dobtor_attendance_management
+#: model:ir.ui.menu,name:dobtor_attendance_management.menu_hr_attendance_late_action
+msgid "Late Rules"
+msgstr "遲到規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__line_ids
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__line_ids
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__line_ids
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__line_ids
+msgid "Late Section"
+msgstr "遲到區間"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.sheet.line,status:0
+#: model:ir.model,name:dobtor_attendance_management.model_hr_leave
+msgid "Leave"
+msgstr "退出"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_leave_type
+msgid "Leave Type"
+msgstr "休假類型"
+
+#. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:722
+#, python-format
+msgid "Leave midway"
+msgstr "中途離席"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_leave_allocation
+msgid "Leaves Allocation"
+msgstr "休假分配"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__line_id
+msgid "Line"
+msgstr "明細項目"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.type,gov_leave_type:0
+#: model:hr.leave.type,name:dobtor_attendance_management.hr_leave_type_marl
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_leave_marriage
+msgid "Marriage Leave"
+msgstr "婚假"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.type,gov_leave_type:0
+#: model:hr.leave.type,name:dobtor_attendance_management.hr_leave_type_matl
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_leave_maternity
+msgid "Maternity Leave"
+msgstr "產假"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_leave_allocation__maternity_type
+msgid "Maternity leave"
+msgstr "產假"
+
+#. module: dobtor_attendance_management
+#: model:hr.leave.type,name:dobtor_attendance_management.hr_leave_type_mel
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_leave_menstruation
+msgid "Menstruation Leave"
+msgstr "生理假"
+
+#. module: dobtor_attendance_management
+#: selection:resource.calendar,mandatory_day:0
+#: selection:resource.calendar,rest_day:0
+msgid "Monday"
+msgstr "星期一"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_employee__month_of_service
+msgid "Months of Service"
+msgstr "服務月份"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__name
+msgid "Name"
+msgstr "名稱"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__note
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__note
+msgid "Note"
+msgstr "便箋"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__num_absence
+msgid "Number of Absence"
+msgstr "缺席次數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__num_diff
+msgid "Number of Difference"
+msgstr "異常時間次數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__num_late
+msgid "Number of Lates"
+msgstr "遲到次數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__num_overtime
+msgid "Number of Overtime"
+msgstr "加班次數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__num_overtime
+msgid "Number of Workday Overtime"
+msgstr "平日加班次數"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.allocation,bereavement_type:0
+msgid "On the death of grand-parent, son or daughter, parent of spouse, foster-parent or step-parent of spouse"
+msgstr "祖父母，兒子或女兒，配偶父母，配偶父母或繼父母去世時"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.allocation,bereavement_type:0
+msgid "On the death of great-grandparent, brother or sister, grand-parent of spouse"
+msgstr "曾祖父母，兄弟姊妹，配偶祖父母去世時"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.allocation,bereavement_type:0
+msgid "On the death of parent, foster-parent, step-parent, spouse"
+msgstr "父母，養父母，繼父母，配偶去世時"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.sheet,state:0
+#: selection:hr.attendance.sheet.line,state:0
+msgid "Open"
+msgstr "開立"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_overtime_rule
+msgid "Overtime Rule"
+msgstr "加班規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_overtime_rule_line
+msgid "Overtime Rule Line"
+msgstr "加班表"
+
+#. module: dobtor_attendance_management
+#: model:ir.actions.act_window,name:dobtor_attendance_management.action_hr_attendance_overtime
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_policies__overtime_rule_ids
+#: model:ir.ui.menu,name:dobtor_attendance_management.menu_hr_attendance_overtime_action
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_policies_form_view
+msgid "Overtime Rules"
+msgstr "加班規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__line_ids
+msgid "Overtime Section"
+msgstr "家班區間"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__overtime_ids
+msgid "Overtime Sheet"
+msgstr "加班表"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_payslip
+msgid "Pay Slip"
+msgstr "薪資單"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__payslip_id
+msgid "PaySlip"
+msgstr "薪資單"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Period"
+msgstr "期間"
+
+#. module: dobtor_attendance_management
+#: model:hr.leave.type,name:dobtor_attendance_management.hr_leave_type_pl
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_leave_personal
+msgid "Personal Leave"
+msgstr "事假"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__plan_sign_in
+msgid "Planned sign in"
+msgstr "表定上班"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__plan_sign_out
+msgid "Planned sign out"
+msgstr "表定下班"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.post_change_data_from_view
+msgid "Post"
+msgstr "發佈"
+
+#. module: dobtor_attendance_management
+#: model:ir.actions.act_window,name:dobtor_attendance_management.action_post_change_data
+msgid "Post change data"
+msgstr "寄出修改資料"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Post to Manager"
+msgstr "寄出給主管簽核"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.overtime.rule,type:0
+#: selection:hr.attendance.sheet.line,overtime_type:0
+#: selection:hr.attendance.sheet.overtime,type:0
+msgid "Public Holiday"
+msgstr "國定假日"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Quantity"
+msgstr "數量"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Reduce"
+msgstr "減少"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_resource_calendar
+msgid "Resource Working Time"
+msgstr "資源工作時間"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__rule_id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__rule_id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__rule_id
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_line_mixin__rule_id
+msgid "Rule"
+msgstr "規則"
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_rule_line_mixin
+msgid "Rule Line mixin"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_rule_mixin
+msgid "Rule mixin"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: selection:resource.calendar,mandatory_day:0
+#: selection:resource.calendar,rest_day:0
+msgid "Saturday"
+msgstr "星期六"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__sequence
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__sequence
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__sequence
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_line_mixin__sequence
+msgid "Sequence"
+msgstr "序列"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Set to Draft"
+msgstr "設為草稿"
+
+#. module: dobtor_attendance_management
+#: model:hr.leave.type,name:dobtor_attendance_management.hr_leave_type_sl
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_leave_sick
+msgid "Sick Leave"
+msgstr "病假"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__state
+msgid "State"
+msgstr "州/省"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__state
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__status
+msgid "Status"
+msgstr "狀態"
+
+#. module: dobtor_attendance_management
+#: selection:resource.calendar,mandatory_day:0
+#: selection:resource.calendar,rest_day:0
+msgid "Sunday"
+msgstr "星期日"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,help:dobtor_attendance_management.field_hr_leave_type__code
+msgid "The code that can be used in the salary rules"
+msgstr "可以在薪資規則中使用的代碼"
+
+#. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_payslip.py:85
+#, python-format
+msgid "The initial employment date cannot be before the first contract in the system!"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: selection:resource.calendar,mandatory_day:0
+#: selection:resource.calendar,rest_day:0
+msgid "Thursday"
+msgstr "星期四"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule_line__time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule_line__time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_line_mixin__time
+msgid "Time"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__date_to
+msgid "To"
+msgstr "至"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__total_absence
+msgid "Total Absence Time"
+msgstr "總曠職時數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__total_diff
+msgid "Total Difference Time"
+msgstr "總異常打卡時數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__total_late
+msgid "Total Late In"
+msgstr "總遲到時數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__total_overtime
+msgid "Total Overtime"
+msgstr "總加班時數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__total_overtime
+msgid "Total Workday Overtime"
+msgstr "總平日加班時數"
+
+#. module: dobtor_attendance_management
+#: selection:resource.calendar,mandatory_day:0
+#: selection:resource.calendar,rest_day:0
+msgid "Tuesday"
+msgstr "星期二"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_resource_calendar__two_days_off
+msgid "Two days off"
+msgstr "周休二日"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__type
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__type
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__overtime_type
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__type
+msgid "Type"
+msgstr "類型"
+
+#. module: dobtor_attendance_management
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_leave_unfinished_annual
+msgid "Unfinished Annual Leave"
+msgstr "未修完特休"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__real_time_ok
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__real_time_ok
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__real_time_ok
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__real_time_ok
+msgid "Use Real Time"
+msgstr "使用實時"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.overtime.rule,type:0
+#: selection:hr.attendance.sheet.line,overtime_type:0
+#: selection:hr.attendance.sheet.overtime,type:0
+msgid "Vacation day"
+msgstr "休假日"
+
+#. module: dobtor_attendance_management
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Valid"
+msgstr "有效"
+
+#. module: dobtor_attendance_management
+#: selection:resource.calendar,mandatory_day:0
+#: selection:resource.calendar,rest_day:0
+msgid "Wednesday"
+msgstr "星期三"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.sheet.line,status:0
+msgid "Week End"
+msgstr "周末"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.overtime.rule,type:0
+#: selection:hr.attendance.sheet.line,overtime_type:0
+#: selection:hr.attendance.sheet.overtime,type:0
+msgid "Weekly Official Holidays"
+msgstr "例假日"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__overtime
+msgid "Work OverTime"
+msgstr "超時工作"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_post_change_data__overtime
+#: model_terms:ir.ui.view,arch_db:dobtor_attendance_management.hr_attendance_sheet_form_view
+msgid "Work Overtime"
+msgstr "超時工作"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__work_time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__work_time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__work_time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__work_time
+msgid "Work hour"
+msgstr "工作時數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__worked_hours
+msgid "Worked Hours"
+msgstr "工作時數"
+
+#. module: dobtor_attendance_management
+#: selection:hr.attendance.overtime.rule,type:0
+#: selection:hr.attendance.sheet.line,overtime_type:0
+#: selection:hr.attendance.sheet.overtime,type:0
+msgid "Working Day"
+msgstr "工作天數"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_employee__year_of_service
+msgid "Years of Service"
+msgstr "年資"
+
+#. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:225
+#, python-format
+msgid "You must add the work hours in the %s contract."
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:233
+#, python-format
+msgid "You must define the attendance policies in %s's contract"
+msgstr "你必須在員工 %s 的合約中設定預設的考勤政策"
+
+#. module: dobtor_attendance_management
+#: model:hr.attendance.absence.rule,name:dobtor_attendance_management.absence_rule
+msgid "absence Rule"
+msgstr "曠職規則"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.allocation,maternity_type:0
+msgid "after childbirth"
+msgstr "女性員工分娩"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__allow_time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__allow_time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__allow_time
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__allow_time
+msgid "allow hour"
+msgstr "允許彈性時間"
+
+#. module: dobtor_attendance_management
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_attendance_diff
+msgid "difference"
+msgstr "異常"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_resource_calendar__rest_day
+msgid "flexible rest day"
+msgstr "休假日"
+
+#. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:394
+#, python-format
+msgid "flexible worktime hours"
+msgstr "彈性工時"
+
+#. module: dobtor_attendance_management
+#: model:ir.actions.server,name:dobtor_attendance_management.ir_cron_recompute_annual_leaves_ir_actions_server
+#: model:ir.cron,cron_name:dobtor_attendance_management.ir_cron_recompute_annual_leaves
+#: model:ir.cron,name:dobtor_attendance_management.ir_cron_recompute_annual_leaves
+msgid "hr leaves; Annual Leaves"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_sheet
+msgid "hr.attendance.sheet"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_sheet_line
+msgid "hr.attendance.sheet.line"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: model:ir.model,name:dobtor_attendance_management.model_hr_attendance_sheet_overtime
+msgid "hr.attendance.sheet.overtime"
+msgstr ""
+
+#. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:147
+#, python-format
+msgid ""
+"in this case are already attendance sheet existing or singularity.\n"
+" employee : {}\n"
+" from : {}\n"
+" to : {}"
+msgstr ""
+"考勤表已存在或有重疊查詢時間\n"
+" 員工 : {} \n"
+" 時間從 : {} \n"
+" 到 : {}"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_resource_calendar__mandatory_day
+msgid "mandatory day off"
+msgstr "例假日"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.allocation,maternity_type:0
+msgid "miscarriage, occurs after three months of pregnancy"
+msgstr "妊娠3個月以上流產者，4星期"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.allocation,maternity_type:0
+msgid "miscarriage, occurs less than two months into the pregnancy"
+msgstr "妊娠未滿2個月流產者，5日"
+
+#. module: dobtor_attendance_management
+#: selection:hr.leave.allocation,maternity_type:0
+msgid "miscarriage, occurs two to three months into the pregnancy"
+msgstr "妊娠2個月以上未滿3個月流產者，1星期"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_absence_rule__name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_diff_rule__name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_late_rule__name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__name
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet__name
+msgid "name"
+msgstr "名稱"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule__need_post
+msgid "need Post"
+msgstr "需要審核"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,help:dobtor_attendance_management.field_resource_calendar__two_days_off
+msgid "one mandatory day off and one flexible rest day"
+msgstr "一例一休"
+
+#. module: dobtor_attendance_management
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_attendance_over_workday_2
+msgid "overtime workday (1/3)"
+msgstr "平日加班(1/3)倍"
+
+#. module: dobtor_attendance_management
+#: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_attendance_over_workday_3
+msgid "overtime workday (2/3)"
+msgstr "平日加班(2/3)倍"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_overtime_rule_line__pattern
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_overtime__pattern
+msgid "pattern"
+msgstr "模式"
+
+#. module: dobtor_attendance_management
+#: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_employee__returning_hr
+msgid "returning employees"
+msgstr "回鍋員工(年資重計)"
+
+#. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:153
+#, python-format
+msgid "{} sheet : {}"
+msgstr "{} 表: {}"
