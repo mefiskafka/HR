@@ -156,7 +156,8 @@ class HrPayslip(models.Model):
                         work_hours = min(work_hours, calendar.hours_per_day)
                     else:
                         work_hours = min(work_hours, calendar.HOURS_PER_DAY)
-                    current_leave_struct['number_of_days'] += hours / work_hours
+                    current_leave_struct['number_of_days'] += min(
+                        hours, calendar.hours_per_day or calendar.HOURS_PER_DAY) / work_hours
 
             # compute worked days
             work_data = contract.employee_id.get_work_days_data(

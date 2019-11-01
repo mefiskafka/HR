@@ -10,6 +10,7 @@ class HRAttendancePolicies(models.Model):
     name = fields.Char(
         string="Name",
         required=True,
+        translate=True
     )
     late_rule_id = fields.Many2one(
         string="Late In Rule",
