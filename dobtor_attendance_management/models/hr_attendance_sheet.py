@@ -397,7 +397,7 @@ class HRAttendanceSheet(models.Model):
     def prepare_common_date(self, **data):
         return {
             'date': data.get('day').strftime('%Y-%m-%d'),
-            'day': data.get('day').strftime('%A'),
+            'day': str(data.get('day').weekday()),
             'plan_sign_in': data.get('plan_sign_in'),
             'plan_sign_out': data.get('plan_sign_out'),
             'sheet_id': self.id,
@@ -781,7 +781,19 @@ class AttendanceSheetLine(models.Model):
         readonly=True
     )
     date = fields.Date(string="Date", readonly=True)
-    day = fields.Char(string="Day", readonly=True)
+    # day = fields.Char(string="Day", readonly=True)
+    day = fields.Selection(
+        string='Day',
+        selection=[
+        ('0', 'Monday'),
+        ('1', 'Tuesday'),
+        ('2', 'Wednesday'),
+        ('3', 'Thursday'),
+        ('4', 'Friday'),
+        ('5', 'Saturday'),
+        ('6', 'Sunday')
+        ],
+    )
     sheet_id = fields.Many2one(
         string='Attendance Sheet',
         comodel_name='hr.attendance.sheet',
