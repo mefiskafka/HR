@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0-20190430\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-05 03:09+0000\n"
-"PO-Revision-Date: 2019-10-05 13:57+0800\n"
+"POT-Creation-Date: 2019-11-03 16:42+0000\n"
+"PO-Revision-Date: 2019-11-04 00:44+0800\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,6 @@ msgstr "勞保局"
 #. module: dobtor_account_gov_tw
 #: code:addons/dobtor_account_gov_tw/models/notespayable.py:54
 #: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
-#: selection:notespayable.order,state:0
 #, python-format
 msgid "Cancel"
 msgstr "取消"
@@ -426,7 +425,6 @@ msgstr "憑單行"
 
 #. module: dobtor_account_gov_tw
 #: code:addons/dobtor_account_gov_tw/models/notespayable.py:52
-#: selection:notespayable.order,state:0
 #, python-format
 msgid "Invoiced"
 msgstr "已開立憑單"
@@ -503,10 +501,9 @@ msgstr "國稅局"
 
 #. module: dobtor_account_gov_tw
 #: code:addons/dobtor_account_gov_tw/models/notespayable.py:51
-#: selection:notespayable.order,state:0
 #, python-format
 msgid "New"
-msgstr "票據"
+msgstr ""
 
 #. module: dobtor_account_gov_tw
 #: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_finance_notes
@@ -552,10 +549,9 @@ msgstr "其他應付帳款明細"
 
 #. module: dobtor_account_gov_tw
 #: code:addons/dobtor_account_gov_tw/models/hr_payslip.py:45
-#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_contract__average_dependents_number
 #, python-format
 msgid "Number of Average Dependents"
-msgstr "平均眷口數"
+msgstr ""
 
 #. module: dobtor_account_gov_tw
 #: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_occupational_accident_insurance_company
@@ -618,10 +614,9 @@ msgstr "付款條款"
 
 #. module: dobtor_account_gov_tw
 #: code:addons/dobtor_account_gov_tw/models/notespayable.py:53
-#: selection:notespayable.order,state:0
 #, python-format
 msgid "Posted"
-msgstr "已付款"
+msgstr ""
 
 #. module: dobtor_account_gov_tw
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__price
@@ -657,7 +652,7 @@ msgstr "產品"
 #: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_form
 #: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_partner_search_gov_tw
 msgid "Public Administration"
-msgstr "政府機關業務"
+msgstr "政府機關單位"
 
 #. module: dobtor_account_gov_tw
 #: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.notespayable_order_tree
@@ -679,6 +674,11 @@ msgstr "規則"
 #: model:ir.ui.menu,name:dobtor_account_gov_tw.menu_finance_salary
 msgid "Salary"
 msgstr "薪資設定"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__journal_id
+msgid "Salary Journal"
+msgstr "薪資日記帳"
 
 #. module: dobtor_account_gov_tw
 #: model:ir.model,name:dobtor_account_gov_tw.model_hr_salary_rule
@@ -709,7 +709,7 @@ msgstr "序列"
 #. module: dobtor_account_gov_tw
 #: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
 msgid "Set default Public Administration Structure."
-msgstr "設定政府機關業務的預設薪資結構."
+msgstr "設定政府機關單位的預設薪資結構."
 
 #. module: dobtor_account_gov_tw
 #: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form_inhert
@@ -731,6 +731,11 @@ msgstr "狀態"
 #: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
 msgid "Structure"
 msgstr "薪資結構"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order_line__superposition
+msgid "Superposition"
+msgstr ""
 
 #. module: dobtor_account_gov_tw
 #: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_2nd_generation_NHI_company
@@ -755,6 +760,12 @@ msgstr "國稅局相關聯絡人"
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__tax_product_id
 msgid "TAX Product"
 msgstr "國稅局相關產品"
+
+#. module: dobtor_account_gov_tw
+#: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_tax
+#: model:hr.salary.rule.formula.select,name:dobtor_account_gov_tw.hr_rule_formula_select_tax
+msgid "Tax"
+msgstr ""
 
 #. module: dobtor_account_gov_tw
 #: model:hr.salary.rule,name:dobtor_account_gov_tw.hr_rule_withholding_tax
@@ -783,7 +794,7 @@ msgid "Total amount"
 msgstr "合計金額"
 
 #. module: dobtor_account_gov_tw
-#: code:addons/dobtor_account_gov_tw/models/notespayable.py:265
+#: code:addons/dobtor_account_gov_tw/models/notespayable.py:290
 #, python-format
 msgid "Unable to {} this notespayable order. You must first {} the related bills."
 msgstr ""
@@ -817,15 +828,23 @@ msgid "Withholding BLI Default"
 msgstr "預設代扣勞保"
 
 #. module: dobtor_account_gov_tw
-#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__withholding_bli_journal
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__withholding_bli_journal
+msgid "Withholding BLI Jouranl"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__withholding_bli_journal
 msgid "Withholding BLI Journal"
 msgstr "代扣勞保帳本"
 
 #. module: dobtor_account_gov_tw
+#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
+msgid "Withholding NHI Default"
+msgstr "預設代扣健保"
+
+#. module: dobtor_account_gov_tw
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__withholding_nhi_journal
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__withholding_nhi_journal
-#: model_terms:ir.ui.view,arch_db:dobtor_account_gov_tw.res_config_settings_view_form
 msgid "Withholding NHI Journal"
 msgstr "代扣健保帳本"
 
@@ -840,10 +859,14 @@ msgid "Withholding Tax Default"
 msgstr "預設代扣所得稅"
 
 #. module: dobtor_account_gov_tw
-#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__withholding_tax_journal
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__withholding_tax_journal
 msgid "Withholding Tax Jouranl"
 msgstr "代扣所得稅帳本"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_company__withholding_tax_journal
+msgid "Withholding Tax Journal"
+msgstr ""
 
 #. module: dobtor_account_gov_tw
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_res_config_settings__withholding_tax_limit
@@ -854,6 +877,12 @@ msgstr "最低代扣所得稅"
 #: model:product.category,name:dobtor_account_gov_tw.product_category_gov
 msgid "government"
 msgstr "政府稅務"
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_payslip_line__superposition
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_salary_rule__superposition
+msgid "help to NHI2nd (Company)"
+msgstr ""
 
 #. module: dobtor_account_gov_tw
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_notespayable_order__invoice_amount_diff
@@ -874,6 +903,12 @@ msgid "notes payable order"
 msgstr ""
 
 #. module: dobtor_account_gov_tw
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_payslip_line__superposition
+#: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_salary_rule__superposition
+msgid "superposition principle"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__tax_premium
 msgid "tax Premium"
 msgstr "代扣所得稅費率"
@@ -882,6 +917,31 @@ msgstr "代扣所得稅費率"
 #: model:ir.model.fields,field_description:dobtor_account_gov_tw.field_hr_contract__withholding_tax_limit
 msgid "withholding tax limit"
 msgstr "最低代扣所得稅"
+
+#. module: dobtor_account_gov_tw
+#: selection:notespayable.order,state:0
+msgid "取消"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: selection:notespayable.order,state:0
+msgid "已過帳"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: selection:notespayable.order,state:0
+msgid "已開立憑單"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: model:ir.model.fields,help:dobtor_account_gov_tw.field_hr_contract__average_dependents_number
+msgid "平均眷口數"
+msgstr ""
+
+#. module: dobtor_account_gov_tw
+#: selection:notespayable.order,state:0
+msgid "新建"
+msgstr ""
 
 #. module: dobtor_account_gov_tw
 #: model:product.product,description:dobtor_account_gov_tw.partner_gov_insurance

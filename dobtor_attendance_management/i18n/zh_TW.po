@@ -636,7 +636,7 @@ msgstr "遲到區間"
 #: selection:hr.attendance.sheet.line,status:0
 #: model:ir.model,name:dobtor_attendance_management.model_hr_leave
 msgid "Leave"
-msgstr "退出"
+msgstr "請假"
 
 #. module: dobtor_attendance_management
 #: model:ir.model,name:dobtor_attendance_management.model_hr_leave_type
