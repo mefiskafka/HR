@@ -85,7 +85,7 @@
                         <div class="col-12 col-lg-6 o_setting_box">
                             <div class="o_setting_left_pane"/>
                             <div class="o_setting_right_pane">
-                                <label string="Withholding NHI Journal" for="withholding_nhi_journal"/>
+                                <label string="Withholding NHI Default" for="withholding_nhi_journal"/>
                                 <div class="text-muted">
                                     Accounting journal/Contact/Product used to Withholding NHI.
                                 </div>

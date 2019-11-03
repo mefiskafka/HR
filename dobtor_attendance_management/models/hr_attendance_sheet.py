@@ -781,17 +781,16 @@ class AttendanceSheetLine(models.Model):
         readonly=True
     )
     date = fields.Date(string="Date", readonly=True)
-    # day = fields.Char(string="Day", readonly=True)
     day = fields.Selection(
         string='Day',
         selection=[
-        ('0', 'Monday'),
-        ('1', 'Tuesday'),
-        ('2', 'Wednesday'),
-        ('3', 'Thursday'),
-        ('4', 'Friday'),
-        ('5', 'Saturday'),
-        ('6', 'Sunday')
+            ('0', _('Monday')),
+            ('1', _('Tuesday')),
+            ('2', _('Wednesday')),
+            ('3', _('Thursday')),
+            ('4', _('Friday')),
+            ('5', _('Saturday')),
+            ('6', _('Sunday'))
         ],
     )
     sheet_id = fields.Many2one(
