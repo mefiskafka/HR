@@ -106,7 +106,7 @@ class HRAttendanceOvertimeRule(models.Model):
     _name = 'hr.attendance.overtime.rule'
     _description = 'Overtime Rule'
 
-    name = fields.Char(string="name")
+    name = fields.Char(string="name", translate=True)
     type = fields.Selection(selection=[
         ('workday', 'Working Day'),
         ('official', 'Weekly Official Holidays'),
