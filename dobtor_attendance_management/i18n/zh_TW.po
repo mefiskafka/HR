@@ -271,32 +271,32 @@ msgstr "修改超時時間"
 #. module: dobtor_attendance_management
 #: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_absence
 msgid "Click here to create a Absence Rule."
-msgstr "點擊此處創建缺勤規則."
+msgstr "點擊創建建立缺勤規則."
 
 #. module: dobtor_attendance_management
 #: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_attendance_sheet
 msgid "Click here to create a Attendance Sheet."
-msgstr "點擊此處創建差勤表."
+msgstr "點擊創建建立差勤表."
 
 #. module: dobtor_attendance_management
 #: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_diff
 msgid "Click here to create a Difference Rule."
-msgstr "點擊此處創建異常打卡規則."
+msgstr "點擊創建建立異常打卡規則."
 
 #. module: dobtor_attendance_management
 #: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_late
 msgid "Click here to create a Late in Rule."
-msgstr "點擊此處創建遲到規則."
+msgstr "點擊創建建立遲到規則."
 
 #. module: dobtor_attendance_management
 #: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_overtime
 msgid "Click here to create a Overtime Rule."
-msgstr "點擊此處創建加班規則."
+msgstr "點擊創建建立加班規則."
 
 #. module: dobtor_attendance_management
 #: model_terms:ir.actions.act_window,help:dobtor_attendance_management.action_hr_attendance_policies
 msgid "Click here to create a Policy."
-msgstr "點擊此處創建考勤政策."
+msgstr "點擊創建建立考勤政策."
 
 #. module: dobtor_attendance_management
 #: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_leave_type__code
