@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0-20190430\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-03 16:28+0000\n"
-"PO-Revision-Date: 2019-11-04 00:30+0800\n"
+"POT-Creation-Date: 2019-11-04 02:06+0000\n"
+"PO-Revision-Date: 2019-11-04 10:08+0800\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -463,9 +463,11 @@ msgid "Flexible working hours"
 msgstr "彈性工時"
 
 #. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:791
 #: selection:hr.attendance.sheet.line,day:0
 #: selection:resource.calendar,mandatory_day:0
 #: selection:resource.calendar,rest_day:0
+#, python-format
 msgid "Friday"
 msgstr "星期五"
 
@@ -685,9 +687,11 @@ msgid "Menstruation Leave"
 msgstr "生理假"
 
 #. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:787
 #: selection:hr.attendance.sheet.line,day:0
 #: selection:resource.calendar,mandatory_day:0
 #: selection:resource.calendar,rest_day:0
+#, python-format
 msgid "Monday"
 msgstr "星期一"
 
@@ -706,7 +710,7 @@ msgstr "名稱"
 #: code:addons/dobtor_attendance_management/models/hr_payslip.py:166
 #, python-format
 msgid "Normal Working Days paid at 100%"
-msgstr "正常工作日支付100%"
+msgstr ""
 
 #. module: dobtor_attendance_management
 #: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__note
@@ -875,9 +879,11 @@ msgid "Rule mixin"
 msgstr ""
 
 #. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:792
 #: selection:hr.attendance.sheet.line,day:0
 #: selection:resource.calendar,mandatory_day:0
 #: selection:resource.calendar,rest_day:0
+#, python-format
 msgid "Saturday"
 msgstr "星期六"
 
@@ -912,9 +918,11 @@ msgid "Status"
 msgstr "狀態"
 
 #. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:793
 #: selection:hr.attendance.sheet.line,day:0
 #: selection:resource.calendar,mandatory_day:0
 #: selection:resource.calendar,rest_day:0
+#, python-format
 msgid "Sunday"
 msgstr "星期日"
 
@@ -930,9 +938,11 @@ msgid "The initial employment date cannot be before the first contract in the sy
 msgstr ""
 
 #. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:790
 #: selection:hr.attendance.sheet.line,day:0
 #: selection:resource.calendar,mandatory_day:0
 #: selection:resource.calendar,rest_day:0
+#, python-format
 msgid "Thursday"
 msgstr "星期四"
 
@@ -975,9 +985,11 @@ msgid "Total Workday Overtime"
 msgstr "總平日加班時數"
 
 #. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:788
 #: selection:hr.attendance.sheet.line,day:0
 #: selection:resource.calendar,mandatory_day:0
 #: selection:resource.calendar,rest_day:0
+#, python-format
 msgid "Tuesday"
 msgstr "星期二"
 
@@ -1010,6 +1022,11 @@ msgid "Use Real Time"
 msgstr "使用實時"
 
 #. module: dobtor_attendance_management
+#: model:hr.attendance.overtime.rule,name:dobtor_attendance_management.overtime_rule_vacation
+msgid "Vacation Overtime Rule"
+msgstr "休假日加班規則"
+
+#. module: dobtor_attendance_management
 #: selection:hr.attendance.overtime.rule,type:0
 #: selection:hr.attendance.sheet.line,overtime_type:0
 #: selection:hr.attendance.sheet.overtime,type:0
@@ -1022,9 +1039,11 @@ msgid "Valid"
 msgstr "有效"
 
 #. module: dobtor_attendance_management
+#: code:addons/dobtor_attendance_management/models/hr_attendance_sheet.py:789
 #: selection:hr.attendance.sheet.line,day:0
 #: selection:resource.calendar,mandatory_day:0
 #: selection:resource.calendar,rest_day:0
+#, python-format
 msgid "Wednesday"
 msgstr "星期三"
 
@@ -1058,6 +1077,11 @@ msgstr "超時工作"
 #: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_rule_mixin__work_time
 msgid "Work hour"
 msgstr "工作時數"
+
+#. module: dobtor_attendance_management
+#: model:hr.attendance.overtime.rule,name:dobtor_attendance_management.overtime_rule_workday
+msgid "Workday Overtime Rule"
+msgstr "平日加班規則"
 
 #. module: dobtor_attendance_management
 #: model:ir.model.fields,field_description:dobtor_attendance_management.field_hr_attendance_sheet_line__worked_hours
@@ -1208,7 +1232,7 @@ msgstr "一例一休"
 #: selection:hr.leave.allocation,annual_year:0
 #, python-format
 msgid "over 25"
-msgstr ""
+msgstr "超過25年"
 
 #. module: dobtor_attendance_management
 #: model:hr.salary.rule,name:dobtor_attendance_management.hr_rule_attendance_over_workday_2

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
 
         <record id="ir_cron_recompute_annual_leaves" model="ir.cron">
             <field name="name">hr leaves; Annual Leaves</field>
