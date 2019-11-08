@@ -3,6 +3,7 @@ from odoo import models, tools, fields, api, _
 from datetime import date, datetime, time
 from dateutil.relativedelta import relativedelta
 from odoo.addons.resource.models.resource import HOURS_PER_DAY
+from odoo.exceptions import AccessError, UserError, Warning
 
 
 class HrLeave(models.Model):
@@ -59,6 +60,85 @@ class HrLeaveType(models.Model):
             ('maternity', 'Maternity Leave'),
         ]
     )
+
+    @api.multi
+    def get_days(self, employee_id):
+        result = super().get_days(employee_id)
+        requests = self.env['hr.leave'].search([
+            ('employee_id', '=', employee_id),
+            ('state', 'in', ['confirm', 'validate1', 'validate']),
+            ('holiday_status_id', 'in', self.ids)
+        ])
+        allocations_all = self.env['hr.leave.allocation'].search([
+            ('employee_id', '=', employee_id),
+            ('state', 'in', ['confirm', 'validate1', 'validate']),
+            ('gov_leave_type', '=', 'annual'),
+            ('holiday_status_id', 'in', self.ids)
+        ])
+        allocations_annual = self.env['hr.leave.allocation'].search([
+            ('employee_id', '=', employee_id),
+            ('state', 'in', ['confirm', 'validate1', 'validate']),
+            ('holiday_status_id', 'in', self.ids),
+            ('gov_leave_type', '=', 'annual'),
+            ('annual_to', '<', date.today())
+        ])
+        allocations = allocations_all - allocations_annual
+        request_annual_virtual_remaining_leaves = 0.00
+        requestes = self.env['hr.leave']
+        i = 0
+        for allocation_annual in allocations_annual:
+            i = i + 1
+            # expired allocations leave.
+            if allocation_annual.gov_leave_type == 'annual':
+                status_dict = result[allocation_annual.holiday_status_id.id]
+                status_dict['max_leaves'] -= (allocation_annual.number_of_hours_display
+                                              if allocation_annual.type_request_unit == 'hour'
+                                              else allocation_annual.number_of_days)
+                status_dict['virtual_remaining_leaves'] = 0
+                status_dict['remaining_leaves'] = 0
+                if not len(allocations):
+                    for request_annual in requests.filtered(lambda r: r.request_date_to > allocation_annual.annual_to and r.holiday_status_id == allocation_annual.holiday_status_id):
+                        request_annual_virtual_remaining_leaves += (request_annual.number_of_hours_display
+                                                             if request_annual.leave_type_request_unit == 'hour'
+                                                             else request_annual.number_of_days)
+                        status_dict['virtual_remaining_leaves'] -= request_annual_virtual_remaining_leaves
+                        if request_annual.state == 'validate':
+                            status_dict['remaining_leaves'] -= request_annual_virtual_remaining_leaves
+                    for request_old in requests.filtered(lambda r: r.holiday_status_id == allocation_annual.holiday_status_id) - requests.filtered(lambda r: r.request_date_to > allocation_annual.annual_to and r.holiday_status_id == allocation_annual.holiday_status_id):
+                        # You cannot request expired allocations leave.
+                        if request_old.create_date.date() == date.today():
+                            status_dict['virtual_remaining_leaves'] = -1
+                            status_dict['remaining_leaves'] = -1
+                else:
+                    if len(allocations_annual) == i:
+                        requestes = requests.filtered(lambda r: r.request_date_to <= allocation_annual.annual_to and r.holiday_status_id == allocation_annual.holiday_status_id)     
+
+        allocation_virtual_remaining_leaves = 0.00
+        for allocation in allocations:
+            status_dict = result[allocation.holiday_status_id.id]
+            if allocation.gov_leave_type == 'annual' and status_dict['virtual_remaining_leaves'] == 0:
+                request_virtual_remaining_leaves = 0.00
+                if len(allocations_annual) == i:
+                    requestes = requests.filtered(
+                        lambda r: r.request_date_to <= allocation.annual_to and r.holiday_status_id == allocation.holiday_status_id) - requestes
+                
+                if allocation.state == 'validate':
+                    allocation_virtual_remaining_leaves = (allocation.number_of_hours_display
+                                                        if allocation.type_request_unit == 'hour'
+                                                        else allocation.number_of_days)
+
+                    status_dict['virtual_remaining_leaves'] += allocation_virtual_remaining_leaves
+                    status_dict['remaining_leaves'] += allocation_virtual_remaining_leaves
+        
+        for request in requestes:
+            request_virtual_remaining_leaves += (request.number_of_hours_display
+                                                if request.leave_type_request_unit == 'hour'
+                                                else request.number_of_days)
+            status_dict['virtual_remaining_leaves'] -= request_virtual_remaining_leaves
+            if request.state == 'validate':
+                status_dict['remaining_leaves'] -= request_virtual_remaining_leaves
+
+        return result
     # The Rules are prescribed pursuant to Article 43 of the Labor Standards Act
 
 
@@ -110,6 +190,9 @@ class HrLeaveAllocation(models.Model):
     annual_to = fields.Date(
         string='annual date to',
     )
+    # annual_from = fields.Date(
+    #     string='annual date from',
+    # )
     bereavement_type = fields.Selection(
         string='Bereavement leave',
         selection=[
@@ -193,7 +276,8 @@ class HrLeaveAllocation(models.Model):
                         days = 15
                     elif 10 <= employee.year_of_service:
                         days = (15 + (int(employee.year_of_service)-9))
-            annual_year = '{}_{}'.format(str(year), str(days)) if year <= 24 else 'over25_30'
+            annual_year = '{}_{}'.format(str(year), str(
+                days)) if year <= 24 else 'over25_30'
             days = 30 if days > 30 else days
             hours = days * HOURS_PER_DAY
             annual_allocation = self.env['hr.leave.allocation'].search([
@@ -219,7 +303,9 @@ class HrLeaveAllocation(models.Model):
                         'number_of_days': hours / (employee.resource_calendar_id.hours_per_day or HOURS_PER_DAY),
                         'employee_id': employee.id,
                         # TODO : need to change, this case for acqu
+                        # 'annual_from': date()
                         'annual_to': date((datetime.now() + relativedelta(years=1)).year, 12, 31)
                     }
-                    annual_allocation = self.env['hr.leave.allocation'].create(data)
+                    annual_allocation = self.env['hr.leave.allocation'].create(
+                        data)
                     annual_allocation.sudo().action_approve()
