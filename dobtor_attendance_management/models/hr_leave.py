@@ -3,7 +3,7 @@ from odoo import models, tools, fields, api, _
 from datetime import date, datetime, time
 from dateutil.relativedelta import relativedelta
 from odoo.addons.resource.models.resource import HOURS_PER_DAY
-from odoo.exceptions import AccessError, UserError, Warning
+from odoo.exceptions import AccessError, UserError, ValidationError
 
 
 class HrLeave(models.Model):
@@ -84,21 +84,24 @@ class HrLeaveType(models.Model):
         ])
         allocations = allocations_all - allocations_annual
         request_annual_virtual_remaining_leaves = 0.00
+        allocation_day = 0.00
         requestes = self.env['hr.leave']
         i = 0
+
         for allocation_annual in allocations_annual:
-            i = i + 1
+            i += 1
             # expired allocations leave.
             if allocation_annual.gov_leave_type == 'annual':
                 status_dict = result[allocation_annual.holiday_status_id.id]
-                status_dict['max_leaves'] -= (allocation_annual.number_of_hours_display
+                allocation_day = (allocation_annual.number_of_hours_display
                                               if allocation_annual.type_request_unit == 'hour'
                                               else allocation_annual.number_of_days)
+                status_dict['max_leaves'] -= allocation_day
                 status_dict['virtual_remaining_leaves'] = 0
                 status_dict['remaining_leaves'] = 0
                 if not len(allocations):
                     for request_annual in requests.filtered(lambda r: r.request_date_to > allocation_annual.annual_to and r.holiday_status_id == allocation_annual.holiday_status_id):
-                        request_annual_virtual_remaining_leaves += (request_annual.number_of_hours_display
+                        request_annual_virtual_remaining_leaves = (request_annual.number_of_hours_display
                                                              if request_annual.leave_type_request_unit == 'hour'
                                                              else request_annual.number_of_days)
                         status_dict['virtual_remaining_leaves'] -= request_annual_virtual_remaining_leaves
@@ -106,19 +109,42 @@ class HrLeaveType(models.Model):
                             status_dict['remaining_leaves'] -= request_annual_virtual_remaining_leaves
                     for request_old in requests.filtered(lambda r: r.holiday_status_id == allocation_annual.holiday_status_id) - requests.filtered(lambda r: r.request_date_to > allocation_annual.annual_to and r.holiday_status_id == allocation_annual.holiday_status_id):
                         # You cannot request expired allocations leave.
+                        #  today :                                 |█|
+                        #  allocation annual :   |██████████████|
+                        #  request leave :                 |██|         
                         if request_old.create_date.date() == date.today():
                             status_dict['virtual_remaining_leaves'] = -1
                             status_dict['remaining_leaves'] = -1
                 else:
+                    # find last expired allocation annual
+                    #  today :                                 |█|
+                    #  allocation annual :             |██████████████|
+                    #  allocation annual :   |██████████████|
+                    #  request leave :                  |██|
                     if len(allocations_annual) == i:
-                        requestes = requests.filtered(lambda r: r.request_date_to <= allocation_annual.annual_to and r.holiday_status_id == allocation_annual.holiday_status_id)     
+                        check_requestes = requests.filtered(lambda r: r.request_date_to <= allocation_annual.annual_to and r.holiday_status_id == allocation_annual.holiday_status_id)     
+                        # count requestes day and max_leave
+                        check_request_leaves = 0.0
+                        for request in requestes:
+                            check_request_leaves += (request.number_of_hours_display
+                                                 if request.leave_type_request_unit == 'hour'
+                                                 else request.number_of_days)
+                        if check_request_leaves <= allocation_day:
+                            requestes = check_requestes
+                        else:
+                            # TODO : handle overlapping leave and allocation_day > check_request_leaves
+                            requestes = check_requestes
 
         allocation_virtual_remaining_leaves = 0.00
+        j = 0.00
         for allocation in allocations:
+            # normal
+            #  allocation annual :   |██████████████|
+            #  request leave :                 |██|   
             status_dict = result[allocation.holiday_status_id.id]
+            j += 1
             if allocation.gov_leave_type == 'annual' and status_dict['virtual_remaining_leaves'] == 0:
-                request_virtual_remaining_leaves = 0.00
-                if len(allocations_annual) == i:
+                if len(allocations) == j:
                     requestes = requests.filtered(
                         lambda r: r.request_date_to <= allocation.annual_to and r.holiday_status_id == allocation.holiday_status_id) - requestes
                 
@@ -126,12 +152,21 @@ class HrLeaveType(models.Model):
                     allocation_virtual_remaining_leaves = (allocation.number_of_hours_display
                                                         if allocation.type_request_unit == 'hour'
                                                         else allocation.number_of_days)
-
                     status_dict['virtual_remaining_leaves'] += allocation_virtual_remaining_leaves
                     status_dict['remaining_leaves'] += allocation_virtual_remaining_leaves
+        # if no expired allocation annual, but request leave over-time
+        #  allocation annual :   |██████████████|
+        #  request leave :                         |██|
+        if len(allocations) == 1:
+            request_over_time = requests.filtered(
+                lambda r: r.request_date_to > allocations[0].annual_to and r.holiday_status_id == allocations[0].holiday_status_id)
+            if len(request_over_time) > 1:
+                raise ValidationError(_('The number of remaining leaves is not sufficient for this leave type.\n'
+                    'Please also check the leaves waiting for validation.'))
         
+        request_virtual_remaining_leaves = 0.00
         for request in requestes:
-            request_virtual_remaining_leaves += (request.number_of_hours_display
+            request_virtual_remaining_leaves = (request.number_of_hours_display
                                                 if request.leave_type_request_unit == 'hour'
                                                 else request.number_of_days)
             status_dict['virtual_remaining_leaves'] -= request_virtual_remaining_leaves
