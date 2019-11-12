@@ -6,6 +6,11 @@ from odoo import models, fields, api, _
 class Contract(models.Model):
     _inherit = 'hr.contract'
 
+    def get_journal(self):
+        if self.env.user.company_id.hr_salary_journal:
+            return self.env.user.company_id.hr_salary_journal.id
+        return self.env['account.journal'].search([('type', '=', 'general')], limit=1)
+
     # ordinary insurance
     ordinary_employer_ratio = fields.Float(
         string='Company Contribution Ratio',
@@ -68,7 +73,7 @@ class Contract(models.Model):
     )
     journal_id = fields.Many2one(
         'account.journal', 'Salary Journal',
-        default=lambda self: self.env.user.company_id.hr_salary_journal.id
+        default=lambda self: self.get_journal()
     )
 
     @api.multi
@@ -97,3 +102,20 @@ class HrPayslip(models.Model):
                     line['superposition'] = rule.superposition
         return result
 
+
+class HrPayslipRun(models.Model):
+    _inherit = 'hr.payslip.run'
+
+    def get_journal(self):
+        if self.env.user.company_id.hr_salary_journal:
+            return self.env.user.company_id.hr_salary_journal.id
+        return self.env['account.journal'].search([('type', '=', 'general')], limit=1)
+
+    journal_id = fields.Many2one(
+        'account.journal',
+        'Salary Journal',
+        states={'draft': [('readonly', False)]},
+        readonly=True,
+        required=True,
+        default=lambda self: self.get_journal()
+    )

@@ -20,7 +20,7 @@
     'version': '0.1',
     'depends': [
         'base',
-        'hr_payroll',
+        'hr_payroll_account',
         'hr_attendance',
         'hr_holidays',
     ],

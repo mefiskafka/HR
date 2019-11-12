@@ -533,6 +533,7 @@ class HRAttendanceSheet(models.Model):
     @api.multi
     def action_create_payslip(self):
         payslips = self.env['hr.payslip']
+        contract = self.env['hr.contract']
         for sheet in self:
             if sheet.payslip_id:
                 payslip = sheet.payslip_id
@@ -570,7 +571,10 @@ class HRAttendanceSheet(models.Model):
             else:
                 worked_days_line_ids += line_ids
                 payslip_data = self.prepare_payslip(sheet, contract_id, slip_data, worked_days_line_ids)
-                payslip = payslips.sudo().create(payslip_data)
+                jounral_id = contract.browse(contract_id).journal_id
+                payslip = payslips.sudo().with_context(
+                    journal_id=jounral_id and jounral_id.id
+                ).create(payslip_data)
             sheet.payslip_id = payslip
 
         return {
