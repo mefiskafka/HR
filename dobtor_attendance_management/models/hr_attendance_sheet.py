@@ -11,7 +11,8 @@ from operator import itemgetter
 
 class HRAttendanceSheet(models.Model):
     _name = 'hr.attendance.sheet'
-
+    _inherit = 'mail.thread'
+    
     name = fields.Char(string="name")
     employee_id = fields.Many2one(
         string='Employee',
