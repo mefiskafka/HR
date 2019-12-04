@@ -145,6 +145,8 @@ class HRAttendanceSheet(models.Model):
             # or 
             #  already date :         10/1|██████████████|10/31
             #  search date :      9/20|███████████████████████|10/20
+            if self.env.context.get('ir_cron', False):
+                return
             raise ValidationError(_('in this case are already attendance sheet existing or singularity.\n employee : {}\n from : {}\n to : {}'.format(
             employee.name, attendance.date_from, attendance.date_to)))
 
@@ -770,6 +772,27 @@ class HRAttendanceSheet(models.Model):
                         'note': note
                     })
                     sheet_line.create(values)
+
+
+    @api.model
+    def create_employee_attendance_sheet(self):
+        self = self.with_context(ir_cron=True)
+        employees = self.env['hr.employee'].search([('active', '=', True)])
+        for employee in employees:
+            if not len(employee.contract_ids):
+                continue
+            attendance_sheet = self.new({
+                'employee_id': employee.id,
+                'date_from': fields.Date.to_string(date.today().replace(day=1)),
+                'date_to': fields.Date.to_string((datetime.now() + relativedelta(months=+1, day=1, days=-1)).date())
+            })
+            attendance_sheet.onchange_employee()
+            if attendance_sheet.policy_id:
+                attendance_sheet = self.create({
+                    'employee_id': employee.id,
+                    'name': attendance_sheet.name,
+                    'policy_id': attendance_sheet.policy_id.id
+                })
 
 
 class AttendanceSheetLine(models.Model):
