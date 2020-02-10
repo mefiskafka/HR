@@ -35,6 +35,7 @@ class PostChangeData(models.TransientModel):
             'diff_time': data['diff_time'],
             'overtime': data['overtime'],
             'note': data['note'],
+            'is_processed': True
         }
         line_id.write(res)
         return {'type': 'ir.actions.act_window_close'}
