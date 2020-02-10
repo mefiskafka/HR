@@ -9,13 +9,12 @@
                 <form string="">
                     <header>
                         <button name="compute_attendances" string="Compute Sheets" class="oe_highlight" states="draft" type="object"/>
-                        <button name="action_open" states="draft" string="Valid" type="object" class="oe_highlight"/>
-                        <button name="action_confirm" states="open" string="Post to Manager" type="object" class="oe_highlight"/>
+                        <button name="action_confirm" states="draft" string="Post to Manager" type="object" class="oe_highlight"/>
                         <button name="settlement_attendance_data" states="confirm" string="Compute Data" class="oe_highlight" type="object"/>
                         <button name="action_approve" states="confirm" string="Approve" type="object" class="oe_highlight" groups="hr_attendance.group_hr_attendance_manager"/>
                         <button name="action_draft" states="confirm" string="Set to Draft" type="object" groups="hr_attendance.group_hr_attendance_manager"/>
                         <button name="action_create_payslip" string="Get Payslip" class="oe_highlight" states="done" type="object" groups="hr_attendance.group_hr_attendance_manager" />
-                        <field name="state" widget="statusbar" statusbar_visible="draft,open,confirm,done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
@@ -56,11 +55,11 @@
                                         <field name="worked_hours" widget="float_time" sum="Quantity"/>
                                         <field name="status"/>
                                         <field name="note"/>
-                                        <button name="%(action_post_change_data)d" class="oe_stat_button" icon="fa-edit" type="action" attrs="{'invisible': [('state', 'not in', ('open', 'confirm'))]}" />
+                                        <button name="%(action_post_change_data)d" class="oe_stat_button" icon="fa-edit" type="action" attrs="{'invisible': [('state', 'not in', ('draft', 'confirm'))]}" />
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Reduce" attrs="{'invisible': [('state', 'in', ('draft', 'open'))]}">
+                            <page string="Reduce" attrs="{'invisible': [('state', 'in', ('draft'))]}">
                                 <group>
                                     <group string="Late In">
                                         <field name="num_late"/>
@@ -76,7 +75,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Increase" attrs="{'invisible': [('state', 'in', ('draft', 'open'))]}">
+                            <page string="Increase" attrs="{'invisible': [('state', 'in', ('draft'))]}">
                                 <group>
                                     <group string="Work Overtime">
                                         <field name="num_overtime"/>

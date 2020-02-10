@@ -9,6 +9,28 @@ from odoo.exceptions import UserError, ValidationError
 from operator import itemgetter
 
 
+
+class HRAttendance(models.Model):
+    _inherit = 'hr.attendance'
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('check_out', '') and (vals.get('check_out', '')).split(" ", 1) == (vals.get('check_in', '')).split(" ", 1):
+            attendance_sheet_line = self.env['hr.attendance.sheet.line'].search(
+                [('date', '=', (vals.get('check_out')).split(" ", 1))])
+            attendance_sheet_line.write({'is_processed' : False})
+        return super().write(vals)
+
+    @api.multi
+    def unlink(self):
+        for attendance in self:
+            if attendance.check_out and attendance.check_out.strftime('%Y-%m-%d') == attendance.check_in.strftime('%Y-%m-%d'):
+                attendance_sheet_line = self.env['hr.attendance.sheet.line'].search(
+                    [('date', '=', attendance.check_out.strftime('%Y-%m-%d'))])
+                attendance_sheet_line.write({'is_processed' : False})
+        super().unlink()
+
+
 class HRAttendanceSheet(models.Model):
     _name = 'hr.attendance.sheet'
     _inherit = 'mail.thread'
@@ -41,7 +63,6 @@ class HRAttendanceSheet(models.Model):
         string='Status',
         selection=[
             ('draft', 'Draft'),
-            ('open', 'Open'),
             ('confirm', 'Confirmed'),
             ('done', 'Approved')
         ],
@@ -116,6 +137,7 @@ class HRAttendanceSheet(models.Model):
         string='PaySlip',
         comodel_name='hr.payslip',
     )
+    
 
     @api.onchange('employee_id', 'date_from', 'date_to')
     def onchange_employee(self):
@@ -465,13 +487,6 @@ class HRAttendanceSheet(models.Model):
 
 
     # Action
-    @api.multi
-    def action_open(self):
-        for records in self:
-            records.write({'state': 'open'})
-            for line in records.sheet_line_ids:
-                line.write({'state': 'open'})
-        return True
 
     @api.multi
     def action_confirm(self):
@@ -602,9 +617,16 @@ class HRAttendanceSheet(models.Model):
         return overtime_type
 
     @api.multi
+    def unlink_unprocess(self, sheet):
+        return sheet.sheet_line_ids.filtered(lambda r: not r.is_processed)
+
+    @api.multi
     def compute_attendances(self):
         for sheet in self:
-            sheet.sheet_line_ids.unlink()
+            # 
+            unprocess = self.unlink_unprocess(sheet)
+            unprocess.unlink()
+            # sheet.sheet_line_ids.unlink()
             sheet_line = self.env['hr.attendance.sheet.line']
             timezone = self.get_timezone()
             # Get information related to employee_id
@@ -630,6 +652,11 @@ class HRAttendanceSheet(models.Model):
                 attendance_intervals = self.get_attendance_intervals(
                     policy_id, day, day_end)
                 note = ''
+                is_continue = sheet.sheet_line_ids.filtered(
+                    lambda r: r.is_processed and str(r.date) == day.strftime('%Y-%m-%d')
+                )
+                if len(is_continue):
+                    continue
 
                 for i, work_interval in enumerate(work_intervals):
                     pl_sign_in = work_interval[0]
@@ -657,12 +684,13 @@ class HRAttendanceSheet(models.Model):
                     actual_sign_in = 0
                     actual_sign_out = 0
                     status = ""
+                    is_processed = False
                     worked_hours = 0
                     if att_work_intervals:
                         # declare
                         att_sign_in = att_work_intervals[0][0]
                         att_sign_out = att_work_intervals[-1][1]
-
+                        is_processed = True
                         # get late and overtime interval
                         # if late
                         #  planned                 ->|██████████████|
@@ -769,7 +797,8 @@ class HRAttendanceSheet(models.Model):
                         'worked_hours': worked_hours,
                         'overtime_type': overtime_type,
                         'status': status,
-                        'note': note
+                        'note': note,
+                        'is_processed': is_processed,
                     })
                     sheet_line.create(values)
 
@@ -797,11 +826,11 @@ class HRAttendanceSheet(models.Model):
 
 class AttendanceSheetLine(models.Model):
     _name = 'hr.attendance.sheet.line'
+    _order = 'date'
 
     state = fields.Selection(
         selection=[
             ('draft', 'Draft'),
-            ('open', 'Open'),
             ('confirm', 'Confirmed'),
             ('done', 'Approved')
         ],
@@ -861,6 +890,7 @@ class AttendanceSheetLine(models.Model):
         required=False,
         readonly=True
     )
+    is_processed = fields.Boolean('Has the attendance been post processed', default=False)
 
 
 class AttendanceSheetOvertime(models.Model):
