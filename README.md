@@ -21,3 +21,6 @@ Accounting :
 
  - Set 'Journal' Default Debit Account and Credit Account
  - Set 'Salary Rule' Accounting 'Debit Account'
+
+Remark : 
+ - 需要 移除 group_hr_attendance_user 原本的權限

@@ -15,9 +15,9 @@ class HRAttendance(models.Model):
 
     @api.multi
     def write(self, vals):
-        if vals.get('check_out', '') and (vals.get('check_out', '')).split(" ", 1) == (vals.get('check_in', '')).split(" ", 1):
+        if vals.get('check_out', '') and str(vals.get('check_out', '')).split(" ", 1) == str(vals.get('check_in', '')).split(" ", 1):
             attendance_sheet_line = self.env['hr.attendance.sheet.line'].search(
-                [('date', '=', (vals.get('check_out')).split(" ", 1))])
+                [('date', '=', str(vals.get('check_out')).split(" ", 1))])
             attendance_sheet_line.write({'is_processed' : False})
         return super().write(vals)
 

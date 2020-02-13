@@ -27,6 +27,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/ir_rule.xml',
         'wizard/post_change_data.xml',
         'data/ir_cron.xml',
         'data/resource_calendar_data.xml',
