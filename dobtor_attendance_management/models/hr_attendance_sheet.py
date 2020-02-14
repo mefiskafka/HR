@@ -650,7 +650,7 @@ class HRAttendanceSheet(models.Model):
                     calender_id, day, day_end)
                 # TODO : Need to handle exceptions (No Sign out)
                 attendance_intervals = self.get_attendance_intervals(
-                    policy_id, day, day_end)
+                    employee_id, day, day_end)
                 note = ''
                 is_continue = sheet.sheet_line_ids.filtered(
                     lambda r: r.is_processed and str(r.date) == day.strftime('%Y-%m-%d')
