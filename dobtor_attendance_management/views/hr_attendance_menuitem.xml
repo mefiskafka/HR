@@ -13,6 +13,7 @@
 
         <!-- Attendance Sheet -->
         <menuitem id="menu_hr_attendance_sheet" name="Attendance sheets" parent="hr_attendance.menu_hr_attendance_manage_attendances" sequence="11" action="action_attendance_sheet"/>
+        <menuitem id="menu_hr_attendance_sheet_line" name="Approve change Attendance" parent="hr_attendance.menu_hr_attendance_manage_attendances" sequence="12" action="action_attendance_sheet_line"/>
 
     </data>
 </odoo>

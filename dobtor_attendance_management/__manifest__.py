@@ -45,6 +45,7 @@
         'views/hr_attendance_overtime_views.xml',
         'views/hr_attendance_policies_views.xml',
         'views/hr_attendance_sheet_views.xml',
+        'views/hr_attendance_sheet_line_views.xml',
         'views/hr_attendance_menuitem.xml',
         'views/hr_leave_views.xml',
         'views/hr_contract_views.xml',
