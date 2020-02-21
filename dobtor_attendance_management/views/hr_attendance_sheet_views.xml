@@ -55,7 +55,8 @@
                                         <field name="worked_hours" widget="float_time" sum="Quantity"/>
                                         <field name="status"/>
                                         <field name="note"/>
-                                        <button name="%(action_post_change_data)d" class="oe_stat_button" icon="fa-edit" type="action" attrs="{'invisible': [('state', 'not in', ('draft', 'confirm'))]}" />
+                                        <field name="approve_status" invisible="1" />
+                                        <button name="%(action_post_change_data)d" class="oe_stat_button" icon="fa-edit" type="action" attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'confirm')), ('approve_status', '!=', 'disapprove')]}" />
                                     </tree>
                                 </field>
                             </page>
@@ -69,7 +70,7 @@
                                         <field name="num_absence"/>
                                         <field name="total_absence" widget="float_time"/>
                                     </group>
-                                    <group string="Diffrence Time" >
+                                    <group string="Diffrence Time">
                                         <field name="num_diff"/>
                                         <field name="total_diff" widget="float_time"/>
                                     </group>

@@ -6,19 +6,26 @@
             <field name="name">hr.attendance.sheet.tree.line.view</field>
             <field name="model">hr.attendance.sheet.line</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree editable="top" create="0" delete="0" colors="blue:approve_status=='approve'">
+                    <field name="employee_id" />
                     <field name="date"/>
                     <field name="plan_sign_in" widget="float_time"/>
                     <field name="plan_sign_out" widget="float_time"/>
                     <field name="actual_sign_in" widget="float_time"/>
                     <field name="actual_sign_out" widget="float_time"/>
                     <field name="late_in" widget="float_time" sum="Quantity"/>
+                    <field name="change_late_in" widget="float_time" sum="Quantity"/>
                     <field name="diff_time" widget="float_time" sum="Quantity"/>
+                    <field name="change_diff_time" widget="float_time" sum="Quantity"/>
                     <field name="overtime" widget="float_time" sum="Quantity"/>
+                    <field name="change_overtime" widget="float_time" sum="Quantity"/>
                     <field name="worked_hours" widget="float_time" sum="Quantity"/>
                     <field name="status"/>
                     <field name="note"/>
-
+                    <field name="approve_status" />
+                    <field name="approve_date" />
+                    <button name="action_approve" string="Approve" type="object" icon="fa-check" attrs="{'invisible': [('approve_status','not in',('disapprove'))]}" />
+                    <button name="action_disapprove" string="Disapprove" type="object" icon="fa-times" attrs="{'invisible': [('approve_status','not in',('approve'))]}"/>
                 </tree>
             </field>
         </record>

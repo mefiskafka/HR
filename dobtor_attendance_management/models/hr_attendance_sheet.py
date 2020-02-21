@@ -828,6 +828,12 @@ class AttendanceSheetLine(models.Model):
     _name = 'hr.attendance.sheet.line'
     _order = 'date'
 
+    employee_id = fields.Many2one(
+        string='Employee',
+        related='sheet_id.employee_id',
+        readonly=True,
+        store=True
+    )
     state = fields.Selection(
         selection=[
             ('draft', 'Draft'),
@@ -874,9 +880,9 @@ class AttendanceSheetLine(models.Model):
         help="Diffrence between the working time and attendance time(s) ",
     )
     # TODO : user post change to manager, and manager need viled (add feature)
-    change_late_in = fields.Float()
-    change_diff_time = fields.Float()
-    change_overtime = fields.Float()
+    change_late_in = fields.Float(string="Change")
+    change_diff_time = fields.Float(string="Change")
+    change_overtime = fields.Float(string="Change")
     
     worked_hours = fields.Float(string="Worked Hours", readonly=True)
     note = fields.Text(string="Note")
@@ -890,7 +896,54 @@ class AttendanceSheetLine(models.Model):
         required=False,
         readonly=True
     )
+    # Maybe Dobtor Check or Somthing Condiation for approve
+    approve_status = fields.Selection(
+        string="Approve Status",
+        selection=[
+            ('disapprove', 'Disapprove'),
+            ('approve', 'Approve')
+        ],
+        default='disapprove',
+    )
+    approve_date = fields.Datetime('Approve Date')
     is_processed = fields.Boolean('Has the attendance been post processed', default=False)
+
+    @api.multi
+    def action_approve(self):
+        for line in self:
+            origin_late_in = line.late_in
+            origin_diff_time = line.diff_time
+            origin_overtime = line.overtime
+
+            line.late_in = line.change_late_in
+            line.diff_time = line.change_diff_time
+            line.overtime = line.change_overtime
+            # origin data
+            line.change_late_in = origin_late_in
+            line.change_diff_time = origin_diff_time
+            line.change_overtime = origin_overtime
+
+            line.approve_date = fields.Datetime.now()
+            line.approve_status = 'approve'
+
+    @api.multi
+    def action_disapprove(self):
+        for line in self:
+            if line.approve_status == 'approve':
+                origin_late_in = line.change_late_in
+                origin_diff_time = line.change_diff_time
+                origin_overtime = line.change_overtime
+
+                line.change_late_in = line.late_in
+                line.change_diff_time = line.diff_time
+                line.change_overtime = line.overtime
+
+                line.late_in = origin_late_in
+                line.diff_time = origin_diff_time
+                line.overtime = origin_overtime
+
+            line.approve_date = None
+            line.approve_status = 'disapprove'
 
 
 class AttendanceSheetOvertime(models.Model):

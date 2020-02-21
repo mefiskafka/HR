@@ -18,9 +18,9 @@ class PostChangeData(models.TransientModel):
     def default_get(self, fields):
         res = super().default_get(fields)
         line_id = self.env['hr.attendance.sheet.line'].browse(self._context['active_id'])
-        res['late_in'] = line_id.late_in
-        res['diff_time'] = line_id.diff_time
-        res['overtime'] = line_id.overtime
+        res['late_in'] = line_id.change_late_in or line_id.late_in
+        res['diff_time'] = line_id.change_diff_time or line_id.diff_time
+        res['overtime'] = line_id.change_overtime or line_id.overtime
         res['line_id'] = line_id.id
         res['note'] = line_id.note
         return res
@@ -31,9 +31,12 @@ class PostChangeData(models.TransientModel):
         [data] = self.read()
         line_id = self.env['hr.attendance.sheet.line'].browse(self._context['active_id'])
         res = {
-            'late_in': data['late_in'],
-            'diff_time': data['diff_time'],
-            'overtime': data['overtime'],
+            # 'late_in': data['late_in'],
+            # 'diff_time': data['diff_time'],
+            # 'overtime': data['overtime'],
+            'change_late_in': data['late_in'],
+            'change_diff_time': data['diff_time'],
+            'change_overtime': data['overtime'],
             'note': data['note'],
             'is_processed': True
         }
