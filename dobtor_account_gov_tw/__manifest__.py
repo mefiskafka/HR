@@ -21,7 +21,8 @@
         'account',
         'l10n_tw_standard_ifrss',
         'dobtor_hr_labor_insurance',
-        'hr_payroll_account'
+        'hr_payroll_account',
+        'purchase',
     ],
 
     # always loaded
